@@ -2,17 +2,24 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0,
-               user-scalable=no, viewport-fit=cover">
+content="width=device-width,
+initial-scale=1,
+maximum-scale=1,
+user-scalable=no,
+viewport-fit=cover">
 
 <title>OVERDUEL</title>
 
 <style>
+
 *{
     box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
     user-select:none;
+    -webkit-user-select:none;
+    -webkit-touch-callout:none;
+    -webkit-tap-highlight-color:transparent;
     touch-action:none;
 }
 
@@ -21,102 +28,230 @@ html,body{
     width:100%;
     height:100%;
     overflow:hidden;
-    background:#000;
+    background:#050505;
     font-family:Arial,sans-serif;
 }
 
 body{
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
 }
 
 button{
-    font:inherit;
+    border:0;
+    font-family:Arial,sans-serif;
 }
+
+/* =====================================================
+   전체
+===================================================== */
 
 #game{
     position:relative;
     width:100vw;
     height:100vh;
     overflow:hidden;
-    background:#f5d56e;
+    background:#111;
 }
 
-/* =========================
-   START
-========================= */
+/* =====================================================
+   픽 화면
+===================================================== */
 
 .screen{
     position:absolute;
     inset:0;
+    z-index:1000;
+
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
+
     background:
-        radial-gradient(circle at center,#ffe88a 0%,#d59b35 100%);
-    z-index:100;
+    radial-gradient(
+        circle at center,
+        #ffe98b,
+        #c88d2b
+    );
 }
 
-.title{
-    font-size:clamp(55px,10vw,110px);
+#pickScreen{
+    display:none;
+}
+
+.logo{
+    font-size:clamp(45px,8vw,90px);
     font-weight:1000;
-    color:#171717;
+    color:#161616;
+
     text-shadow:
-        5px 5px 0 #fff0a0,
-        8px 8px 0 #5b4017;
-    margin-bottom:45px;
-    letter-spacing:4px;
+    4px 4px #fff2a1,
+    8px 8px #694718;
+
+    margin-bottom:20px;
 }
 
-.startBtn{
-    width:270px;
-    height:90px;
-    border-radius:22px;
-    border:6px solid #3b2b15;
-    background:linear-gradient(#ffe86c,#e7a900);
-    color:#281c0d;
-    font-size:32px;
+.pickTitle{
+    font-size:26px;
     font-weight:900;
-    box-shadow:0 8px 0 #6c4710;
+    margin-bottom:20px;
 }
 
-.startBtn:active{
-    transform:translateY(6px);
-    box-shadow:0 2px 0 #6c4710;
+.playerLabel{
+    font-size:22px;
+    font-weight:1000;
+    margin:8px;
 }
 
-/* =========================
-   ARENA
-========================= */
+.heroGrid{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+    max-width:850px;
+}
+
+.heroCard{
+    width:190px;
+    height:220px;
+
+    border:5px solid #272727;
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+        #fff1a3,
+        #d8a43a
+    );
+
+    box-shadow:
+    0 7px 0 #5c4219;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+}
+
+.heroCard:active{
+    transform:translateY(5px);
+    box-shadow:0 2px 0 #5c4219;
+}
+
+.heroIcon{
+    width:85px;
+    height:85px;
+    border-radius:50%;
+
+    border:5px solid #202020;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:40px;
+    font-weight:1000;
+
+    margin-bottom:12px;
+}
+
+.lucioIcon{
+    background:#49d879;
+}
+
+.bastionIcon{
+    background:#7d8c72;
+}
+
+.dvaIcon{
+    background:#ff8fc5;
+}
+
+.heroName{
+    font-size:25px;
+    font-weight:1000;
+}
+
+.heroDesc{
+    margin-top:5px;
+    font-size:14px;
+    font-weight:700;
+}
+
+.selected{
+    outline:7px solid #fff;
+    transform:scale(1.04);
+}
+
+#pickStatus{
+    margin-top:20px;
+    font-size:20px;
+    font-weight:1000;
+}
+
+.startBattle{
+    margin-top:20px;
+
+    width:250px;
+    height:70px;
+
+    border-radius:18px;
+    border:5px solid #222;
+
+    background:
+    linear-gradient(
+        #fff36d,
+        #e6a900
+    );
+
+    font-size:27px;
+    font-weight:1000;
+
+    box-shadow:
+    0 6px 0 #68450d;
+}
+
+.startBattle:active{
+    transform:translateY(5px);
+    box-shadow:0 1px 0 #68450d;
+}
+
+/* =====================================================
+   전투
+===================================================== */
 
 #arena{
     position:absolute;
     inset:0;
     display:none;
     overflow:hidden;
+
     background:#f6d878;
 }
-
-/* stone border */
 
 #topWall,
 #bottomWall{
     position:absolute;
     left:0;
     right:0;
+
     height:11%;
-    min-height:70px;
+
     background:
-        repeating-linear-gradient(
-            90deg,
-            #ffe69a 0px,
-            #ffe69a 75px,
-            #d7a94e 78px,
-            #d7a94e 82px
-        );
+    repeating-linear-gradient(
+        90deg,
+        #ffe9a0 0px,
+        #ffe9a0 70px,
+        #d9aa50 73px,
+        #d9aa50 78px
+    );
+
     border-bottom:7px solid #17120b;
+
     z-index:2;
 }
 
@@ -126,77 +261,103 @@ button{
 
 #bottomWall{
     bottom:0;
+
     border-top:7px solid #17120b;
     border-bottom:0;
 }
 
-/* battle field */
-
 #field{
     position:absolute;
+
     left:7%;
     right:7%;
+
     top:11%;
     bottom:11%;
+
     overflow:hidden;
+
     background:
-        radial-gradient(circle at 20% 20%,#f8dc7e 0 3px,transparent 4px),
-        radial-gradient(circle at 80% 70%,#dfbd62 0 3px,transparent 4px),
-        radial-gradient(circle at 50% 45%,#edca70 0 2px,transparent 3px),
-        #f8dd82;
-    background-size:150px 120px,190px 160px,110px 90px,auto;
+    radial-gradient(
+        circle,
+        rgba(150,110,45,.25) 0 2px,
+        transparent 3px
+    );
+
+    background-size:100px 90px;
+
     border-left:7px solid #17120b;
     border-right:7px solid #17120b;
 }
 
-/* center line */
-
 #centerLine{
     position:absolute;
+
+    top:50%;
     left:0;
     right:0;
-    top:50%;
+
     height:4px;
-    background:#7d652c;
-    opacity:.55;
+
+    background:#80682d;
+
+    opacity:.5;
 }
 
-/* =========================
+/* =====================================================
    HUD
-========================= */
+===================================================== */
 
 #hud{
     position:absolute;
-    top:1.5%;
+
+    top:1.2%;
     left:50%;
+
     transform:translateX(-50%);
-    width:min(780px,72vw);
+
+    width:min(850px,75vw);
+
     height:9%;
+
     min-height:65px;
-    z-index:20;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
+    z-index:20;
+}
+
+.playerHud{
+    width:38%;
 }
 
 .hpBox{
     position:relative;
-    width:38%;
-    height:55px;
+
+    width:100%;
+    height:35px;
+
     background:#292929;
-    border:5px solid #151515;
-    border-radius:13px;
+
+    border:4px solid #111;
+
+    border-radius:9px;
+
     overflow:hidden;
-    box-shadow:0 3px 0 #000;
 }
 
 .hpFill{
     position:absolute;
+
     left:0;
     top:0;
     bottom:0;
+
     width:100%;
-    background:#ed2020;
+
+    background:#e92222;
 }
 
 .hpFill.p2{
@@ -206,104 +367,197 @@ button{
 
 .hpText{
     position:absolute;
+
     inset:0;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
+    color:#fff;
+
+    font-size:17px;
+    font-weight:1000;
+
+    text-shadow:
+    2px 2px #000;
+}
+
+/* 궁극기 게이지 */
+
+.ultBox{
+    width:100%;
+    height:14px;
+
+    margin-top:4px;
+
+    background:#222;
+
+    border:2px solid #111;
+
+    border-radius:8px;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+.ultFill{
+    position:absolute;
+
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:0%;
+
+    background:
+    linear-gradient(
+        90deg,
+        #ffe500,
+        #ff9d00
+    );
+
+    transition:width .15s;
+}
+
+.ultText{
+    position:absolute;
+
+    inset:0;
+
+    text-align:center;
+
+    font-size:9px;
+    font-weight:1000;
+
     color:white;
-    font-size:20px;
-    font-weight:900;
-    text-shadow:2px 2px #000;
+
+    text-shadow:1px 1px #000;
 }
 
 #timer{
-    width:78px;
-    height:78px;
+    width:70px;
+    height:70px;
+
     margin:0 8px;
+
     border-radius:50%;
+
     background:#242424;
-    border:7px solid #555;
-    outline:4px solid #171717;
+
+    border:6px solid #555;
+
+    outline:4px solid #111;
+
     color:white;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:27px;
+
+    font-size:24px;
     font-weight:1000;
-    z-index:3;
 }
 
 #logo{
     position:absolute;
-    top:3%;
-    right:12%;
-    color:#171717;
-    font-size:clamp(20px,3vw,42px);
+
+    top:2.5%;
+    right:10%;
+
+    font-size:clamp(
+        20px,
+        3vw,
+        40px
+    );
+
     font-weight:1000;
-    text-shadow:3px 3px #fff0a0;
-    z-index:25;
+
+    color:#181818;
+
+    text-shadow:
+    3px 3px #fff1a0;
+
+    z-index:30;
 }
 
-/* =========================
-   CHARACTERS
-========================= */
+/* =====================================================
+   캐릭터
+===================================================== */
 
 .character{
     position:absolute;
-    width:76px;
-    height:92px;
-    z-index:10;
-    transition:transform .05s linear;
-}
 
-.body{
-    position:absolute;
-    width:50px;
-    height:48px;
-    left:13px;
-    top:29px;
-    border:4px solid #171717;
-    border-radius:12px 12px 17px 17px;
-    background:#ececec;
+    width:78px;
+    height:90px;
+
+    z-index:10;
 }
 
 .head{
     position:absolute;
-    width:52px;
-    height:43px;
+
+    width:54px;
+    height:45px;
+
     left:12px;
-    top:3px;
+    top:2px;
+
+    background:#eee;
+
     border:4px solid #171717;
-    border-radius:17px 17px 12px 12px;
-    background:#f4f4f4;
-    z-index:2;
+
+    border-radius:
+    18px 18px 12px 12px;
+
+    z-index:3;
 }
 
 .eye{
     position:absolute;
-    left:9px;
-    right:9px;
+
+    left:8px;
+    right:8px;
+
     top:18px;
-    height:9px;
-    border-radius:5px;
+
+    height:8px;
+
     background:#222;
+
+    border-radius:6px;
 }
 
-#p1 .eye{
-    box-shadow:0 0 0 3px #45c8ff;
-}
+.body{
+    position:absolute;
 
-#p2 .eye{
-    box-shadow:0 0 0 3px #ff5b5b;
+    width:52px;
+    height:48px;
+
+    left:13px;
+    top:30px;
+
+    background:#ddd;
+
+    border:4px solid #171717;
+
+    border-radius:
+    10px 10px 16px 16px;
 }
 
 .arm{
     position:absolute;
+
     width:13px;
-    height:31px;
-    top:39px;
-    background:#d8d8d8;
+    height:30px;
+
+    top:40px;
+
+    background:#ddd;
+
     border:3px solid #171717;
+
     border-radius:8px;
 }
 
@@ -319,66 +573,101 @@ button{
 
 .energy{
     position:absolute;
+
     width:48px;
-    height:8px;
-    left:14px;
-    bottom:-7px;
+    height:7px;
+
+    left:15px;
+    bottom:-8px;
+
+    background:#e32222;
+
     border-radius:50%;
-    background:#e51d1d;
 }
 
-/* P1 / P2 colors */
+/* 캐릭터별 */
 
 #p1 .body{
-    box-shadow:inset 0 -12px #43b7d7;
+    box-shadow:
+    inset 0 -13px #35bd68;
 }
 
 #p2 .body{
-    box-shadow:inset 0 -12px #e36d54;
+    box-shadow:
+    inset 0 -13px #ec709e;
 }
 
-/* =========================
-   PROJECTILES
-========================= */
+.hero-lucio .eye{
+    box-shadow:
+    0 0 0 3px #35dc71;
+}
+
+.hero-bastion .eye{
+    box-shadow:
+    0 0 0 3px #96b47b;
+}
+
+.hero-dva .eye{
+    box-shadow:
+    0 0 0 3px #ff71ae;
+}
+
+/* =====================================================
+   투사체
+===================================================== */
 
 .projectile{
     position:absolute;
-    width:24px;
+
+    width:28px;
     height:10px;
+
     border-radius:10px;
+
     z-index:8;
-    box-shadow:0 0 10px currentColor;
+
+    box-shadow:
+    0 0 12px currentColor;
 }
 
-.projectile.p1{
-    background:#43c9ff;
-    color:#43c9ff;
+.p1{
+    background:#48cfff;
+    color:#48cfff;
 }
 
-.projectile.p2{
-    background:#ff5a42;
-    color:#ff5a42;
+.p2{
+    background:#ff684d;
+    color:#ff684d;
 }
 
-/* =========================
-   EFFECTS
-========================= */
+/* =====================================================
+   효과
+===================================================== */
 
 .effect{
     position:absolute;
-    width:25px;
-    height:25px;
+
+    width:28px;
+    height:28px;
+
     border-radius:50%;
+
     pointer-events:none;
-    z-index:30;
-    animation:explode .35s ease-out forwards;
+
+    z-index:40;
+
+    animation:
+    explode .35s
+    ease-out forwards;
 }
 
 @keyframes explode{
+
     0%{
         opacity:1;
         transform:scale(.3);
     }
+
     100%{
         opacity:0;
         transform:scale(3);
@@ -387,174 +676,204 @@ button{
 
 .damage{
     position:absolute;
-    color:#ff2828;
-    font-size:24px;
+
+    z-index:50;
+
+    color:#ff2525;
+
+    font-size:23px;
+
     font-weight:1000;
-    text-shadow:2px 2px #fff;
-    z-index:40;
-    animation:damageFloat .5s ease-out forwards;
+
+    text-shadow:
+    2px 2px white;
+
+    animation:
+    damageFloat .55s
+    ease-out forwards;
 }
 
 @keyframes damageFloat{
+
     0%{
         opacity:1;
-        transform:translateY(0) scale(1);
+        transform:translateY(0);
     }
+
     100%{
         opacity:0;
-        transform:translateY(-45px) scale(1.2);
+        transform:translateY(-40px);
     }
 }
 
-/* =========================
-   SKILL BUTTONS
-========================= */
+/* =====================================================
+   공격 버튼
+===================================================== */
 
 .controlPanel{
     position:absolute;
+
     bottom:2.5%;
     right:2.5%;
+
     display:flex;
-    gap:10px;
-    z-index:50;
+
+    gap:9px;
+
+    z-index:100;
+}
+
+#p2Controls{
+    left:2.5%;
+    right:auto;
+
+    transform:
+    rotate(180deg);
 }
 
 .skillBtn{
     width:78px;
     height:78px;
+
     border-radius:17px;
+
     border:5px solid #171717;
+
     box-shadow:
-        inset 0 0 0 3px rgba(255,255,255,.45),
-        0 5px 0 rgba(0,0,0,.45);
+    inset 0 0 0 3px
+    rgba(255,255,255,.45),
+
+    0 5px 0
+    rgba(0,0,0,.5);
+
+    font-size:30px;
+
+    font-weight:1000;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:32px;
-    font-weight:1000;
-    color:white;
-    text-shadow:2px 2px #000;
+
     position:relative;
+
+    color:white;
+
+    text-shadow:
+    2px 2px #000;
 }
 
 .skillBtn:active{
     transform:translateY(5px);
+
     box-shadow:
-        inset 0 0 0 3px rgba(255,255,255,.45),
-        0 0 0 rgba(0,0,0,.45);
+    inset 0 0 0 3px
+    rgba(255,255,255,.45);
 }
 
 .normal{
-    background:linear-gradient(#eeeeee,#777);
-    color:#202020;
-    text-shadow:1px 1px white;
+    background:
+    linear-gradient(
+        #eee,
+        #777
+    );
+
+    color:#222;
+
+    text-shadow:
+    1px 1px white;
 }
 
 .skill1{
-    background:linear-gradient(#69e47a,#138d31);
+    background:
+    linear-gradient(
+        #69e57d,
+        #148f36
+    );
 }
 
 .skill2{
-    background:linear-gradient(#59c8ff,#1767bd);
+    background:
+    linear-gradient(
+        #5acbff,
+        #1768be
+    );
 }
 
 .ultimate{
-    background:linear-gradient(#fff45b,#f3a900);
-    color:#fff;
+    background:
+    linear-gradient(
+        #fff45c,
+        #f0a500
+    );
 }
 
-.cooldown{
-    position:absolute;
-    inset:0;
-    border-radius:12px;
-    background:rgba(0,0,0,.65);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    font-size:24px;
+/* 궁극기 미충전 */
+
+.ultimate.locked{
+    filter:grayscale(.7);
+    opacity:.55;
 }
 
-/* second player's panel */
-
-#p2Controls{
-    left:2.5%;
-    right:auto;
-    transform:rotate(180deg);
-}
-
-#p1Controls{
-    transform:none;
-}
-
-/* =========================
-   MENU
-========================= */
-
-#menuBtn{
-    position:absolute;
-    top:3%;
-    right:2%;
-    width:58px;
-    height:58px;
-    border-radius:13px;
-    border:4px solid #333;
-    background:#d0d0d0;
-    font-size:30px;
-    z-index:60;
-}
-
-/* =========================
-   END
-========================= */
+/* =====================================================
+   결과
+===================================================== */
 
 #endScreen{
     display:none;
-    z-index:200;
 }
 
 #result{
-    font-size:clamp(45px,8vw,90px);
+    font-size:
+    clamp(
+        45px,
+        8vw,
+        90px
+    );
+
     font-weight:1000;
+
     color:#171717;
-    text-shadow:4px 4px #fff;
-    margin-bottom:30px;
+
+    text-shadow:
+    4px 4px white;
+
+    margin-bottom:20px;
 }
 
 #subResult{
     font-size:25px;
     font-weight:900;
-    margin-bottom:40px;
+
+    margin-bottom:35px;
 }
 
-/* =========================
-   ROTATE MODE
-========================= */
+.restart{
+    width:250px;
+    height:75px;
 
-.rotate180{
-    transform:rotate(180deg);
+    border-radius:18px;
+
+    border:5px solid #222;
+
+    background:
+    linear-gradient(
+        #fff26b,
+        #e2a500
+    );
+
+    font-size:28px;
+
+    font-weight:1000;
+
+    box-shadow:
+    0 6px 0 #65440c;
 }
 
-/* =========================
-   IPAD LANDSCAPE
-========================= */
-
-@media(max-width:900px){
-    .skillBtn{
-        width:72px;
-        height:72px;
-        font-size:27px;
-    }
-
-    #timer{
-        width:65px;
-        height:65px;
-        font-size:23px;
-    }
-
-    .hpBox{
-        height:48px;
-    }
+.restart:active{
+    transform:translateY(5px);
+    box-shadow:0 1px 0 #65440c;
 }
+
 </style>
 </head>
 
@@ -562,1008 +881,1946 @@ button{
 
 <div id="game">
 
-    <!-- START -->
-    <div id="startScreen" class="screen">
-        <div class="title">OVERDUEL</div>
-        <button class="startBtn" id="startBtn">게임 시작</button>
+<!-- ==================================================
+     캐릭터 선택
+================================================== -->
+
+<div id="pickScreen" class="screen">
+
+    <div class="logo">
+        OVERDUEL
     </div>
 
-    <!-- GAME -->
-    <div id="arena">
+    <div class="pickTitle">
+        PLAYER 1 캐릭터 선택
+    </div>
 
-        <div id="topWall"></div>
-        <div id="bottomWall"></div>
+    <div id="p1HeroGrid" class="heroGrid">
 
-        <div id="logo">OVERDUEL</div>
+        <button
+        class="heroCard"
+        data-player="1"
+        data-hero="lucio">
 
-        <div id="hud">
-
-            <div class="hpBox">
-                <div id="hp1" class="hpFill"></div>
-                <div id="hpText1" class="hpText">100</div>
+            <div class="heroIcon lucioIcon">
+                ♪
             </div>
 
-            <div id="timer">180</div>
-
-            <div class="hpBox">
-                <div id="hp2" class="hpFill p2"></div>
-                <div id="hpText2" class="hpText">100</div>
+            <div class="heroName">
+                루시우
             </div>
 
-        </div>
-
-        <button id="menuBtn">☰</button>
-
-        <div id="field">
-            <div id="centerLine"></div>
-
-            <!-- PLAYER 1 -->
-            <div id="p1" class="character">
-                <div class="head">
-                    <div class="eye"></div>
-                </div>
-                <div class="body"></div>
-                <div class="arm left"></div>
-                <div class="arm right"></div>
-                <div class="energy"></div>
+            <div class="heroDesc">
+                음파 / 속도
             </div>
 
-            <!-- PLAYER 2 -->
-            <div id="p2" class="character">
-                <div class="head">
-                    <div class="eye"></div>
-                </div>
-                <div class="body"></div>
-                <div class="arm left"></div>
-                <div class="arm right"></div>
-                <div class="energy"></div>
+        </button>
+
+        <button
+        class="heroCard"
+        data-player="1"
+        data-hero="bastion">
+
+            <div class="heroIcon bastionIcon">
+                ▣
             </div>
 
-        </div>
+            <div class="heroName">
+                바스티온
+            </div>
 
-        <!-- P1 ATTACK PANEL -->
-        <div id="p1Controls" class="controlPanel">
+            <div class="heroDesc">
+                연사 / 포격
+            </div>
 
-            <!-- 평타 -->
-            <button class="skillBtn normal" id="p1Attack">
-                ⚔
-            </button>
+        </button>
 
-            <!-- 스킬 1 -->
-            <button class="skillBtn skill1" id="p1Skill1">
-                ➤
-            </button>
+        <button
+        class="heroCard"
+        data-player="1"
+        data-hero="dva">
 
-            <!-- 스킬 2 -->
-            <button class="skillBtn skill2" id="p1Skill2">
-                ◉
-            </button>
+            <div class="heroIcon dvaIcon">
+                ♡
+            </div>
 
-            <!-- 궁극기 -->
-            <button class="skillBtn ultimate" id="p1Ult">
-                ★
-            </button>
+            <div class="heroName">
+                D.Va
+            </div>
 
-        </div>
+            <div class="heroDesc">
+                메카 / 자폭
+            </div>
 
-        <!-- P2 ATTACK PANEL -->
-        <div id="p2Controls" class="controlPanel">
-
-            <button class="skillBtn normal" id="p2Attack">
-                ⚔
-            </button>
-
-            <button class="skillBtn skill1" id="p2Skill1">
-                ➤
-            </button>
-
-            <button class="skillBtn skill2" id="p2Skill2">
-                ◉
-            </button>
-
-            <button class="skillBtn ultimate" id="p2Ult">
-                ★
-            </button>
-
-        </div>
+        </button>
 
     </div>
 
-    <!-- END -->
-    <div id="endScreen" class="screen">
-        <div id="result">PLAYER 1 승리!</div>
-        <div id="subResult">전투 종료</div>
-        <button class="startBtn" id="restartBtn">다시하기</button>
+    <div
+    id="pickStatus">
+        P1: 선택해주세요
+    </div>
+
+    <div
+    class="pickTitle"
+    style="margin-top:15px;">
+        PLAYER 2 캐릭터 선택
+    </div>
+
+    <div id="p2HeroGrid" class="heroGrid">
+
+        <button
+        class="heroCard"
+        data-player="2"
+        data-hero="lucio">
+
+            <div class="heroIcon lucioIcon">
+                ♪
+            </div>
+
+            <div class="heroName">
+                루시우
+            </div>
+
+            <div class="heroDesc">
+                음파 / 속도
+            </div>
+
+        </button>
+
+        <button
+        class="heroCard"
+        data-player="2"
+        data-hero="bastion">
+
+            <div class="heroIcon bastionIcon">
+                ▣
+            </div>
+
+            <div class="heroName">
+                바스티온
+            </div>
+
+            <div class="heroDesc">
+                연사 / 포격
+            </div>
+
+        </button>
+
+        <button
+        class="heroCard"
+        data-player="2"
+        data-hero="dva">
+
+            <div class="heroIcon dvaIcon">
+                ♡
+            </div>
+
+            <div class="heroName">
+                D.Va
+            </div>
+
+            <div class="heroDesc">
+                메카 / 자폭
+            </div>
+
+        </button>
+
+    </div>
+
+    <div id="pickStatus2">
+        P2: 선택해주세요
+    </div>
+
+    <button
+    id="startBattle"
+    class="startBattle">
+
+        전투 시작
+
+    </button>
+
+</div>
+
+
+<!-- ==================================================
+     전투
+================================================== -->
+
+<div id="arena">
+
+    <div id="topWall"></div>
+    <div id="bottomWall"></div>
+
+    <div id="logo">
+        OVERDUEL
+    </div>
+
+    <div id="hud">
+
+        <div class="playerHud">
+
+            <div class="hpBox">
+
+                <div
+                id="hp1"
+                class="hpFill">
+                </div>
+
+                <div
+                id="hpText1"
+                class="hpText">
+                    100
+                </div>
+
+            </div>
+
+            <div class="ultBox">
+
+                <div
+                id="ult1"
+                class="ultFill">
+                </div>
+
+                <div
+                id="ultText1"
+                class="ultText">
+                    궁극기 0%
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div id="timer">
+            180
+        </div>
+
+
+        <div class="playerHud">
+
+            <div class="hpBox">
+
+                <div
+                id="hp2"
+                class="hpFill p2">
+                </div>
+
+                <div
+                id="hpText2"
+                class="hpText">
+                    100
+                </div>
+
+            </div>
+
+            <div class="ultBox">
+
+                <div
+                id="ult2"
+                class="ultFill">
+                </div>
+
+                <div
+                id="ultText2"
+                class="ultText">
+                    궁극기 0%
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="field">
+
+        <div id="centerLine"></div>
+
+
+        <!-- P1 -->
+
+        <div
+        id="p1"
+        class="character">
+
+            <div class="head">
+                <div class="eye"></div>
+            </div>
+
+            <div class="body"></div>
+
+            <div class="arm left"></div>
+            <div class="arm right"></div>
+
+            <div class="energy"></div>
+
+        </div>
+
+
+        <!-- P2 -->
+
+        <div
+        id="p2"
+        class="character">
+
+            <div class="head">
+                <div class="eye"></div>
+            </div>
+
+            <div class="body"></div>
+
+            <div class="arm left"></div>
+            <div class="arm right"></div>
+
+            <div class="energy"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- P1 버튼 -->
+
+    <div
+    id="p1Controls"
+    class="controlPanel">
+
+        <button
+        id="p1Attack"
+        class="skillBtn normal">
+            ⚪
+        </button>
+
+        <button
+        id="p1Skill1"
+        class="skillBtn skill1">
+            ①
+        </button>
+
+        <button
+        id="p1Skill2"
+        class="skillBtn skill2">
+            ②
+        </button>
+
+        <button
+        id="p1Ult"
+        class="skillBtn ultimate locked">
+            ★
+        </button>
+
+    </div>
+
+
+    <!-- P2 버튼 -->
+
+    <div
+    id="p2Controls"
+    class="controlPanel">
+
+        <button
+        id="p2Attack"
+        class="skillBtn normal">
+            ⚪
+        </button>
+
+        <button
+        id="p2Skill1"
+        class="skillBtn skill1">
+            ①
+        </button>
+
+        <button
+        id="p2Skill2"
+        class="skillBtn skill2">
+            ②
+        </button>
+
+        <button
+        id="p2Ult"
+        class="skillBtn ultimate locked">
+            ★
+        </button>
+
     </div>
 
 </div>
 
+
+<!-- ==================================================
+     결과
+================================================== -->
+
+<div id="endScreen" class="screen">
+
+    <div id="result">
+        PLAYER 1 승리!
+    </div>
+
+    <div id="subResult">
+        전투 종료
+    </div>
+
+    <button
+    id="restart"
+    class="restart">
+        다시하기
+    </button>
+
+</div>
+
+</div>
+
+
 <script>
 
-/* =========================================================
-   GAME DATA
-========================================================= */
+/* =====================================================
+   영웅 데이터
+===================================================== */
 
-const arena = document.getElementById("arena");
-const field = document.getElementById("field");
+const heroes={
 
-const p1 = document.getElementById("p1");
-const p2 = document.getElementById("p2");
+    lucio:{
+        name:"루시우",
 
-const hp1Bar = document.getElementById("hp1");
-const hp2Bar = document.getElementById("hp2");
+        attackName:"음파",
 
-const hp1Text = document.getElementById("hpText1");
-const hp2Text = document.getElementById("hpText2");
+        skill1Name:"볼륨",
 
-const timerText = document.getElementById("timer");
+        skill2Name:"음파 방출",
 
-let hp1 = 100;
-let hp2 = 100;
+        ultName:"소리 방벽",
 
-let timeLeft = 180;
+        attackDamage:7,
 
-let gameRunning = false;
-let gameOver = false;
+        skill1Damage:13,
 
-let lastTime = 0;
+        skill2Damage:17,
 
-/* =========================================================
-   CHARACTER POSITION
-   핵심:
-   캐릭터는 좌우 조작 없이
-   위 ↕ 아래 방향으로 자동 이동
-========================================================= */
-
-const player = {
-
-    p1:{
-        x:0,
-        y:0,
-        speed:95,
-        direction:1,
-        autoSpeed:95
+        ultDamage:25
     },
 
-    p2:{
-        x:0,
-        y:0,
-        speed:90,
-        direction:-1,
-        autoSpeed:90
+    bastion:{
+        name:"바스티온",
+
+        attackName:"강습",
+
+        skill1Name:"전환",
+
+        skill2Name:"전술 포탄",
+
+        ultName:"포격",
+
+        attackDamage:9,
+
+        skill1Damage:16,
+
+        skill2Damage:20,
+
+        ultDamage:35
+    },
+
+    dva:{
+        name:"D.Va",
+
+        attackName:"연사",
+
+        skill1Name:"부스터",
+
+        skill2Name:"방어",
+
+        ultName:"자폭",
+
+        attackDamage:8,
+
+        skill1Damage:15,
+
+        skill2Damage:0,
+
+        ultDamage:40
     }
 
 };
 
-/* =========================================================
-   SET INITIAL POSITION
-========================================================= */
 
-function setInitialPositions(){
+/* =====================================================
+   선택 데이터
+===================================================== */
 
-    const w = field.clientWidth;
-    const h = field.clientHeight;
+let selectedHero1=null;
+let selectedHero2=null;
 
-    player.p1.x = w * 0.25;
-    player.p1.y = h * 0.55;
 
-    player.p2.x = w * 0.75;
-    player.p2.y = h * 0.35;
+/* =====================================================
+   선택창
+===================================================== */
+
+function setupHeroSelection(){
+
+    document
+    .querySelectorAll(".heroCard")
+    .forEach(card=>{
+
+        card.addEventListener(
+            "pointerdown",
+            function(e){
+
+                e.preventDefault();
+
+                const player=
+                    Number(
+                        this.dataset.player
+                    );
+
+                const hero=
+                    this.dataset.hero;
+
+                const grid=
+                    player===1
+                    ? document.getElementById("p1HeroGrid")
+                    : document.getElementById("p2HeroGrid");
+
+                grid
+                .querySelectorAll(".heroCard")
+                .forEach(c=>{
+                    c.classList.remove("selected");
+                });
+
+                this.classList.add("selected");
+
+                if(player===1){
+
+                    selectedHero1=hero;
+
+                    document.getElementById(
+                        "pickStatus"
+                    ).textContent=
+                    "P1: "+
+                    heroes[hero].name+
+                    " 선택";
+
+                }else{
+
+                    selectedHero2=hero;
+
+                    document.getElementById(
+                        "pickStatus2"
+                    ).textContent=
+                    "P2: "+
+                    heroes[hero].name+
+                    " 선택";
+                }
+
+            },
+            {passive:false}
+        );
+
+    });
+
+}
+
+setupHeroSelection();
+
+
+/* =====================================================
+   DOM
+===================================================== */
+
+const arena=
+document.getElementById("arena");
+
+const field=
+document.getElementById("field");
+
+const p1=
+document.getElementById("p1");
+
+const p2=
+document.getElementById("p2");
+
+
+/* =====================================================
+   상태
+===================================================== */
+
+let hp1=100;
+let hp2=100;
+
+let ult1=0;
+let ult2=0;
+
+let timeLeft=180;
+
+let gameRunning=false;
+let gameOver=false;
+
+let lastTime=0;
+let deltaTime=0;
+let timerAcc=0;
+
+
+/* =====================================================
+   캐릭터 위치
+===================================================== */
+
+const player={
+
+    1:{
+        x:0,
+        y:0,
+        direction:1,
+        speed:80
+    },
+
+    2:{
+        x:0,
+        y:0,
+        direction:-1,
+        speed:80
+    }
+
+};
+
+
+/* =====================================================
+   투사체
+===================================================== */
+
+let projectiles=[];
+
+
+/* =====================================================
+   초기 위치
+===================================================== */
+
+function resetPositions(){
+
+    const w=field.clientWidth;
+    const h=field.clientHeight;
+
+    player[1].x=w*.25;
+    player[1].y=h*.55;
+
+    player[2].x=w*.75;
+    player[2].y=h*.35;
 
     drawCharacters();
 }
 
-/* =========================================================
-   DRAW
-========================================================= */
+
+/* =====================================================
+   영웅 적용
+===================================================== */
+
+function applyHero(){
+
+    p1.className=
+        "character hero-"+selectedHero1;
+
+    p2.className=
+        "character hero-"+selectedHero2;
+}
+
+
+/* =====================================================
+   캐릭터 그리기
+===================================================== */
 
 function drawCharacters(){
 
-    p1.style.left =
-        (player.p1.x - p1.offsetWidth / 2) + "px";
+    p1.style.left=
+        (
+            player[1].x-
+            p1.offsetWidth/2
+        )+"px";
 
-    p1.style.top =
-        (player.p1.y - p1.offsetHeight / 2) + "px";
+    p1.style.top=
+        (
+            player[1].y-
+            p1.offsetHeight/2
+        )+"px";
 
-    p2.style.left =
-        (player.p2.x - p2.offsetWidth / 2) + "px";
 
-    p2.style.top =
-        (player.p2.y - p2.offsetHeight / 2) + "px";
+    p2.style.left=
+        (
+            player[2].x-
+            p2.offsetWidth/2
+        )+"px";
+
+    p2.style.top=
+        (
+            player[2].y-
+            p2.offsetHeight/2
+        )+"px";
 }
 
-/* =========================================================
-   AUTOMATIC VERTICAL MOVEMENT
-========================================================= */
 
-function autoMove(playerData, character){
+/* =====================================================
+   자동 상하 이동
+===================================================== */
 
-    const h = field.clientHeight;
+function autoMove(id){
 
-    const topLimit = 80;
-    const bottomLimit = h - 80;
+    const data=player[id];
 
-    playerData.y +=
-        playerData.direction *
-        playerData.autoSpeed *
+    const h=field.clientHeight;
+
+    const top=65;
+    const bottom=h-65;
+
+    data.y +=
+        data.direction*
+        data.speed*
         deltaTime;
 
-    if(playerData.y <= topLimit){
+    if(data.y<=top){
 
-        playerData.y = topLimit;
-        playerData.direction = 1;
+        data.y=top;
 
-        character.style.transform =
-            "scaleX(1)";
+        data.direction=1;
     }
 
-    if(playerData.y >= bottomLimit){
+    if(data.y>=bottom){
 
-        playerData.y = bottomLimit;
-        playerData.direction = -1;
+        data.y=bottom;
 
-        character.style.transform =
-            "scaleX(-1)";
+        data.direction=-1;
     }
 }
 
-/* =========================================================
-   PROJECTILES
-========================================================= */
 
-let projectiles = [];
+/* =====================================================
+   HP 업데이트
+===================================================== */
 
-function shoot(owner, type){
+function updateHP(){
 
-    if(!gameRunning || gameOver) return;
+    document.getElementById(
+        "hp1"
+    ).style.width=
+        hp1+"%";
 
-    const shooter =
-        owner === 1 ? player.p1 : player.p2;
+    document.getElementById(
+        "hp2"
+    ).style.width=
+        hp2+"%";
 
-    const target =
-        owner === 1 ? player.p2 : player.p1;
 
-    let damage = 8;
-    let speed = 500;
-    let size = 24;
+    document.getElementById(
+        "hpText1"
+    ).textContent=
+        Math.ceil(hp1);
 
-    if(type === "skill1"){
-
-        damage = 14;
-        speed = 650;
-        size = 30;
-    }
-
-    if(type === "skill2"){
-
-        damage = 18;
-        speed = 430;
-        size = 38;
-    }
-
-    if(type === "ultimate"){
-
-        ultimate(owner);
-        return;
-    }
-
-    const projectile =
-        document.createElement("div");
-
-    projectile.className =
-        "projectile p" + owner;
-
-    projectile.style.width =
-        size + "px";
-
-    projectile.style.height =
-        Math.max(8,size / 3) + "px";
-
-    field.appendChild(projectile);
-
-    const direction =
-        target.x > shooter.x ? 1 : -1;
-
-    projectiles.push({
-
-        element:projectile,
-
-        owner:owner,
-
-        x:shooter.x,
-
-        y:shooter.y,
-
-        speed:speed * direction,
-
-        damage:damage
-
-    });
-
-    projectile.style.left =
-        shooter.x + "px";
-
-    projectile.style.top =
-        shooter.y + "px";
+    document.getElementById(
+        "hpText2"
+    ).textContent=
+        Math.ceil(hp2);
 }
 
-/* =========================================================
-   PROJECTILE UPDATE
-========================================================= */
 
-function updateProjectiles(){
+/* =====================================================
+   궁극기 게이지
+===================================================== */
 
-    for(let i=projectiles.length-1;i>=0;i--){
+function updateUlt(){
 
-        const b = projectiles[i];
+    document.getElementById(
+        "ult1"
+    ).style.width=
+        ult1+"%";
 
-        b.x += b.speed * deltaTime;
+    document.getElementById(
+        "ult2"
+    ).style.width=
+        ult2+"%";
 
-        b.element.style.left =
-            b.x + "px";
 
-        b.element.style.top =
-            b.y + "px";
+    document.getElementById(
+        "ultText1"
+    ).textContent=
+        "궁극기 "+
+        Math.floor(ult1)+
+        "%";
 
-        const target =
-            b.owner === 1 ? player.p2 : player.p1;
+    document.getElementById(
+        "ultText2"
+    ).textContent=
+        "궁극기 "+
+        Math.floor(ult2)+
+        "%";
 
-        const dx = b.x - target.x;
-        const dy = b.y - target.y;
 
-        const distance =
-            Math.sqrt(dx*dx + dy*dy);
+    const u1=
+        document.getElementById(
+            "p1Ult"
+        );
 
-        if(distance < 42){
+    const u2=
+        document.getElementById(
+            "p2Ult"
+        );
 
-            hitTarget(
-                b.owner,
-                b.damage,
-                target.x,
-                target.y
+
+    if(ult1>=100)
+        u1.classList.remove("locked");
+    else
+        u1.classList.add("locked");
+
+
+    if(ult2>=100)
+        u2.classList.remove("locked");
+    else
+        u2.classList.add("locked");
+}
+
+
+/* =====================================================
+   궁극기 충전
+===================================================== */
+
+function chargeUlt(playerId,amount){
+
+    if(playerId===1){
+
+        ult1=
+            Math.min(
+                100,
+                ult1+amount
             );
-
-            b.element.remove();
-
-            projectiles.splice(i,1);
-
-            continue;
-        }
-
-        if(
-            b.x < -100 ||
-            b.x > field.clientWidth + 100
-        ){
-
-            b.element.remove();
-
-            projectiles.splice(i,1);
-        }
-    }
-}
-
-/* =========================================================
-   DAMAGE
-========================================================= */
-
-function hitTarget(attacker,damage,x,y){
-
-    if(attacker === 1){
-
-        hp2 -= damage;
-
-        hp2 = Math.max(0,hp2);
 
     }else{
 
-        hp1 -= damage;
-
-        hp1 = Math.max(0,hp1);
+        ult2=
+            Math.min(
+                100,
+                ult2+amount
+            );
     }
 
-    updateHP();
-
-    createHitEffect(x,y);
-
-    createDamageText(x,y,damage);
-
-    if(hp1 <= 0){
-
-        endGame(2);
-
-    }else if(hp2 <= 0){
-
-        endGame(1);
-    }
+    updateUlt();
 }
 
-/* =========================================================
-   HIT EFFECT
-========================================================= */
 
-function createHitEffect(x,y){
+/* =====================================================
+   효과
+===================================================== */
 
-    const e =
-        document.createElement("div");
+function effect(x,y,type){
+
+    const e=
+        document.createElement(
+            "div"
+        );
 
     e.className="effect";
 
-    e.style.left =
-        (x - 12) + "px";
+    e.style.left=
+        (x-14)+"px";
 
-    e.style.top =
-        (y - 12) + "px";
+    e.style.top=
+        (y-14)+"px";
 
-    e.style.background =
-        "white";
+
+    if(type==="ult")
+        e.style.background="#fff21c";
+    else if(type==="skill")
+        e.style.background="#4edcff";
+    else
+        e.style.background="#fff";
+
 
     field.appendChild(e);
+
 
     setTimeout(()=>{
         e.remove();
     },400);
 }
 
-function createDamageText(x,y,damage){
 
-    const d =
-        document.createElement("div");
+/* =====================================================
+   피해 숫자
+===================================================== */
+
+function damageText(x,y,damage){
+
+    const d=
+        document.createElement(
+            "div"
+        );
 
     d.className="damage";
 
-    d.textContent =
-        "-" + damage;
+    d.textContent=
+        "-"+damage;
 
-    d.style.left =
-        (x + 10) + "px";
+    d.style.left=
+        x+"px";
 
-    d.style.top =
-        (y - 35) + "px";
+    d.style.top=
+        (y-35)+"px";
+
 
     field.appendChild(d);
+
 
     setTimeout(()=>{
         d.remove();
     },550);
 }
 
-/* =========================================================
-   ULTIMATE
-========================================================= */
 
-function ultimate(owner){
+/* =====================================================
+   피해 처리
+===================================================== */
 
-    if(!gameRunning || gameOver) return;
+function damageTarget(
+    attacker,
+    damage,
+    x,
+    y
+){
 
-    const target =
-        owner === 1 ? player.p2 : player.p1;
+    if(attacker===1){
 
-    const damage = 30;
+        hp2=
+            Math.max(
+                0,
+                hp2-damage
+            );
 
-    if(owner === 1){
-
-        hp2 -= damage;
+        chargeUlt(
+            1,
+            damage*.9
+        );
 
     }else{
 
-        hp1 -= damage;
+        hp1=
+            Math.max(
+                0,
+                hp1-damage
+            );
+
+        chargeUlt(
+            2,
+            damage*.9
+        );
     }
 
-    hp1 = Math.max(0,hp1);
-    hp2 = Math.max(0,hp2);
 
     updateHP();
 
-    /*
-       여러 개의 충돌 객체를 생성하지 않고
-       즉시 타격하는 방식이라
-       궁극기 사용 중 게임이 멈추지 않음
-    */
-
-    for(let i=0;i<7;i++){
-
-        setTimeout(()=>{
-
-            if(!gameRunning) return;
-
-            const effect =
-                document.createElement("div");
-
-            effect.className="effect";
-
-            const offsetX =
-                (Math.random()-0.5)*90;
-
-            const offsetY =
-                (Math.random()-0.5)*90;
-
-            effect.style.left =
-                (target.x + offsetX - 12) + "px";
-
-            effect.style.top =
-                (target.y + offsetY - 12) + "px";
-
-            effect.style.background =
-                "#fff23b";
-
-            field.appendChild(effect);
-
-            setTimeout(()=>{
-                effect.remove();
-            },400);
-
-        },i*70);
-    }
-
-    createDamageText(
-        target.x,
-        target.y,
+    damageText(
+        x,
+        y,
         damage
     );
 
-    if(hp1 <= 0){
+
+    effect(
+        x,
+        y,
+        "hit"
+    );
+
+
+    if(hp1<=0){
 
         endGame(2);
 
-    }else if(hp2 <= 0){
+    }else if(hp2<=0){
 
         endGame(1);
     }
 }
 
-/* =========================================================
-   HP
-========================================================= */
 
-function updateHP(){
+/* =====================================================
+   평타
+===================================================== */
 
-    hp1Bar.style.width =
-        hp1 + "%";
+function normalAttack(id){
 
-    hp2Bar.style.width =
-        hp2 + "%";
-
-    hp1Text.textContent =
-        hp1;
-
-    hp2Text.textContent =
-        hp2;
-}
-
-/* =========================================================
-   BUTTON COOLDOWN
-========================================================= */
-
-const cooldowns = {
-
-    p1:{
-        attack:0,
-        skill1:0,
-        skill2:0,
-        ultimate:0
-    },
-
-    p2:{
-        attack:0,
-        skill1:0,
-        skill2:0,
-        ultimate:0
-    }
-
-};
-
-function useSkill(playerNumber,type){
-
-    if(!gameRunning || gameOver) return;
-
-    if(cooldowns[playerNumber][type] > 0)
+    if(!gameRunning || gameOver)
         return;
 
-    let cooldown = 0.4;
+    const me=player[id];
 
-    if(type === "skill1")
-        cooldown = 2;
+    const enemy=
+        id===1
+        ? player[2]
+        : player[1];
 
-    if(type === "skill2")
-        cooldown = 3;
+    const hero=
+        id===1
+        ? heroes[selectedHero1]
+        : heroes[selectedHero2];
 
-    if(type === "ultimate")
-        cooldown = 8;
 
-    cooldowns[playerNumber][type] =
-        cooldown;
+    const direction=
+        enemy.x>me.x
+        ? 1
+        : -1;
 
-    shoot(playerNumber,type);
 
-    showCooldown(
-        playerNumber,
-        type,
-        cooldown
-    );
-}
-
-/* =========================================================
-   COOLDOWN UI
-========================================================= */
-
-function showCooldown(playerNumber,type,time){
-
-    const id =
-        "p" + playerNumber +
-        (
-            type === "attack"
-            ? "Attack"
-            : type === "skill1"
-            ? "Skill1"
-            : type === "skill2"
-            ? "Skill2"
-            : "Ult"
+    const bullet=
+        document.createElement(
+            "div"
         );
 
-    const button =
-        document.getElementById(id);
+    bullet.className=
+        "projectile p"+id;
 
-    const overlay =
-        document.createElement("div");
 
-    overlay.className="cooldown";
+    field.appendChild(bullet);
 
-    overlay.textContent =
-        time.toFixed(1);
 
-    button.appendChild(overlay);
+    projectiles.push({
 
-    overlay.style.display="flex";
+        element:bullet,
 
-    let remain=time;
+        owner:id,
 
-    const interval =
-        setInterval(()=>{
+        x:me.x,
 
-            remain -= 0.1;
+        y:me.y,
 
-            if(remain <= 0){
+        vx:
+            direction*470,
 
-                clearInterval(interval);
+        damage:
+            hero.attackDamage
 
-                overlay.remove();
-
-            }else{
-
-                overlay.textContent =
-                    remain.toFixed(1);
-            }
-
-        },100);
+    });
 }
 
-/* =========================================================
-   BUTTONS
-========================================================= */
 
-document.getElementById("p1Attack")
-    .addEventListener("pointerdown",e=>{
-        e.preventDefault();
-        useSkill(1,"attack");
-    });
+/* =====================================================
+   스킬
+===================================================== */
 
-document.getElementById("p1Skill1")
-    .addEventListener("pointerdown",e=>{
-        e.preventDefault();
-        useSkill(1,"skill1");
-    });
+function skill(id,num){
 
-document.getElementById("p1Skill2")
-    .addEventListener("pointerdown",e=>{
-        e.preventDefault();
-        useSkill(1,"skill2");
-    });
-
-document.getElementById("p1Ult")
-    .addEventListener("pointerdown",e=>{
-        e.preventDefault();
-        useSkill(1,"ultimate");
-    });
+    if(!gameRunning || gameOver)
+        return;
 
 
-document.getElementById("p2Attack")
-    .addEventListener("pointerdown",e=>{
-        e.preventDefault();
-        useSkill(2,"attack");
-    });
+    const me=player[id];
 
-document.getElementById("p2Skill1")
-    .addEventListener("pointerdown",e=>{
-        e.preventDefault();
-        useSkill(2,"skill1");
-    });
+    const enemy=
+        id===1
+        ? player[2]
+        : player[1];
 
-document.getElementById("p2Skill2")
-    .addEventListener("pointerdown",e=>{
-        e.preventDefault();
-        useSkill(2,"skill2");
-    });
+    const hero=
+        id===1
+        ? heroes[selectedHero1]
+        : heroes[selectedHero2];
 
-document.getElementById("p2Ult")
-    .addEventListener("pointerdown",e=>{
-        e.preventDefault();
-        useSkill(2,"ultimate");
-    });
 
-/* =========================================================
-   TIMER
-========================================================= */
+    /* 루시우 */
 
-let timerAccumulator = 0;
+    if(
+        (
+            id===1
+            ? selectedHero1
+            : selectedHero2
+        )==="lucio"
+    ){
+
+        if(num===1){
+
+            /*
+            볼륨을 높여라:
+            일정 시간 동안 평타 피해 증가
+            */
+
+            effect(
+                me.x,
+                me.y,
+                "skill"
+            );
+
+            me.speed=125;
+
+            setTimeout(()=>{
+
+                if(player[id])
+                    player[id].speed=80;
+
+            },2500);
+
+            return;
+        }
+
+
+        if(num===2){
+
+            /*
+            음파 방출:
+            가까운 거리의 상대에게 피해
+            */
+
+            const distance=
+                Math.abs(
+                    enemy.x-me.x
+                );
+
+            if(distance<380){
+
+                damageTarget(
+                    id,
+                    hero.skill2Damage,
+                    enemy.x,
+                    enemy.y
+                );
+
+            }
+
+            effect(
+                me.x,
+                me.y,
+                "skill"
+            );
+
+            return;
+        }
+
+    }
+
+
+    /* 바스티온 */
+
+    if(
+        (
+            id===1
+            ? selectedHero1
+            : selectedHero2
+        )==="bastion"
+    ){
+
+        if(num===1){
+
+            /*
+            전환:
+            잠깐 공격력 증가
+            */
+
+            effect(
+                me.x,
+                me.y,
+                "skill"
+            );
+
+            me.attackBoost=1.5;
+
+            setTimeout(()=>{
+
+                me.attackBoost=1;
+
+            },3000);
+
+            return;
+        }
+
+
+        if(num===2){
+
+            /*
+            전술 포탄:
+            상대 위치에 강한 한 발
+            */
+
+            const direction=
+                enemy.x>me.x
+                ? 1
+                : -1;
+
+
+            const bullet=
+                document.createElement(
+                    "div"
+                );
+
+            bullet.className=
+                "projectile p"+id;
+
+            bullet.style.width="38px";
+            bullet.style.height="15px";
+
+            field.appendChild(bullet);
+
+
+            projectiles.push({
+
+                element:bullet,
+
+                owner:id,
+
+                x:me.x,
+
+                y:me.y,
+
+                vx:
+                    direction*350,
+
+                damage:
+                    hero.skill2Damage
+
+            });
+
+            return;
+        }
+
+    }
+
+
+    /* D.Va */
+
+    if(
+        (
+            id===1
+            ? selectedHero1
+            : selectedHero2
+        )==="dva"
+    ){
+
+        if(num===1){
+
+            /*
+            부스터:
+            순간적으로 위쪽으로 이동
+            */
+
+            me.y +=
+                me.direction*120;
+
+            me.y=
+                Math.max(
+                    70,
+                    Math.min(
+                        field.clientHeight-70,
+                        me.y
+                    )
+                );
+
+            effect(
+                me.x,
+                me.y,
+                "skill"
+            );
+
+            return;
+        }
+
+
+        if(num===2){
+
+            /*
+            방어:
+            짧은 시간 피해 감소
+            */
+
+            me.blocking=true;
+
+            effect(
+                me.x,
+                me.y,
+                "skill"
+            );
+
+            setTimeout(()=>{
+
+                me.blocking=false;
+
+            },1800);
+
+            return;
+        }
+
+    }
+}
+
+
+/* =====================================================
+   궁극기
+===================================================== */
+
+function ultimate(id){
+
+    if(!gameRunning || gameOver)
+        return;
+
+
+    if(
+        id===1
+        && ult1<100
+    ) return;
+
+
+    if(
+        id===2
+        && ult2<100
+    ) return;
+
+
+    const enemy=
+        id===1
+        ? player[2]
+        : player[1];
+
+
+    const hero=
+        id===1
+        ? heroes[selectedHero1]
+        : heroes[selectedHero2];
+
+
+    if(id===1)
+        ult1=0;
+    else
+        ult2=0;
+
+
+    updateUlt();
+
+
+    /*
+       강력한 범위 공격
+    */
+
+    damageTarget(
+        id,
+        hero.ultDamage,
+        enemy.x,
+        enemy.y
+    );
+
+
+    for(
+        let i=0;
+        i<12;
+        i++
+    ){
+
+        setTimeout(()=>{
+
+            if(!gameRunning)
+                return;
+
+            const ox=
+                (Math.random()-.5)
+                *180;
+
+            const oy=
+                (Math.random()-.5)
+                *130;
+
+            effect(
+                enemy.x+ox,
+                enemy.y+oy,
+                "ult"
+            );
+
+        },i*70);
+    }
+}
+
+
+/* =====================================================
+   투사체 업데이트
+===================================================== */
+
+function updateProjectiles(){
+
+    for(
+        let i=projectiles.length-1;
+        i>=0;
+        i--
+    ){
+
+        const b=
+            projectiles[i];
+
+
+        b.x +=
+            b.vx*
+            deltaTime;
+
+
+        b.element.style.left=
+            b.x+"px";
+
+        b.element.style.top=
+            b.y+"px";
+
+
+        const enemy=
+            b.owner===1
+            ? player[2]
+            : player[1];
+
+
+        const dx=
+            b.x-enemy.x;
+
+        const dy=
+            b.y-enemy.y;
+
+
+        const distance=
+            Math.sqrt(
+                dx*dx+
+                dy*dy
+            );
+
+
+        if(distance<45){
+
+            let finalDamage=
+                b.damage;
+
+
+            const blocking=
+                enemy.blocking;
+
+
+            if(blocking){
+
+                finalDamage=
+                    Math.ceil(
+                        finalDamage*.35
+                    );
+            }
+
+
+            damageTarget(
+                b.owner,
+                finalDamage,
+                enemy.x,
+                enemy.y
+            );
+
+
+            b.element.remove();
+
+            projectiles.splice(
+                i,
+                1
+            );
+
+            continue;
+        }
+
+
+        if(
+            b.x<-100 ||
+            b.x>
+            field.clientWidth+100
+        ){
+
+            b.element.remove();
+
+            projectiles.splice(
+                i,
+                1
+            );
+        }
+
+    }
+}
+
+
+/* =====================================================
+   타이머
+===================================================== */
 
 function updateTimer(){
 
-    timerAccumulator += deltaTime;
+    timerAcc +=
+        deltaTime;
 
-    if(timerAccumulator >= 1){
 
-        timerAccumulator = 0;
+    if(timerAcc>=1){
+
+        timerAcc=0;
 
         timeLeft--;
 
-        timeLeft =
-            Math.max(0,timeLeft);
+        timeLeft=
+            Math.max(
+                0,
+                timeLeft
+            );
 
-        timerText.textContent =
+
+        document.getElementById(
+            "timer"
+        ).textContent=
             timeLeft;
 
-        if(timeLeft <= 0){
 
-            if(hp1 > hp2){
+        if(timeLeft<=0){
 
+            if(hp1>hp2)
                 endGame(1);
 
-            }else if(hp2 > hp1){
-
+            else if(hp2>hp1)
                 endGame(2);
 
-            }else{
-
+            else
                 endGame(0);
-            }
         }
     }
 }
 
-/* =========================================================
-   GAME LOOP
-========================================================= */
 
-let deltaTime = 0;
+/* =====================================================
+   게임 루프
+===================================================== */
 
-function gameLoop(timestamp){
+function loop(time){
 
     if(!lastTime)
-        lastTime=timestamp;
+        lastTime=time;
 
-    deltaTime =
+
+    deltaTime=
         Math.min(
-            (timestamp-lastTime)/1000,
-            0.05
+            (time-lastTime)/1000,
+            .05
         );
 
-    lastTime=timestamp;
 
-    if(gameRunning && !gameOver){
+    lastTime=time;
 
-        autoMove(
-            player.p1,
-            p1
-        );
 
-        autoMove(
-            player.p2,
-            p2
-        );
+    if(
+        gameRunning &&
+        !gameOver
+    ){
+
+        autoMove(1);
+        autoMove(2);
 
         updateProjectiles();
 
         updateTimer();
 
         drawCharacters();
-
     }
 
-    requestAnimationFrame(gameLoop);
+
+    requestAnimationFrame(loop);
 }
 
-/* =========================================================
-   START GAME
-========================================================= */
+requestAnimationFrame(loop);
+
+
+/* =====================================================
+   공격 버튼
+   pointerdown + preventDefault
+   => iPad에서도 즉시 실행
+===================================================== */
+
+function bindButton(
+    id,
+    callback
+){
+
+    const button=
+        document.getElementById(id);
+
+
+    button.addEventListener(
+        "pointerdown",
+        function(e){
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            callback();
+
+        },
+        {
+            passive:false
+        }
+    );
+
+
+    button.addEventListener(
+        "touchstart",
+        function(e){
+
+            e.preventDefault();
+
+        },
+        {
+            passive:false
+        }
+    );
+}
+
+
+/* P1 */
+
+bindButton(
+    "p1Attack",
+    ()=>{
+        normalAttack(1);
+    }
+);
+
+bindButton(
+    "p1Skill1",
+    ()=>{
+        skill(1,1);
+    }
+);
+
+bindButton(
+    "p1Skill2",
+    ()=>{
+        skill(1,2);
+    }
+);
+
+bindButton(
+    "p1Ult",
+    ()=>{
+        ultimate(1);
+    }
+);
+
+
+/* P2 */
+
+bindButton(
+    "p2Attack",
+    ()=>{
+        normalAttack(2);
+    }
+);
+
+bindButton(
+    "p2Skill1",
+    ()=>{
+        skill(2,1);
+    }
+);
+
+bindButton(
+    "p2Skill2",
+    ()=>{
+        skill(2,2);
+    }
+);
+
+bindButton(
+    "p2Ult",
+    ()=>{
+        ultimate(2);
+    }
+);
+
+
+/* =====================================================
+   전투 시작
+===================================================== */
+
+document
+.getElementById("startBattle")
+.addEventListener(
+    "pointerdown",
+    function(e){
+
+        e.preventDefault();
+
+
+        if(
+            !selectedHero1 ||
+            !selectedHero2
+        ){
+
+            alert(
+                "두 플레이어 모두 캐릭터를 선택해주세요."
+            );
+
+            return;
+        }
+
+
+        startGame();
+
+    },
+    {
+        passive:false
+    }
+);
+
+
+/* =====================================================
+   게임 시작
+===================================================== */
 
 function startGame(){
 
     hp1=100;
     hp2=100;
 
+    ult1=0;
+    ult2=0;
+
     timeLeft=180;
 
     gameOver=false;
     gameRunning=true;
 
-    projectiles.forEach(p=>{
-        p.element.remove();
-    });
+    player[1].speed=80;
+    player[2].speed=80;
+
+    player[1].blocking=false;
+    player[2].blocking=false;
+
+    player[1].attackBoost=1;
+    player[2].attackBoost=1;
+
+
+    projectiles.forEach(
+        b=>{
+            b.element.remove();
+        }
+    );
 
     projectiles=[];
 
-    cooldowns.p1={
-        attack:0,
-        skill1:0,
-        skill2:0,
-        ultimate:0
-    };
 
-    cooldowns.p2={
-        attack:0,
-        skill1:0,
-        skill2:0,
-        ultimate:0
-    };
+    applyHero();
 
     updateHP();
 
-    timerText.textContent =
+    updateUlt();
+
+
+    document.getElementById(
+        "timer"
+    ).textContent=
         timeLeft;
 
-    document.getElementById("startScreen")
-        .style.display="none";
 
-    document.getElementById("endScreen")
-        .style.display="none";
+    document.getElementById(
+        "pickScreen"
+    ).style.display=
+        "none";
 
-    arena.style.display="block";
 
-    setTimeout(()=>{
-        setInitialPositions();
-    },50);
+    document.getElementById(
+        "endScreen"
+    ).style.display=
+        "none";
+
+
+    arena.style.display=
+        "block";
+
+
+    setTimeout(
+        resetPositions,
+        50
+    );
 }
 
-/* =========================================================
-   END GAME
-========================================================= */
+
+/* =====================================================
+   결과
+===================================================== */
 
 function endGame(winner){
 
-    if(gameOver) return;
+    if(gameOver)
+        return;
+
 
     gameOver=true;
     gameRunning=false;
 
+
     if(winner===1){
 
-        document.getElementById("result")
-            .textContent="PLAYER 1 승리!";
+        document.getElementById(
+            "result"
+        ).textContent=
+            "PLAYER 1 승리!";
 
     }else if(winner===2){
 
-        document.getElementById("result")
-            .textContent="PLAYER 2 승리!";
+        document.getElementById(
+            "result"
+        ).textContent=
+            "PLAYER 2 승리!";
 
     }else{
 
-        document.getElementById("result")
-            .textContent="DRAW!";
+        document.getElementById(
+            "result"
+        ).textContent=
+            "DRAW!";
     }
 
-    document.getElementById("subResult")
-        .textContent="전투 종료";
+
+    document.getElementById(
+        "subResult"
+    ).textContent=
+        "전투 종료";
+
 
     setTimeout(()=>{
 
-        arena.style.display="none";
+        arena.style.display=
+            "none";
 
-        document.getElementById("endScreen")
-            .style.display="flex";
+        document.getElementById(
+            "endScreen"
+        ).style.display=
+            "flex";
 
     },500);
 }
 
-/* =========================================================
-   MENU
-========================================================= */
 
-document.getElementById("menuBtn")
-    .addEventListener("pointerdown",e=>{
+/* =====================================================
+   다시하기
+===================================================== */
 
-        e.preventDefault();
-
-        gameRunning=false;
-
-        arena.style.display="none";
-
-        document.getElementById("startScreen")
-            .style.display="flex";
-    });
-
-/* =========================================================
-   START / RESTART
-========================================================= */
-
-document.getElementById("startBtn")
-    .addEventListener("pointerdown",e=>{
-        e.preventDefault();
-        startGame();
-    });
-
-document.getElementById("restartBtn")
-    .addEventListener("pointerdown",e=>{
-        e.preventDefault();
-        startGame();
-    });
-
-/* =========================================================
-   PREVENT IPAD DOUBLE TAP / ZOOM
-========================================================= */
-
-document.addEventListener(
-    "touchstart",
+document
+.getElementById("restart")
+.addEventListener(
+    "pointerdown",
     function(e){
 
-        if(e.touches.length > 1){
-            e.preventDefault();
-        }
+        e.preventDefault();
+
+        document.getElementById(
+            "endScreen"
+        ).style.display=
+            "none";
+
+        document.getElementById(
+            "pickScreen"
+        ).style.display=
+            "flex";
+
+        selectedHero1=null;
+        selectedHero2=null;
+
+        document
+        .querySelectorAll(".heroCard")
+        .forEach(
+            card=>{
+                card.classList.remove(
+                    "selected"
+                );
+            }
+        );
+
+        document.getElementById(
+            "pickStatus"
+        ).textContent=
+            "P1: 선택해주세요";
+
+        document.getElementById(
+            "pickStatus2"
+        ).textContent=
+            "P2: 선택해주세요";
 
     },
-    {passive:false}
+    {
+        passive:false
+    }
 );
+
+
+/* =====================================================
+   iPad 확대 방지
+===================================================== */
 
 document.addEventListener(
     "gesturestart",
-    function(e){
+    e=>{
         e.preventDefault();
     },
-    {passive:false}
+    {
+        passive:false
+    }
 );
 
-let lastTouchEnd=0;
+
+document.addEventListener(
+    "touchstart",
+    e=>{
+
+        if(e.touches.length>1)
+            e.preventDefault();
+
+    },
+    {
+        passive:false
+    }
+);
+
+
+let lastTouch=0;
 
 document.addEventListener(
     "touchend",
-    function(e){
+    e=>{
 
-        const now =
+        const now=
             Date.now();
 
-        if(now-lastTouchEnd <= 300){
+        if(
+            now-lastTouch<300
+        ){
 
             e.preventDefault();
 
         }
 
-        lastTouchEnd=now;
+        lastTouch=now;
 
     },
-    {passive:false}
+    {
+        passive:false
+    }
 );
 
-/* =========================================================
-   RESIZE
-========================================================= */
+
+/* =====================================================
+   리사이즈
+===================================================== */
 
 window.addEventListener(
     "resize",
     ()=>{
 
-        if(gameRunning){
-
-            setInitialPositions();
-
-        }
+        if(gameRunning)
+            resetPositions();
 
     }
 );
 
-/* =========================================================
-   START LOOP
-========================================================= */
 
-requestAnimationFrame(gameLoop);
+/* =====================================================
+   처음 화면
+===================================================== */
+
+document.getElementById(
+    "pickScreen"
+).style.display="flex";
 
 </script>
 
