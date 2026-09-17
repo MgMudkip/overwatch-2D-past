@@ -2,8 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>OVERDUEL</title>
 
 <style>
@@ -48,8 +47,7 @@ button{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  background:
-    radial-gradient(circle at center,#fff09b 0,#f0ce69 55%,#b77c2d 100%);
+  background:radial-gradient(circle,#fff09b,#b77c2d);
 }
 
 .logo{
@@ -76,8 +74,7 @@ button{
 #pick{
   display:none;
   padding:18px;
-  background:
-    radial-gradient(circle,#fff09b,#dfb651);
+  background:radial-gradient(circle,#fff09b,#dfb651);
 }
 
 .pickTitle{
@@ -174,8 +171,6 @@ button{
   height:100%;
 }
 
-/* stone borders */
-
 .stone{
   position:absolute;
   left:0;
@@ -183,14 +178,13 @@ button{
   height:11%;
   z-index:5;
   pointer-events:none;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #f7d97b 0 80px,
-      #332515 80px 84px,
-      #e5bd60 84px 155px,
-      #382719 155px 159px
-    );
+  background:repeating-linear-gradient(
+    90deg,
+    #f7d97b 0 80px,
+    #332515 80px 84px,
+    #e5bd60 84px 155px,
+    #382719 155px 159px
+  );
 }
 
 .stone.top{
@@ -303,7 +297,7 @@ button{
   position:absolute;
   z-index:25;
   bottom:15.5%;
-  width:110px;
+  width:120px;
   height:39px;
   border:3px solid white;
   border-radius:12px;
@@ -318,7 +312,7 @@ button{
 #ammo1{left:2%}
 #ammo2{right:2%}
 
-/* buttons */
+/* controls */
 
 .controls{
   position:absolute;
@@ -388,6 +382,13 @@ button{
   to{filter:brightness(1.35)}
 }
 
+.cooldown{
+  position:absolute;
+  color:white;
+  font-size:15px;
+  text-shadow:0 2px 3px #000;
+}
+
 #centerText{
   position:absolute;
   z-index:50;
@@ -409,8 +410,7 @@ button{
   justify-content:center;
   align-items:center;
   flex-direction:column;
-  background:
-    radial-gradient(circle,#fff09b,#d7a947);
+  background:radial-gradient(circle,#fff09b,#d7a947);
 }
 
 #resultTitle{
@@ -434,8 +434,6 @@ button{
   font-size:25px;
   font-weight:1000;
 }
-
-/* small screen */
 
 @media(max-height:620px){
 
@@ -470,49 +468,36 @@ button{
 
 <div id="pick" class="screen">
 
-  <div class="pickTitle">
-    영웅 선택
-  </div>
+  <div class="pickTitle">영웅 선택</div>
 
   <div class="pickInfo">
     <div class="p1name">
-      P1 : <span id="p1name">선택 안 함</span>
+      P1 : <span id="p1name">루시우</span>
     </div>
 
     <div class="p2name">
-      P2 : <span id="p2name">선택 안 함</span>
+      P2 : <span id="p2name">D.Va</span>
     </div>
   </div>
 
   <div class="cards">
 
     <button class="card" data-hero="lucio">
-
       <canvas class="preview" data-type="lucio"></canvas>
-
       <div class="cardName">루시우</div>
-      <div class="cardDesc">음파 / 지원</div>
-
+      <div class="cardDesc">속도 / 음파</div>
     </button>
-
 
     <button class="card" data-hero="bastion">
-
       <canvas class="preview" data-type="bastion"></canvas>
-
       <div class="cardName">바스티온</div>
-      <div class="cardDesc">강습 / 포격</div>
-
+      <div class="cardDesc">회복 / 전차 모드</div>
     </button>
 
-
     <button class="card" data-hero="dva">
-
       <canvas class="preview" data-type="dva"></canvas>
-
       <div class="cardName">D.Va</div>
-      <div class="cardDesc">메카 / 방어</div>
-
+      <div class="cardDesc">돌진 / 방어</div>
     </button>
 
   </div>
@@ -531,7 +516,6 @@ button{
   <div class="stone top"></div>
   <div class="stone bottom"></div>
 
-
   <div id="hud">
 
     <div class="hpSide">
@@ -548,17 +532,11 @@ button{
 
     </div>
 
-
-    <div id="timer">
-      180
-    </div>
-
+    <div id="timer">180</div>
 
     <div class="hpSide">
 
-      <div class="hpNumber" id="hp2">
-        100
-      </div>
+      <div class="hpNumber" id="hp2">100</div>
 
       <div class="hpBar">
         <div class="hpFill" id="hpFill2"></div>
@@ -572,110 +550,78 @@ button{
 
   </div>
 
+  <div id="title">OVERDUEL</div>
 
-  <div id="title">
-    OVERDUEL
-  </div>
+  <button id="menu">☰</button>
 
-  <button id="menu">
-    ☰
-  </button>
+  <div class="ammo" id="ammo1">● 18 / 18</div>
+  <div class="ammo" id="ammo2">● 18 / 18</div>
 
-
-  <div class="ammo" id="ammo1">
-    ● 18 / 18
-  </div>
-
-  <div class="ammo" id="ammo2">
-    ● 18 / 18
-  </div>
-
-
-  <!-- P1 -->
 
   <div class="controls" id="controls1">
 
     <button class="action normal"
             data-player="1"
             data-action="normal">
-
       <div class="icon">➤</div>
       <div class="label">평타</div>
-
     </button>
 
     <button class="action skill1"
             data-player="1"
             data-action="skill1">
-
       <div class="icon">◉</div>
       <div class="label">스킬 1</div>
-
     </button>
 
     <button class="action skill2"
             data-player="1"
             data-action="skill2">
-
       <div class="icon">◆</div>
       <div class="label">스킬 2</div>
-
     </button>
 
     <button class="action ult"
             data-player="1"
             data-action="ult">
-
       <div class="icon">★</div>
       <div class="label">궁극기</div>
-
     </button>
 
   </div>
 
-
-  <!-- P2 -->
 
   <div class="controls" id="controls2">
 
     <button class="action normal"
             data-player="2"
             data-action="normal">
-
       <div class="icon">➤</div>
       <div class="label">평타</div>
-
     </button>
 
     <button class="action skill1"
             data-player="2"
             data-action="skill1">
-
       <div class="icon">◉</div>
       <div class="label">스킬 1</div>
-
     </button>
 
     <button class="action skill2"
             data-player="2"
             data-action="skill2">
-
       <div class="icon">◆</div>
       <div class="label">스킬 2</div>
-
     </button>
 
     <button class="action ult"
             data-player="2"
             data-action="ult">
-
       <div class="icon">★</div>
       <div class="label">궁극기</div>
-
     </button>
 
   </div>
-
 
   <div id="centerText"></div>
 
@@ -684,13 +630,9 @@ button{
 
 <div id="resultScreen" class="screen">
 
-  <div id="resultTitle">
-    P1 WIN
-  </div>
+  <div id="resultTitle">P1 WIN</div>
 
-  <div id="resultSub">
-    전투 종료
-  </div>
+  <div id="resultSub">전투 종료</div>
 
   <button class="restart" id="restart">
     다시하기
@@ -702,7 +644,7 @@ button{
 <script>
 
 /* =========================================================
-   기본 설정
+   기본
    ========================================================= */
 
 const start=document.getElementById("start");
@@ -716,43 +658,124 @@ const ctx=canvas.getContext("2d");
 let W=1280;
 let H=720;
 
-let animationId=0;
-
-let running=false;
-
-let lastTime=0;
-let secondTimer=0;
-
-let timeLeft=180;
-
 let players=[];
-
 let bullets=[];
 let effects=[];
 
+let running=false;
+let animationId=0;
+
+let lastTime=0;
+let secondTimer=0;
+let timeLeft=180;
+
+let selected1="lucio";
+let selected2="dva";
+let selecting=1;
+
 
 /* =========================================================
-   캔버스 크기
+   영웅 데이터
+   ========================================================= */
+
+const HERO={
+
+  lucio:{
+    name:"루시우",
+
+    hp:100,
+
+    ammo:18,
+
+    /* 모든 영웅 평타 0.5초 */
+
+    fireDelay:500,
+
+    damage:8,
+
+    projectileSpeed:700,
+
+    reload:900,
+
+    skill1Cooldown:5000,
+    skill2Cooldown:3500,
+
+    color:"#43ef70"
+  },
+
+
+  bastion:{
+    name:"바스티온",
+
+    hp:120,
+
+    ammo:18,
+
+    fireDelay:500,
+
+    damage:10,
+
+    projectileSpeed:620,
+
+    reload:1000,
+
+    skill1Cooldown:7000,
+    skill2Cooldown:6000,
+
+    color:"#76a875"
+  },
+
+
+  dva:{
+    name:"D.Va",
+
+    hp:105,
+
+    ammo:18,
+
+    fireDelay:500,
+
+    damage:7,
+
+    projectileSpeed:690,
+
+    reload:900,
+
+    skill1Cooldown:5000,
+    skill2Cooldown:4500,
+
+    color:"#ff61c9"
+  }
+
+};
+
+
+/* =========================================================
+   리사이즈
    ========================================================= */
 
 function resize(){
 
-  const rect=canvas.getBoundingClientRect();
+  const rect=
+    canvas.getBoundingClientRect();
 
-  const dpr=Math.min(
-    window.devicePixelRatio||1,
-    2
-  );
+  const dpr=
+    Math.min(
+      window.devicePixelRatio||1,
+      2
+    );
 
-  canvas.width=Math.max(
-    1,
-    Math.floor(rect.width*dpr)
-  );
+  canvas.width=
+    Math.max(
+      1,
+      Math.floor(rect.width*dpr)
+    );
 
-  canvas.height=Math.max(
-    1,
-    Math.floor(rect.height*dpr)
-  );
+  canvas.height=
+    Math.max(
+      1,
+      Math.floor(rect.height*dpr)
+    );
 
   W=rect.width;
   H=rect.height;
@@ -774,61 +797,7 @@ window.addEventListener(
 
 
 /* =========================================================
-   영웅
-   ========================================================= */
-
-const HERO={
-
-  lucio:{
-    name:"루시우",
-    hp:100,
-    ammo:18,
-    damage:7,
-    speed:680,
-    fireDelay:210,
-    reload:850,
-    s1:6000,
-    s2:3200,
-    color:"#40ef70"
-  },
-
-  bastion:{
-    name:"바스티온",
-    hp:115,
-    ammo:24,
-    damage:8,
-    speed:760,
-    fireDelay:155,
-    reload:1000,
-    s1:5000,
-    s2:4000,
-    color:"#6eaa79"
-  },
-
-  dva:{
-    name:"D.Va",
-    hp:105,
-    ammo:18,
-    damage:5,
-    speed:650,
-    fireDelay:190,
-    reload:900,
-    s1:5000,
-    s2:4200,
-    color:"#ff61c9"
-  }
-
-};
-
-
-let selected1="lucio";
-let selected2="dva";
-
-let selecting=1;
-
-
-/* =========================================================
-   선택창
+   영웅 선택
    ========================================================= */
 
 document
@@ -841,23 +810,26 @@ document
 
       e.preventDefault();
 
-      const hero=card.dataset.hero;
+      const hero=
+        card.dataset.hero;
 
       if(selecting===1){
 
         selected1=hero;
 
-        document
-        .getElementById("p1name")
-        .textContent=HERO[hero].name;
+        document.getElementById(
+          "p1name"
+        ).textContent=
+          HERO[hero].name;
 
       }else{
 
         selected2=hero;
 
-        document
-        .getElementById("p2name")
-        .textContent=HERO[hero].name;
+        document.getElementById(
+          "p2name"
+        ).textContent=
+          HERO[hero].name;
 
       }
 
@@ -886,7 +858,8 @@ document
         c.classList.add("selected2");
       });
 
-      selecting=selecting===1?2:1;
+      selecting=
+        selecting===1?2:1;
 
     },
     {passive:false}
@@ -937,7 +910,7 @@ document
 
 
 /* =========================================================
-   플레이어 생성
+   플레이어
    ========================================================= */
 
 function makePlayer(id,heroName){
@@ -949,10 +922,10 @@ function makePlayer(id,heroName){
     id:id,
     hero:heroName,
 
-    x:id===1 ? W*.20 : W*.80,
-    y:id===1 ? H*.58 : H*.42,
+    x:id===1?W*.20:W*.80,
+    y:id===1?H*.58:H*.42,
 
-    vy:id===1 ? 48:-48,
+    vy:id===1?55:-55,
 
     hp:h.hp,
     maxHp:h.hp,
@@ -964,7 +937,7 @@ function makePlayer(id,heroName){
 
     reloading:false,
 
-    lastShot:0,
+    lastShot:-Infinity,
 
     skill1At:0,
     skill2At:0,
@@ -973,7 +946,13 @@ function makePlayer(id,heroName){
 
     boosted:0,
 
-    heavy:false,
+    /* 바스티온 전차 모드 */
+
+    tankMode:false,
+
+    /* 바스티온 회복 */
+
+    healing:false,
 
     dead:false
 
@@ -982,7 +961,7 @@ function makePlayer(id,heroName){
 
 
 /* =========================================================
-   게임 시작
+   시작
    ========================================================= */
 
 function startGame(){
@@ -1002,9 +981,12 @@ function startGame(){
 
   running=true;
 
-  lastTime=performance.now();
+  lastTime=
+    performance.now();
 
-  cancelAnimationFrame(animationId);
+  cancelAnimationFrame(
+    animationId
+  );
 
   updateUI();
 
@@ -1014,17 +996,18 @@ function startGame(){
 
 
 /* =========================================================
-   게임 루프
+   메인 루프
    ========================================================= */
 
 function loop(now){
 
   if(!running)return;
 
-  const dt=Math.min(
-    (now-lastTime)/1000,
-    .04
-  );
+  const dt=
+    Math.min(
+      (now-lastTime)/1000,
+      .04
+    );
 
   lastTime=now;
 
@@ -1033,13 +1016,11 @@ function loop(now){
   if(secondTimer>=1){
 
     secondTimer-=1;
-
     timeLeft--;
 
     if(timeLeft<=0){
 
       finishByTime();
-
       return;
 
     }
@@ -1050,7 +1031,6 @@ function loop(now){
   updateEffects(dt);
 
   draw();
-
   updateUI();
 
   animationId=
@@ -1059,7 +1039,7 @@ function loop(now){
 
 
 /* =========================================================
-   자동 이동
+   자동 상하 이동
    ========================================================= */
 
 function updatePlayers(dt){
@@ -1075,12 +1055,15 @@ function updatePlayers(dt){
 
     if(p.boosted>0){
 
-      speed=2.3;
+      speed=2.25;
       p.boosted-=dt;
 
     }
 
-    p.y+=p.vy*speed*dt;
+    p.y+=
+      p.vy*
+      speed*
+      dt;
 
     if(p.y<=top){
 
@@ -1105,24 +1088,62 @@ function updatePlayers(dt){
 
 /* =========================================================
    평타
+   =========================================================
+   모든 영웅 기본 쿨타임 0.5초
+   바스티온 전차 모드에서는 빨라짐
    ========================================================= */
 
 function normalAttack(id){
 
   if(!running)return;
 
-  const p=players[id-1];
+  const p=
+    players[id-1];
 
   if(p.dead)return;
 
   if(p.reloading)return;
 
-  const h=HERO[p.hero];
+  const h=
+    HERO[p.hero];
 
-  const now=performance.now();
+  const now=
+    performance.now();
 
-  if(now-p.lastShot<h.fireDelay)
+  let fireDelay=
+    h.fireDelay;
+
+  let damage=
+    h.damage;
+
+
+  /*
+   * 바스티온 전차 모드
+   *
+   * 평타 피해 감소
+   * 발사 속도 증가
+   */
+
+  if(
+    p.hero==="bastion" &&
+    p.tankMode
+  ){
+
+    fireDelay=170;
+    damage=4;
+
+  }
+
+
+  if(
+    now-p.lastShot<
+    fireDelay
+  ){
+
     return;
+
+  }
+
 
   if(p.ammo<=0){
 
@@ -1131,62 +1152,81 @@ function normalAttack(id){
 
   }
 
+
   p.lastShot=now;
+
   p.ammo--;
 
-  const target=
+
+  const enemy=
     players[id===1?1:0];
 
-  const baseAngle=Math.atan2(
-    target.y-p.y,
-    target.x-p.x
-  );
+
+  const angle=
+    Math.atan2(
+      enemy.y-p.y,
+      enemy.x-p.x
+    );
+
 
   let count=1;
   let spread=0;
-  let damage=h.damage;
+
+
+  /* 루시우 */
 
   if(p.hero==="lucio"){
 
-    count=3;
-    spread=.09;
+    count=2;
+    spread=.07;
 
   }
+
+
+  /* D.Va */
 
   if(p.hero==="dva"){
 
-    count=4;
-    spread=.13;
+    count=3;
+    spread=.10;
 
   }
 
-  if(p.hero==="bastion" && p.heavy){
 
-    count=2;
-    damage=12;
-    spread=.05;
+  for(
+    let i=0;
+    i<count;
+    i++
+  ){
 
-  }
-
-  for(let i=0;i<count;i++){
-
-    const angle=
-      baseAngle+
-      (Math.random()-.5)*spread;
+    const a=
+      angle+
+      (Math.random()-.5)*
+      spread;
 
     bullets.push({
 
       owner:id,
 
-      x:p.x+(id===1?28:-28),
+      x:p.x+
+        (id===1?28:-28),
+
       y:p.y,
 
-      vx:Math.cos(angle)*h.speed,
-      vy:Math.sin(angle)*h.speed,
+      vx:
+        Math.cos(a)*
+        h.projectileSpeed,
+
+      vy:
+        Math.sin(a)*
+        h.projectileSpeed,
 
       damage:damage,
 
-      radius:p.hero==="lucio"?8:6,
+      radius:
+        p.hero==="lucio"
+        ?7
+        :6,
 
       life:2,
 
@@ -1198,12 +1238,14 @@ function normalAttack(id){
 
   }
 
+
   createBurst(
     p.x+(id===1?28:-28),
     p.y,
     h.color,
-    16
+    13
   );
+
 
   if(p.ammo<=0)
     reload(id);
@@ -1216,13 +1258,36 @@ function normalAttack(id){
 
 function reload(id){
 
-  const p=players[id-1];
+  const p=
+    players[id-1];
 
   if(p.reloading)return;
 
   if(p.ammo>=p.maxAmmo)return;
 
   p.reloading=true;
+
+
+  /*
+   * 바스티온 전차 모드에서는
+   * 재장전하는 순간 전차 모드 해제
+   */
+
+  if(
+    p.hero==="bastion" &&
+    p.tankMode
+  ){
+
+    p.tankMode=false;
+
+    text(
+      p.x,
+      p.y-55,
+      "전차 모드 해제"
+    );
+
+  }
+
 
   setTimeout(()=>{
 
@@ -1245,59 +1310,138 @@ function skill1(id){
 
   if(!running)return;
 
-  const p=players[id-1];
+  const p=
+    players[id-1];
 
   if(p.dead)return;
 
-  const h=HERO[p.hero];
+  const h=
+    HERO[p.hero];
 
-  const now=performance.now();
+  const now=
+    performance.now();
 
   if(now<p.skill1At)return;
 
   p.skill1At=
-    now+h.s1;
+    now+h.skill1Cooldown;
 
+
+  /* ================= 루시우 =================
+     분위기 전환!
+     */
 
   if(p.hero==="lucio"){
 
-    p.boosted=2.3;
+    /*
+     * 속도 증폭 상태
+     * 자동 이동 속도를 크게 증가
+     */
+
+    p.boosted=3;
 
     ring(
       p.x,
       p.y,
-      "#42ff76",
-      80
+      "#45ff79",
+      85
     );
 
     text(
       p.x,
-      p.y-45,
-      "SPEED!"
+      p.y-55,
+      "속도 증폭!"
     );
 
   }
 
+
+  /* ================= 바스티온 =================
+     1초 동안 체력 25 회복
+     */
 
   else if(p.hero==="bastion"){
 
-    p.heavy=!p.heavy;
+    if(p.healing)return;
 
-    ring(
-      p.x,
-      p.y,
-      "#8cff92",
-      65
-    );
+    p.healing=true;
 
-    text(
-      p.x,
-      p.y-45,
-      p.heavy?"강습":"수색"
-    );
+    const healAmount=25;
+
+    const startHp=p.hp;
+
+    const endHp=
+      Math.min(
+        p.maxHp,
+        p.hp+healAmount
+      );
+
+    const duration=1000;
+
+    const startTime=
+      performance.now();
+
+
+    function healTick(){
+
+      if(p.dead){
+
+        p.healing=false;
+        return;
+
+      }
+
+      const elapsed=
+        performance.now()-
+        startTime;
+
+      const progress=
+        Math.min(
+          1,
+          elapsed/duration
+        );
+
+      p.hp=
+        startHp+
+        (endHp-startHp)*
+        progress;
+
+
+      ring(
+        p.x,
+        p.y,
+        "#62ff73",
+        45
+      );
+
+
+      if(progress<1){
+
+        requestAnimationFrame(
+          healTick
+        );
+
+      }else{
+
+        p.hp=endHp;
+        p.healing=false;
+
+        text(
+          p.x,
+          p.y-55,
+          "+25 HP"
+        );
+
+      }
+
+    }
+
+    healTick();
 
   }
 
+
+  /* ================= D.Va ================= */
 
   else if(p.hero==="dva"){
 
@@ -1305,9 +1449,11 @@ function skill1(id){
       players[id===1?1:0];
 
     const dir=
-      enemy.x>p.x?1:-1;
+      enemy.x>p.x
+      ?1
+      :-1;
 
-    p.x+=dir*100;
+    p.x+=dir*105;
 
     p.x=Math.max(
       W*.13,
@@ -1322,8 +1468,14 @@ function skill1(id){
     ring(
       p.x,
       p.y,
-      "#ff66dc",
+      "#ff63d5",
       75
+    );
+
+    text(
+      p.x,
+      p.y-55,
+      "부스터!"
     );
 
   }
@@ -1339,58 +1491,102 @@ function skill2(id){
 
   if(!running)return;
 
-  const p=players[id-1];
+  const p=
+    players[id-1];
 
   if(p.dead)return;
 
-  const h=HERO[p.hero];
+  const h=
+    HERO[p.hero];
 
-  const now=performance.now();
+  const now=
+    performance.now();
 
   if(now<p.skill2At)return;
 
   p.skill2At=
-    now+h.s2;
-
-  const enemy=
-    players[id===1?1:0];
+    now+h.skill2Cooldown;
 
 
-  /* 루시우 - 원거리 파동 */
+  /* ================= 루시우 =================
+     소리 파동 느낌의 음파 공격
+     */
 
   if(p.hero==="lucio"){
 
-    fireSpecial(
-      id,
-      enemy,
-      19,
-      570,
-      25,
-      "#5cff8a",
-      "wave"
+    const enemy=
+      players[id===1?1:0];
+
+    const angle=
+      Math.atan2(
+        enemy.y-p.y,
+        enemy.x-p.x
+      );
+
+    bullets.push({
+
+      owner:id,
+
+      x:p.x+
+        (id===1?35:-35),
+
+      y:p.y,
+
+      vx:
+        Math.cos(angle)*
+        520,
+
+      vy:
+        Math.sin(angle)*
+        520,
+
+      damage:17,
+
+      radius:24,
+
+      life:1.3,
+
+      color:"#55ff88",
+
+      kind:"wave"
+
+    });
+
+    ring(
+      p.x,
+      p.y,
+      "#55ff88",
+      55
     );
 
   }
 
 
-  /* 바스티온 - 큰 에너지 탄 */
+  /* ================= 바스티온 =================
+     전차 모드
+     */
 
   else if(p.hero==="bastion"){
 
-    fireSpecial(
-      id,
-      enemy,
-      28,
-      470,
-      17,
-      "#ffb638",
-      "shell"
+    p.tankMode=true;
+
+    ring(
+      p.x,
+      p.y,
+      "#ffbd3d",
+      90
+    );
+
+    text(
+      p.x,
+      p.y-55,
+      "전차 모드!"
     );
 
   }
 
 
-  /* D.Va - 방어 */
+  /* ================= D.Va ================= */
 
   else if(p.hero==="dva"){
 
@@ -1399,9 +1595,16 @@ function skill2(id){
     ring(
       p.x,
       p.y,
-      "#56cfff",
-      70
+      "#55cfff",
+      75
     );
+
+    text(
+      p.x,
+      p.y-55,
+      "방어!"
+    );
+
 
     setTimeout(()=>{
 
@@ -1415,58 +1618,6 @@ function skill2(id){
 
 
 /* =========================================================
-   특수 탄환
-   ========================================================= */
-
-function fireSpecial(
-  id,
-  enemy,
-  damage,
-  speed,
-  radius,
-  color,
-  kind
-){
-
-  const p=players[id-1];
-
-  const angle=Math.atan2(
-    enemy.y-p.y,
-    enemy.x-p.x
-  );
-
-  bullets.push({
-
-    owner:id,
-
-    x:p.x+(id===1?28:-28),
-    y:p.y,
-
-    vx:Math.cos(angle)*speed,
-    vy:Math.sin(angle)*speed,
-
-    damage:damage,
-
-    radius:radius,
-
-    life:2,
-
-    color:color,
-
-    kind:kind
-
-  });
-
-  ring(
-    p.x,
-    p.y,
-    color,
-    40
-  );
-}
-
-
-/* =========================================================
    궁극기
    ========================================================= */
 
@@ -1474,7 +1625,8 @@ function ultimate(id){
 
   if(!running)return;
 
-  const p=players[id-1];
+  const p=
+    players[id-1];
 
   if(p.dead)return;
 
@@ -1482,54 +1634,64 @@ function ultimate(id){
 
   p.ult=0;
 
+
   const enemy=
     players[id===1?1:0];
 
 
-  /* 루시우 */
+  /* 루시우 - 소리 방벽 */
 
   if(p.hero==="lucio"){
 
-    p.hp=Math.min(
-      p.maxHp+40,
-      p.hp+40
-    );
+    /*
+     * 40의 임시 생명력
+     */
+
+    p.hp=
+      Math.min(
+        p.maxHp+40,
+        p.hp+40
+      );
 
     ring(
       p.x,
       p.y,
-      "#48ff7b",
-      130
+      "#49ff7c",
+      135
     );
 
     text(
       p.x,
-      p.y-70,
+      p.y-75,
       "소리 방벽!"
     );
 
   }
 
 
-  /* 바스티온 */
+  /* 바스티온 - 포격 */
 
   else if(p.hero==="bastion"){
 
     text(
       p.x,
-      p.y-70,
+      p.y-75,
       "포격!"
     );
+
 
     for(let i=0;i<3;i++){
 
       const tx=
         enemy.x+
-        (Math.random()-.5)*110;
+        (Math.random()-.5)*
+        110;
 
       const ty=
         enemy.y+
-        (Math.random()-.5)*130;
+        (Math.random()-.5)*
+        120;
+
 
       setTimeout(()=>{
 
@@ -1538,17 +1700,19 @@ function ultimate(id){
         explosion(
           tx,
           ty,
-          "#ff9f3d",
+          "#ff9e38",
           75
         );
 
-        const distance=
+
+        const d=
           Math.hypot(
             enemy.x-tx,
             enemy.y-ty
           );
 
-        if(distance<100){
+
+        if(d<100){
 
           damage(
             enemy.id,
@@ -1560,12 +1724,13 @@ function ultimate(id){
         }
 
       },i*260);
+
     }
 
   }
 
 
-  /* D.Va */
+  /* D.Va - 자폭 */
 
   else if(p.hero==="dva"){
 
@@ -1574,16 +1739,10 @@ function ultimate(id){
 
     text(
       p.x,
-      p.y-70,
+      p.y-75,
       "자폭!"
     );
 
-    ring(
-      p.x,
-      p.y,
-      "#ff53da",
-      100
-    );
 
     setTimeout(()=>{
 
@@ -1592,15 +1751,17 @@ function ultimate(id){
       explosion(
         tx,
         ty,
-        "#ff50dc",
+        "#ff55dc",
         125
       );
+
 
       const d=
         Math.hypot(
           enemy.x-tx,
           enemy.y-ty
         );
+
 
       if(d<170){
 
@@ -1621,7 +1782,7 @@ function ultimate(id){
 
 
 /* =========================================================
-   탄환 업데이트
+   탄환
    ========================================================= */
 
 function updateBullets(dt){
@@ -1632,15 +1793,23 @@ function updateBullets(dt){
     i--
   ){
 
-    const b=bullets[i];
+    const b=
+      bullets[i];
 
-    b.x+=b.vx*dt;
-    b.y+=b.vy*dt;
+    b.x+=
+      b.vx*dt;
+
+    b.y+=
+      b.vy*dt;
 
     b.life-=dt;
 
+
     const target=
-      players[b.owner===1?1:0];
+      players[
+        b.owner===1?1:0
+      ];
+
 
     if(
       !target.dead &&
@@ -1648,7 +1817,7 @@ function updateBullets(dt){
         b.x-target.x,
         b.y-target.y
       )<
-      b.radius+28
+      b.radius+27
     ){
 
       damage(
@@ -1658,25 +1827,38 @@ function updateBullets(dt){
         true
       );
 
-      if(b.kind==="wave"){
+
+      if(
+        b.kind==="wave"
+      ){
 
         target.vy+=
-          target.y>b.y?-30:30;
+          target.y>b.y
+          ?35
+          :-35;
 
       }
+
 
       explosion(
         b.x,
         b.y,
         b.color,
-        b.kind==="shell"?50:24
+        b.kind==="wave"
+        ?42
+        :24
       );
 
-      bullets.splice(i,1);
+
+      bullets.splice(
+        i,
+        1
+      );
 
       continue;
 
     }
+
 
     if(
       b.life<=0 ||
@@ -1686,7 +1868,10 @@ function updateBullets(dt){
       b.y>H+150
     ){
 
-      bullets.splice(i,1);
+      bullets.splice(
+        i,
+        1
+      );
 
     }
 
@@ -1695,7 +1880,7 @@ function updateBullets(dt){
 
 
 /* =========================================================
-   데미지
+   피해
    ========================================================= */
 
 function damage(
@@ -1716,13 +1901,13 @@ function damage(
     ring(
       target.x,
       target.y,
-      "#59cfff",
-      40
+      "#59d4ff",
+      42
     );
 
     text(
       target.x,
-      target.y-38,
+      target.y-40,
       "BLOCK!"
     );
 
@@ -1755,25 +1940,25 @@ function damage(
     target.dead=true;
 
     finish(
-      target.id===1?2:1
+      target.id===1
+      ?2
+      :1
     );
 
   }
+
 }
 
 
 /* =========================================================
-   화면 그리기
+   그리기
    ========================================================= */
 
 function draw(){
 
   drawArena();
-
   drawBullets();
-
   drawPlayers();
-
   drawEffects();
 
 }
@@ -1791,6 +1976,7 @@ function drawArena(){
     W,
     H
   );
+
 
   const gradient=
     ctx.createLinearGradient(
@@ -1819,8 +2005,6 @@ function drawArena(){
   );
 
 
-  /* 내부 전투장 */
-
   ctx.fillStyle="#ffe38a";
 
   ctx.fillRect(
@@ -1830,8 +2014,6 @@ function drawArena(){
     H*.79
   );
 
-
-  /* 모래 점 */
 
   ctx.fillStyle="#cda74f";
 
@@ -1850,16 +2032,16 @@ function drawArena(){
     ctx.globalAlpha=.25;
 
     ctx.fillRect(
-      x,y,
-      3,3
+      x,
+      y,
+      3,
+      3
     );
 
   }
 
   ctx.globalAlpha=1;
 
-
-  /* 벽 */
 
   ctx.fillStyle="#c47e35";
 
@@ -1889,8 +2071,6 @@ function drawArena(){
   );
 
 
-  /* 중앙 장식 */
-
   ctx.strokeStyle="#dfbb62";
   ctx.lineWidth=2;
 
@@ -1912,7 +2092,7 @@ function drawArena(){
 
 
 /* =========================================================
-   캐릭터
+   플레이어
    ========================================================= */
 
 function drawPlayers(){
@@ -1928,11 +2108,10 @@ function drawPlayers(){
       p.y
     );
 
+
     if(p.id===2)
       ctx.scale(-1,1);
 
-
-    /* 그림자 */
 
     ctx.fillStyle="#856b3c55";
 
@@ -1980,6 +2159,50 @@ function drawPlayers(){
 
     }
 
+
+    if(
+      p.hero==="bastion" &&
+      p.tankMode
+    ){
+
+      ctx.strokeStyle="#ffb43b";
+      ctx.lineWidth=4;
+
+      ctx.beginPath();
+
+      ctx.arc(
+        0,
+        0,
+        46,
+        0,
+        Math.PI*2
+      );
+
+      ctx.stroke();
+
+    }
+
+
+    if(p.healing){
+
+      ctx.strokeStyle="#64ff70";
+      ctx.lineWidth=4;
+
+      ctx.beginPath();
+
+      ctx.arc(
+        0,
+        0,
+        43,
+        0,
+        Math.PI*2
+      );
+
+      ctx.stroke();
+
+    }
+
+
     ctx.restore();
 
 
@@ -1987,9 +2210,10 @@ function drawPlayers(){
     ctx.textAlign="center";
 
     ctx.fillStyle=
-      p.id===1?
-      "#1878ff":
-      "#ef3048";
+      p.id===1
+      ?"#
+1878ff"
+      :"#ef3048";
 
     ctx.fillText(
       "P"+p.id,
@@ -2003,7 +2227,7 @@ function drawPlayers(){
 
 
 /* =========================================================
-   캐릭터 - 루시우
+   루시우
    ========================================================= */
 
 function drawLucio(c){
@@ -2011,13 +2235,17 @@ function drawLucio(c){
   c.fillStyle="#242a2a";
 
   c.fillRect(
-    -13,13,
-    9,15
+    -13,
+    13,
+    9,
+    15
   );
 
   c.fillRect(
-    4,13,
-    9,15
+    4,
+    13,
+    9,
+    15
   );
 
 
@@ -2088,31 +2316,17 @@ function drawLucio(c){
 
   c.fill();
 
-
-  c.fillStyle="#49ff7d";
-
-  c.beginPath();
-
-  c.arc(
-    23,
-    -2,
-    7,
-    0,
-    Math.PI*2
-  );
-
-  c.fill();
-
 }
 
 
 /* =========================================================
-   캐릭터 - 바스티온
+   바스티온
    ========================================================= */
 
 function drawBastion(c){
 
-  c.fillStyle="#4e8c63";
+  c.fillStyle=
+    "#4e8c63";
 
   round(
     c,
@@ -2181,11 +2395,24 @@ function drawBastion(c){
     28
   );
 
+
+  if(
+    players.some(
+      p=>
+        p.hero==="bastion" &&
+        p.tankMode &&
+        Math.abs(
+          p.x-
+          c.canvas?.width
+        )>=0
+    )
+  ){}
+
 }
 
 
 /* =========================================================
-   캐릭터 - D.Va
+   D.Va
    ========================================================= */
 
 function drawDva(c){
@@ -2300,46 +2527,14 @@ function drawBullets(){
       ctx.arc(
         b.x,
         b.y,
-        b.radius+6,
+        b.radius+7,
         0,
         Math.PI*2
       );
 
       ctx.stroke();
 
-    }
-
-    else if(b.kind==="shell"){
-
-      ctx.beginPath();
-
-      ctx.arc(
-        b.x,
-        b.y,
-        b.radius,
-        0,
-        Math.PI*2
-      );
-
-      ctx.fill();
-
-      ctx.fillStyle="#fff2a0";
-
-      ctx.beginPath();
-
-      ctx.arc(
-        b.x-4,
-        b.y-4,
-        4,
-        0,
-        Math.PI*2
-      );
-
-      ctx.fill();
-
-    }
-
-    else{
+    }else{
 
       ctx.beginPath();
 
@@ -2475,7 +2670,8 @@ function updateEffects(dt){
     i--
   ){
 
-    const e=effects[i];
+    const e=
+      effects[i];
 
     e.life-=dt;
 
@@ -2540,7 +2736,8 @@ function drawEffects(){
       ctx.arc(
         e.x,
         e.y,
-        e.size*(.25+progress),
+        e.size*
+        (.25+progress),
         0,
         Math.PI*2
       );
@@ -2554,7 +2751,8 @@ function drawEffects(){
       ctx.arc(
         e.x,
         e.y,
-        e.size*.3*(1-progress),
+        e.size*.3*
+        (1-progress),
         0,
         Math.PI*2
       );
@@ -2606,6 +2804,7 @@ function drawEffects(){
 
     }
 
+
     ctx.restore();
 
   });
@@ -2646,16 +2845,35 @@ function updateUI(){
 
     hp.textContent=
       Math.ceil(
-        Math.max(0,p.hp)
+        Math.max(
+          0,
+          p.hp
+        )
       );
 
+
+    /*
+     * 루시우 궁극기로 얻는
+     * 임시 체력도 표시
+     */
+
+    const displayedMax=
+      p.maxHp+
+      (
+        p.hero==="lucio" &&
+        p.hp>p.maxHp
+        ?40
+        :0
+      );
 
     hpFill.style.width=
       Math.max(
         0,
         Math.min(
           100,
-          p.hp/p.maxHp*100
+          p.hp/
+          displayedMax*
+          100
         )
       )+"%";
 
@@ -2669,8 +2887,7 @@ function updateUI(){
 
     ammo.textContent=
       p.reloading
-      ?
-      "↻ 재장전"
+      ?"↻ 재장전"
       :
       `● ${p.ammo} / ${p.maxAmmo}`;
 
@@ -2696,7 +2913,9 @@ function updateUI(){
       if(action==="skill1"){
 
         if(now<p.skill1At)
-          btn.classList.add("disabled");
+          btn.classList.add(
+            "disabled"
+          );
 
       }
 
@@ -2704,7 +2923,9 @@ function updateUI(){
       if(action==="skill2"){
 
         if(now<p.skill2At)
-          btn.classList.add("disabled");
+          btn.classList.add(
+            "disabled"
+          );
 
       }
 
@@ -2712,9 +2933,13 @@ function updateUI(){
       if(action==="ult"){
 
         if(p.ult>=100)
-          btn.classList.add("ready");
+          btn.classList.add(
+            "ready"
+          );
         else
-          btn.classList.add("disabled");
+          btn.classList.add(
+            "disabled"
+          );
 
       }
 
@@ -2737,8 +2962,7 @@ function updateUI(){
 
 
 /* =========================================================
-   버튼 입력
-   pointerdown 하나만 사용
+   버튼
    ========================================================= */
 
 document
@@ -2825,9 +3049,30 @@ function finishByTime(){
 
   if(!running)return;
 
-  if(players[0].hp===players[1].hp){
+  running=false;
 
-    running=false;
+  let winner=0;
+
+
+  if(
+    players[0].hp>
+    players[1].hp
+  ){
+
+    winner=1;
+
+  }
+  else if(
+    players[1].hp>
+    players[0].hp
+  ){
+
+    winner=2;
+
+  }
+
+
+  if(winner===0){
 
     document.getElementById(
       "resultTitle"
@@ -2837,18 +3082,24 @@ function finishByTime(){
       "resultSub"
     ).textContent="시간 종료";
 
-    resultScreen.style.display="flex";
+  }else{
 
-    return;
+    document.getElementById(
+      "resultTitle"
+    ).textContent=
+      winner===1
+      ?"P1 WIN"
+      :"P2 WIN";
+
+    document.getElementById(
+      "resultSub"
+    ).textContent=
+      `시간 종료 · P${winner} 승리`;
 
   }
 
-  finish(
-    players[0].hp>
-    players[1].hp
-    ?1:2
-  );
 
+  resultScreen.style.display="flex";
 }
 
 
@@ -2869,7 +3120,10 @@ document
 
     selecting=1;
 
-    drawPreviews();
+    setTimeout(
+      drawPreviews,
+      30
+    );
 
   },
   {passive:false}
@@ -2896,6 +3150,7 @@ document
       "centerText"
     ).textContent="PAUSE";
 
+
     setTimeout(()=>{
 
       document.getElementById(
@@ -2904,10 +3159,13 @@ document
 
       running=true;
 
-      lastTime=performance.now();
+      lastTime=
+        performance.now();
 
       animationId=
-        requestAnimationFrame(loop);
+        requestAnimationFrame(
+          loop
+        );
 
     },600);
 
@@ -2917,7 +3175,7 @@ document
 
 
 /* =========================================================
-   선택창 미리보기
+   미리보기
    ========================================================= */
 
 function drawPreviews(){
@@ -2934,11 +3192,13 @@ function drawPreviews(){
       rect.height<=0
     )return;
 
+
     const dpr=
       Math.min(
         window.devicePixelRatio||1,
         2
       );
+
 
     canvas.width=
       Math.floor(
@@ -2949,6 +3209,7 @@ function drawPreviews(){
       Math.floor(
         rect.height*dpr
       );
+
 
     const c=
       canvas.getContext("2d");
@@ -2962,12 +3223,14 @@ function drawPreviews(){
       0
     );
 
+
     c.clearRect(
       0,
       0,
       rect.width,
       rect.height
     );
+
 
     c.save();
 
@@ -2976,8 +3239,10 @@ function drawPreviews(){
       rect.height/2
     );
 
+
     const type=
       canvas.dataset.type;
+
 
     if(type==="lucio")
       previewLucio(c);
@@ -2987,6 +3252,7 @@ function drawPreviews(){
 
     if(type==="dva")
       previewDva(c);
+
 
     c.restore();
 
@@ -3111,7 +3377,7 @@ function previewDva(c){
 
 
 /* =========================================================
-   Canvas 둥근 사각형
+   둥근 사각형
    ========================================================= */
 
 function round(
@@ -3124,6 +3390,7 @@ function round(
 ){
 
   c.beginPath();
+
 
   if(
     typeof c.roundRect==="function"
@@ -3138,15 +3405,17 @@ function round(
     );
 
     return;
+
   }
 
-  /* roundRect 미지원 브라우저용 */
 
-  const rr=Math.min(
-    r,
-    Math.abs(w)/2,
-    Math.abs(h)/2
-  );
+  const rr=
+    Math.min(
+      r,
+      Math.abs(w)/2,
+      Math.abs(h)/2
+    );
+
 
   c.moveTo(
     x+rr,
@@ -3207,7 +3476,7 @@ function round(
 
 
 /* =========================================================
-   iPad 방지
+   iPad
    ========================================================= */
 
 document.addEventListener(
@@ -3232,8 +3501,13 @@ document.addEventListener(
   "touchmove",
   e=>{
 
-    if(e.target.closest("button"))
+    if(
+      e.target.closest("button")
+    ){
+
       e.preventDefault();
+
+    }
 
   },
   {passive:false}
