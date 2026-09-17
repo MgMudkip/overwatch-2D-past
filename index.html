@@ -11,41 +11,29 @@ minimum-scale=1,
 user-scalable=no,
 viewport-fit=cover">
 
-<meta name="apple-mobile-web-app-capable" content="yes">
-
-<title>RIVER BATTLE v2.1</title>
+<title>RIVER BATTLE</title>
 
 <style>
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-
     user-select:none;
     -webkit-user-select:none;
     -webkit-touch-callout:none;
-
     touch-action:none;
 }
 
 html,body{
     width:100%;
     height:100%;
-
     overflow:hidden;
-
     position:fixed;
     inset:0;
-
     background:#101827;
-
-    touch-action:none;
-    overscroll-behavior:none;
 }
 
 button{
-    font-family:Arial,sans-serif;
     touch-action:none;
     -webkit-tap-highlight-color:transparent;
 }
@@ -53,20 +41,14 @@ button{
 #game{
     position:fixed;
     inset:0;
-
     overflow:hidden;
-
     background:#cbb891;
-
-    touch-action:none;
 }
 
 #board{
     position:absolute;
     inset:0;
-
     transform-origin:center center;
-
     transition:transform .25s ease;
 }
 
@@ -77,249 +59,141 @@ button{
 canvas{
     position:absolute;
     inset:0;
-
     width:100%;
     height:100%;
-
-    display:block;
 }
-
-
-/* =====================================
-   SCREEN
-===================================== */
 
 .screen{
     position:absolute;
     inset:0;
-
     z-index:500;
-
     display:flex;
     flex-direction:column;
-
     justify-content:center;
     align-items:center;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #263c58,
-            #101827 70%
-        );
-
+    background:#101827;
     color:white;
-
     text-align:center;
 }
 
-.screen.hidden{
-    display:none;
+.hidden{
+    display:none!important;
 }
 
-.gameTitle{
-    font-size:
-        clamp(38px,8vw,76px);
-
+.title{
+    font-size:clamp(38px,8vw,75px);
     font-weight:900;
-
-    letter-spacing:5px;
-
-    text-shadow:
-        5px 5px #070b12;
-
-    margin-bottom:10px;
+    letter-spacing:4px;
+    text-shadow:5px 5px #05080e;
 }
 
-.version{
-    color:#9fb3cc;
-
-    font-size:
-        clamp(12px,2.5vw,18px);
-
-    margin-bottom:35px;
+.sub{
+    color:#9eafc4;
+    margin:12px 0 30px;
 }
 
-.mainButton{
-    width:
-        clamp(190px,30vw,260px);
-
-    height:
-        clamp(60px,9vw,75px);
-
-    border:3px solid #7690b2;
-
-    border-radius:15px;
-
+.mainBtn{
+    width:220px;
+    height:65px;
+    border:3px solid #7388a4;
+    border-radius:14px;
     background:#31527f;
-
     color:white;
-
-    font-size:
-        clamp(18px,3vw,25px);
-
+    font-size:21px;
     font-weight:bold;
-
-    box-shadow:
-        0 6px #090e18;
+    box-shadow:0 6px #090e18;
 }
 
-.mainButton:active{
+.mainBtn:active{
     transform:translateY(6px);
-    box-shadow:0 0 #090e18;
+    box-shadow:none;
 }
 
-
-/* =====================================
-   SELECT
-===================================== */
+/* 선택 */
 
 .selectTitle{
-    font-size:
-        clamp(26px,5vw,45px);
-
+    font-size:clamp(28px,5vw,45px);
     font-weight:900;
-
-    margin-bottom:7px;
-}
-
-.selectInfo{
-    color:#b7c6d9;
-
-    font-size:
-        clamp(12px,2.2vw,17px);
-
     margin-bottom:20px;
 }
 
-.playerSelectArea{
-    width:min(920px,94vw);
-
+.selectArea{
+    width:min(900px,94vw);
     display:flex;
-
-    gap:20px;
-
-    justify-content:center;
+    gap:15px;
 }
 
 .selectPlayer{
     flex:1;
-
-    padding:14px;
-
-    border:
-        2px solid #53677f;
-
+    background:#192438;
+    border:2px solid #50627a;
     border-radius:14px;
-
-    background:#182438;
+    padding:12px;
 }
 
 .selectPlayer h2{
     margin-bottom:10px;
-
-    font-size:
-        clamp(17px,3vw,25px);
 }
 
 .heroChoices{
     display:flex;
-
-    gap:8px;
+    gap:7px;
 }
 
 .heroCard{
     flex:1;
-
-    border:
-        2px solid #566b85;
-
+    min-width:0;
+    padding:8px 3px;
+    border:2px solid #586c85;
     border-radius:10px;
-
-    background:#26354b;
-
+    background:#28374b;
     color:white;
-
-    padding:9px 4px;
 }
 
 .heroCard.selected{
-    border-color:#ffe26b;
-
-    box-shadow:
-        0 0 0 2px #ffe26b inset;
+    border-color:#ffe36a;
+    box-shadow:0 0 0 2px #ffe36a inset;
 }
 
 .heroIcon{
-    width:52px;
-    height:52px;
-
+    width:45px;
+    height:45px;
     margin:auto;
-    margin-bottom:6px;
-
-    border-radius:10px;
-
+    border-radius:9px;
     display:flex;
-
     justify-content:center;
     align-items:center;
-
-    font-size:25px;
+    font-size:24px;
 }
 
 .heroName{
+    font-size:13px;
     font-weight:bold;
-
-    font-size:14px;
-
-    margin-bottom:4px;
+    margin-top:5px;
 }
 
 .heroRole{
-    color:#aebed1;
-
-    font-size:10px;
+    font-size:9px;
+    color:#aab8ca;
+    margin-top:3px;
 }
 
-.selectBottom{
-    margin-top:18px;
-
-    display:flex;
-    flex-direction:column;
-
-    align-items:center;
-
-    gap:10px;
+.selectionText{
+    margin:15px 0;
+    color:#d6e0eb;
 }
 
-#selectionText{
-    color:#d9e3ef;
+/* HP */
 
-    font-size:14px;
-}
-
-
-/* =====================================
-   HP
-===================================== */
-
-.hpBox{
+.hp{
     position:absolute;
-
     width:30%;
-    min-width:190px;
-
+    min-width:180px;
     padding:7px 10px;
-
-    border:
-        3px solid #53647c;
-
-    border-radius:12px;
-
     background:#172235;
-
+    border:3px solid #53647c;
+    border-radius:12px;
     color:white;
-
     z-index:60;
 }
 
@@ -333,24 +207,18 @@ canvas{
     bottom:2%;
 }
 
-.hpHeader{
+.hpHead{
     display:flex;
     justify-content:space-between;
-
     font:bold 14px Arial;
-
     margin-bottom:5px;
 }
 
-.hpBackground{
-    width:100%;
+.hpBack{
     height:18px;
-
-    overflow:hidden;
-
-    border-radius:5px;
-
     background:#343e50;
+    border-radius:5px;
+    overflow:hidden;
 }
 
 .hpBar{
@@ -365,40 +233,29 @@ canvas{
     background:#ed5666;
 }
 
-.ultBox{
-    margin-top:5px;
-
-    height:8px;
-
-    width:100%;
-
+.ultBack{
+    height:9px;
+    background:#343e50;
+    border-radius:5px;
     overflow:hidden;
-
-    border-radius:4px;
-
-    background:#30394b;
+    margin-top:5px;
 }
 
 .ultBar{
     height:100%;
     width:0%;
-
     background:#f4d65c;
 }
 
-
-/* =====================================
-   CONTROLS
-===================================== */
+/* 컨트롤 */
 
 .controls{
     position:absolute;
-
+    z-index:100;
     display:flex;
-
-    gap:8px;
-
-    z-index:80;
+    gap:6px;
+    flex-wrap:wrap;
+    width:310px;
 }
 
 #controls1{
@@ -411,169 +268,49 @@ canvas{
     bottom:13%;
 }
 
-.gameButton{
+.gameBtn{
     width:70px;
-    height:60px;
-
-    border:
-        3px solid #62738c;
-
-    border-radius:14px;
-
+    height:57px;
+    border:3px solid #62738c;
+    border-radius:13px;
     background:#29374d;
-
     color:white;
-
-    font-size:13px;
-
     font-weight:bold;
-
-    box-shadow:
-        0 5px #0d1420;
+    font-size:12px;
+    box-shadow:0 5px #0d1420;
 }
 
-.gameButton:active{
+.gameBtn:active{
     transform:translateY(5px);
-
-    box-shadow:0 0 #0d1420;
+    box-shadow:none;
 }
 
-.attackButton{
-    background:#364860;
+.attack{
+    background:#394c64;
 }
 
-.skillButton{
-    background:#55416c;
-
-    border-color:#9272b0;
+.skill1{
+    background:#59416d;
+    border-color:#9273b1;
 }
 
-.skillButton2{
-    background:#3c526d;
-
-    border-color:#7797bb;
+.skill2{
+    background:#3d5875;
+    border-color:#7898ba;
 }
 
-.ultButton{
+.ult{
     background:#665827;
-
-    border-color:#d5bb55;
+    border-color:#d7bd56;
 }
 
 .cooldown{
-    background:#343a46 !important;
-
-    border-color:#5b6471 !important;
-
-    color:#aab0ba;
+    background:#343a46!important;
+    border-color:#626b78!important;
+    color:#aeb5bf;
 }
 
-
-/* =====================================
-   CENTER
-===================================== */
-
-#centerStatus{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    transform:
-        translate(-50%,-50%);
-
-    z-index:70;
-
-    pointer-events:none;
-
-    color:white;
-
-    font:bold 27px Arial;
-
-    text-align:center;
-
-    text-shadow:
-        3px 3px #172033;
-}
-
-#timer{
-    color:#f4e7a1;
-
-    font-size:16px;
-
-    margin-top:5px;
-}
-
-
-/* =====================================
-   COUNTDOWN
-===================================== */
-
-#countdown{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    transform:
-        translate(-50%,-50%);
-
-    z-index:150;
-
-    color:white;
-
-    font-size:
-        clamp(50px,12vw,110px);
-
-    font-weight:900;
-
-    text-shadow:
-        6px 6px #101827;
-
-    pointer-events:none;
-}
-
-
-/* =====================================
-   ROTATE
-===================================== */
-
-#rotateButton{
-    position:absolute;
-
-    left:50%;
-    top:54%;
-
-    transform:
-        translate(-50%,-50%);
-
-    width:38px;
-    height:38px;
-
-    border:
-        2px solid #64748b;
-
-    border-radius:50%;
-
-    background:#263248;
-
-    color:#d8e0eb;
-
-    font-size:20px;
-
-    opacity:.55;
-
-    z-index:90;
-}
-
-#rotateButton:active{
-    opacity:1;
-}
-
-
-/* =====================================
-   ROTATED UI
-===================================== */
+/* 회전했을 때 상대방 기준 */
 
 #board.rotate #controls1{
     left:auto;
@@ -603,75 +340,91 @@ canvas{
     top:2%;
 }
 
+#center{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    z-index:70;
+    text-align:center;
+    color:white;
+    font:bold 26px Arial;
+    text-shadow:3px 3px #172033;
+    pointer-events:none;
+}
 
-/* =====================================
-   PORTRAIT
-===================================== */
+#timer{
+    color:#f4e7a1;
+    font-size:17px;
+    margin-top:5px;
+}
 
-#portraitNotice{
+#countdown{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    z-index:150;
+    color:white;
+    font-size:clamp(55px,12vw,110px);
+    font-weight:900;
+    text-shadow:6px 6px #101827;
+    pointer-events:none;
+}
+
+#rotateBtn{
+    position:absolute;
+    left:50%;
+    top:55%;
+    transform:translate(-50%,-50%);
+    z-index:90;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:2px solid #66758c;
+    background:#263248;
+    color:white;
+    font-size:20px;
+    opacity:.6;
+}
+
+#portrait{
     display:none;
-
     position:absolute;
     inset:0;
-
     z-index:1000;
-
     background:#101827;
-
     color:white;
-
     justify-content:center;
     align-items:center;
-
     text-align:center;
-
     font-size:22px;
-
     font-weight:bold;
 }
 
 @media(orientation:portrait){
-
-    #portraitNotice{
+    #portrait{
         display:flex;
     }
 }
 
-
-/* =====================================
-   MOBILE
-===================================== */
-
 @media(max-width:850px){
-
-    .playerSelectArea{
-        gap:8px;
+    .controls{
+        width:300px;
     }
 
-    .selectPlayer{
-        padding:8px;
-    }
-
-    .heroIcon{
-        width:42px;
-        height:42px;
-    }
-
-    .gameButton{
-        width:63px;
+    .gameBtn{
+        width:68px;
         height:55px;
-
         font-size:11px;
     }
 
-    .hpBox{
-        min-width:150px;
+    .hp{
+        min-width:155px;
     }
 }
-
 </style>
 </head>
-
 
 <body>
 
@@ -681,377 +434,197 @@ canvas{
 
 <canvas id="canvas"></canvas>
 
-
-<!-- =====================================
-     HP 1
-===================================== -->
-
-<div class="hpBox" id="hp1">
-
-    <div class="hpHeader">
-
-        <span id="name1">
-            1P
-        </span>
-
-        <span id="hpText1">
-            100 / 100
-        </span>
-
+<div class="hp" id="hp1">
+    <div class="hpHead">
+        <span id="name1">1P</span>
+        <span id="hpText1">100 / 100</span>
     </div>
-
-    <div class="hpBackground">
-
-        <div
-            class="hpBar"
-            id="hpBar1">
-        </div>
-
+    <div class="hpBack">
+        <div class="hpBar" id="hpBar1"></div>
     </div>
-
-    <div class="ultBox">
-
-        <div
-            class="ultBar"
-            id="ultBar1">
-        </div>
-
+    <div class="ultBack">
+        <div class="ultBar" id="ultBar1"></div>
     </div>
+</div>
 
+<div class="hp" id="hp2">
+    <div class="hpHead">
+        <span id="name2">2P</span>
+        <span id="hpText2">100 / 100</span>
+    </div>
+    <div class="hpBack">
+        <div class="hpBar" id="hpBar2"></div>
+    </div>
+    <div class="ultBack">
+        <div class="ultBar" id="ultBar2"></div>
+    </div>
 </div>
 
 
-<!-- =====================================
-     HP 2
-===================================== -->
+<!-- 1P -->
 
-<div class="hpBox" id="hp2">
+<div class="controls" id="controls1">
 
-    <div class="hpHeader">
+    <button class="gameBtn" data-player="1" data-move="left">◀</button>
+    <button class="gameBtn" data-player="1" data-move="right">▶</button>
 
-        <span id="name2">
-            2P
-        </span>
-
-        <span id="hpText2">
-            100 / 100
-        </span>
-
-    </div>
-
-    <div class="hpBackground">
-
-        <div
-            class="hpBar"
-            id="hpBar2">
-        </div>
-
-    </div>
-
-    <div class="ultBox">
-
-        <div
-            class="ultBar"
-            id="ultBar2">
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================
-     1P CONTROLS
-===================================== -->
-
-<div
-    class="controls"
-    id="controls1">
-
-    <button
-        class="gameButton"
-        data-player="1"
-        data-move="left">
-        ◀
-    </button>
-
-    <button
-        class="gameButton"
-        data-player="1"
-        data-move="right">
-        ▶
-    </button>
-
-    <button
-        class="gameButton attackButton"
-        data-player="1"
-        data-action="attack">
+    <button class="gameBtn attack" data-player="1" data-action="attack">
         평타
     </button>
 
-    <button
-        class="gameButton skillButton"
-        id="skill1">
+    <button class="gameBtn skill1" id="p1skill1">
         스킬1
     </button>
 
-    <button
-        class="gameButton skillButton2"
-        id="skill2_1">
+    <button class="gameBtn skill2" id="p1skill2">
         스킬2
     </button>
 
-    <button
-        class="gameButton ultButton"
-        id="ult1">
+    <button class="gameBtn ult" id="p1ult">
         궁극기
     </button>
 
 </div>
 
 
-<!-- =====================================
-     2P CONTROLS
-===================================== -->
+<!-- 2P -->
 
-<div
-    class="controls"
-    id="controls2">
+<div class="controls" id="controls2">
 
-    <button
-        class="gameButton"
-        data-player="2"
-        data-move="left">
-        ◀
-    </button>
+    <button class="gameBtn" data-player="2" data-move="left">◀</button>
+    <button class="gameBtn" data-player="2" data-move="right">▶</button>
 
-    <button
-        class="gameButton"
-        data-player="2"
-        data-move="right">
-        ▶
-    </button>
-
-    <button
-        class="gameButton attackButton"
-        data-player="2"
-        data-action="attack">
+    <button class="gameBtn attack" data-player="2" data-action="attack">
         평타
     </button>
 
-    <button
-        class="gameButton skillButton"
-        id="skill2">
+    <button class="gameBtn skill1" id="p2skill1">
         스킬1
     </button>
 
-    <button
-        class="gameButton skillButton2"
-        id="skill2_2">
+    <button class="gameBtn skill2" id="p2skill2">
         스킬2
     </button>
 
-    <button
-        class="gameButton ultButton"
-        id="ult2">
+    <button class="gameBtn ult" id="p2ult">
         궁극기
     </button>
 
 </div>
 
 
-<div id="centerStatus">
-
-    <div id="statusText">
-        FIGHT!
-    </div>
-
-    <div id="timer">
-        60
-    </div>
-
+<div id="center">
+    <div id="status">FIGHT!</div>
+    <div id="timer">60</div>
 </div>
 
-
-<button id="rotateButton">
-    ↻
-</button>
-
+<button id="rotateBtn">↻</button>
 
 <div id="countdown"></div>
 
 </div>
 
 
-<!-- =====================================
-     START
-===================================== -->
+<!-- 시작 -->
 
-<div
-    class="screen"
-    id="startScreen">
+<div class="screen" id="startScreen">
 
-    <div class="gameTitle">
-        RIVER BATTLE
-    </div>
+    <div class="title">RIVER BATTLE</div>
 
-    <div class="version">
-        HERO ARENA v2.1
-    </div>
+    <div class="sub">HERO ARENA v2.2</div>
 
-    <button
-        class="mainButton"
-        id="startButton">
+    <button class="mainBtn" id="startBtn">
         게임 시작
     </button>
 
 </div>
 
 
-<!-- =====================================
-     SELECT
-===================================== -->
+<!-- 선택 -->
 
-<div
-    class="screen hidden"
-    id="selectScreen">
+<div class="screen hidden" id="selectScreen">
 
     <div class="selectTitle">
         HERO SELECT
     </div>
 
-    <div class="selectInfo">
-        사용할 영웅을 선택하세요
-    </div>
-
-
-    <div class="playerSelectArea">
+    <div class="selectArea">
 
         <div class="selectPlayer">
-
             <h2>1P</h2>
-
-            <div
-                class="heroChoices"
-                id="choices1">
-            </div>
-
+            <div class="heroChoices" id="choices1"></div>
         </div>
-
 
         <div class="selectPlayer">
-
             <h2>2P</h2>
-
-            <div
-                class="heroChoices"
-                id="choices2">
-            </div>
-
+            <div class="heroChoices" id="choices2"></div>
         </div>
 
     </div>
 
+    <div class="selectionText" id="selectionText"></div>
 
-    <div class="selectBottom">
-
-        <div id="selectionText">
-            영웅을 선택하세요
-        </div>
-
-        <button
-            class="mainButton"
-            id="battleStartButton">
-            전투 시작
-        </button>
-
-    </div>
+    <button class="mainBtn" id="battleBtn">
+        전투 시작
+    </button>
 
 </div>
 
 
-<!-- =====================================
-     END
-===================================== -->
+<!-- 결과 -->
 
-<div
-    class="screen hidden"
-    id="endScreen">
+<div class="screen hidden" id="endScreen">
 
-    <div
-        class="gameTitle"
-        id="winnerText">
+    <div class="title" id="winnerText">
         1P WIN!
     </div>
 
-    <div
-        class="version"
-        id="endInfo">
-        BATTLE COMPLETE
-    </div>
+    <div class="sub" id="endInfo"></div>
 
-    <button
-        class="mainButton"
-        id="againButton">
+    <button class="mainBtn" id="againBtn">
         다시하기
     </button>
 
 </div>
 
 
-<div id="portraitNotice">
+<div id="portrait">
     아이패드를 가로로 돌려주세요
 </div>
-
 
 </div>
 
 
 <script>
 
-/* =====================================================
-   CANVAS
-===================================================== */
+/* =========================================================
+   기본 설정
+========================================================= */
 
-const canvas=
-    document.getElementById("canvas");
-
-const ctx=
-    canvas.getContext("2d");
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
 
 let W=0;
 let H=0;
 
 function resize(){
 
+    const dpr=Math.min(
+        window.devicePixelRatio||1,
+        2
+    );
+
     W=window.innerWidth;
     H=window.innerHeight;
 
-    const ratio=
-        Math.min(
-            window.devicePixelRatio||1,
-            2
-        );
+    canvas.width=W*dpr;
+    canvas.height=H*dpr;
 
-    canvas.width=
-        W*ratio;
-
-    canvas.height=
-        H*ratio;
-
-    canvas.style.width=
-        W+"px";
-
-    canvas.style.height=
-        H+"px";
+    canvas.style.width=W+"px";
+    canvas.style.height=H+"px";
 
     ctx.setTransform(
-        ratio,
-        0,
-        0,
-        ratio,
-        0,
-        0
+        dpr,0,0,dpr,0,0
     );
 }
 
@@ -1063,120 +636,81 @@ window.addEventListener(
 );
 
 
-/* =====================================================
-   HERO DATA
-===================================================== */
+/* =========================================================
+   캐릭터
+========================================================= */
 
 const HEROES={
 
     LUCID:{
-
         name:"루시드",
         icon:"♫",
-
         role:"기동 / 지원",
-
         hp:100,
-
         speed:.00030,
-
-        attackDamage:8,
-
-        attackSpeed:420,
-
+        damage:8,
+        attackCooldown:420,
         projectileSpeed:.00045,
-
-        skill1:"볼륨 업",
-        skill1Cooldown:5,
-
-        skill2:"음파 충격",
-        skill2Cooldown:7,
-
-        ult:"비트",
-
+        skill1Name:"볼륨 업",
+        skill1CD:5,
+        skill2Name:"음파 충격",
+        skill2CD:7,
+        ultName:"비트",
         color:"#36b6e8",
         dark:"#187da7",
-
         type:"lucid"
     },
 
-
     IRON:{
-
         name:"아이언",
         icon:"▣",
-
         role:"화력 / 중장갑",
-
         hp:125,
-
         speed:.00017,
-
-        attackDamage:12,
-
-        attackSpeed:850,
-
+        damage:12,
+        attackCooldown:850,
         projectileSpeed:.00030,
-
-        skill1:"강습 모드",
-        skill1Cooldown:6,
-
-        skill2:"철벽",
-        skill2Cooldown:8,
-
-        ult:"포격",
-
+        skill1Name:"강습 모드",
+        skill1CD:6,
+        skill2Name:"철벽",
+        skill2CD:8,
+        ultName:"포격",
         color:"#6d8f72",
         dark:"#405b46",
-
         type:"iron"
     },
 
-
     MECHA:{
-
         name:"메카",
         icon:"◆",
-
         role:"방어 / 돌진",
-
         hp:110,
-
         speed:.00024,
-
-        attackDamage:7,
-
-        attackSpeed:300,
-
+        damage:7,
+        attackCooldown:300,
         projectileSpeed:.00052,
-
-        skill1:"부스터",
-        skill1Cooldown:5,
-
-        skill2:"방어막",
-        skill2Cooldown:7,
-
-        ult:"과부하",
-
+        skill1Name:"부스터",
+        skill1CD:5,
+        skill2Name:"방어막",
+        skill2CD:7,
+        ultName:"과부하",
         color:"#db71a8",
         dark:"#934c78",
-
         type:"mecha"
     }
 
 };
 
 
-/* =====================================================
-   PLAYER
-===================================================== */
+/* =========================================================
+   플레이어
+========================================================= */
 
-function createPlayer(){
+function newPlayer(){
 
     return{
 
         x:.5,
-
         y:0,
 
         hp:100,
@@ -1189,115 +723,75 @@ function createPlayer(){
         left:false,
         right:false,
 
+        attackTimer:0,
+
         skill1Timer:0,
         skill2Timer:0,
 
-        normalTimer:0,
-
-        speedBoost:0,
-
         powerTimer:0,
-
+        speedTimer:0,
         armorTimer:0,
-
         dashTimer:0,
-
         dashDirection:0,
-
-        invincible:0,
-
+        invincibleTimer:0,
         beatTimer:0
+
     };
 }
 
-
-const p1=createPlayer();
-const p2=createPlayer();
+const p1=newPlayer();
+const p2=newPlayer();
 
 p1.y=.29;
 p2.y=.71;
 
 
-/* =====================================================
-   GAME STATE
-===================================================== */
+/* =========================================================
+   게임 상태
+========================================================= */
 
 let selected1="LUCID";
 let selected2="IRON";
 
-let battleRunning=false;
-let gameEnded=false;
+let running=false;
+let ended=false;
 
-let matchTime=60;
+let timeLeft=60;
 
 let projectiles=[];
 let effects=[];
-let bombardments=[];
-let explosions=[];
 
 
-/* =====================================================
-   CHARACTER SELECT
-===================================================== */
+/*
+    중요:
+    궁극기용 배열을 사용하지 않는다.
 
-function createHeroCards(){
+    아이언 궁극기는 버튼을 누르는 순간
+    단 한 번만 계산한다.
 
-    const c1=
-        document.getElementById("choices1");
+    따라서 궁극기 때문에 배열이 꼬이거나
+    게임 루프가 중단되는 문제가 없다.
+*/
 
-    const c2=
-        document.getElementById("choices2");
-
-    c1.innerHTML="";
-    c2.innerHTML="";
+let lastTime=performance.now();
 
 
-    Object.keys(HEROES)
-    .forEach(key=>{
+/* =========================================================
+   캐릭터 선택
+========================================================= */
 
-        c1.appendChild(
-            createCard(
-                key,
-                1
-            )
-        );
+function makeHeroCard(key,player){
 
-        c2.appendChild(
-            createCard(
-                key,
-                2
-            )
-        );
+    const hero=HEROES[key];
 
-    });
-
-
-    updateSelection();
-}
-
-
-function createCard(
-    key,
-    player
-){
-
-    const hero=
-        HEROES[key];
-
-
-    const card=
-        document.createElement("button");
+    const card=document.createElement("button");
 
     card.className="heroCard";
 
-    card.dataset.hero=key;
-
-
     card.innerHTML=`
 
-        <div
-            class="heroIcon"
-            style="background:${hero.dark}">
+        <div class="heroIcon"
+             style="background:${hero.dark}">
             ${hero.icon}
         </div>
 
@@ -1310,49 +804,65 @@ function createCard(
         </div>
     `;
 
-
     card.addEventListener(
         "pointerdown",
-        e=>{
+        function(e){
 
             e.preventDefault();
 
-
-            if(player===1)
+            if(player===1){
                 selected1=key;
-            else
+            }else{
                 selected2=key;
+            }
 
-
-            updateSelection();
+            updateCards();
         }
     );
 
-
-    card.dataset.player=
-        player;
-
+    card.dataset.hero=key;
+    card.dataset.player=player;
 
     return card;
 }
 
 
-function updateSelection(){
+function createCards(){
+
+    const c1=document.getElementById("choices1");
+    const c2=document.getElementById("choices2");
+
+    c1.innerHTML="";
+    c2.innerHTML="";
+
+    for(const key in HEROES){
+
+        c1.appendChild(
+            makeHeroCard(key,1)
+        );
+
+        c2.appendChild(
+            makeHeroCard(key,2)
+        );
+    }
+
+    updateCards();
+}
+
+
+function updateCards(){
 
     document
     .querySelectorAll(".heroCard")
     .forEach(card=>{
 
         const player=
-            Number(
-                card.dataset.player
-            );
+            Number(card.dataset.player);
 
         const selected=
             player===1
             ?selected1
             :selected2;
-
 
         card.classList.toggle(
             "selected",
@@ -1360,34 +870,32 @@ function updateSelection(){
         );
     });
 
-
-    document
-    .getElementById("selectionText")
-    .textContent=
-        `${HEROES[selected1].name} VS ${HEROES[selected2].name}`;
+    document.getElementById(
+        "selectionText"
+    ).textContent=
+        HEROES[selected1].name+
+        " VS "+
+        HEROES[selected2].name;
 }
 
+createCards();
 
-createHeroCards();
 
-
-/* =====================================================
-   START
-===================================================== */
+/* =========================================================
+   시작
+========================================================= */
 
 document
-.getElementById("startButton")
+.getElementById("startBtn")
 .addEventListener(
     "pointerdown",
     e=>{
 
         e.preventDefault();
 
-
         document
         .getElementById("startScreen")
         .classList.add("hidden");
-
 
         document
         .getElementById("selectScreen")
@@ -1396,37 +904,29 @@ document
 );
 
 
-/* =====================================================
-   SETUP
-===================================================== */
+/* =========================================================
+   전투 준비
+========================================================= */
 
 function setupBattle(){
 
-    const h1=
-        HEROES[selected1];
-
-    const h2=
-        HEROES[selected2];
-
-
-    p1.hero=h1;
-    p2.hero=h2;
-
+    p1.hero=HEROES[selected1];
+    p2.hero=HEROES[selected2];
 
     p1.x=.5;
     p2.x=.5;
 
+    p1.hp=p1.hero.hp;
+    p1.maxHp=p1.hero.hp;
 
-    p1.hp=h1.hp;
-    p1.maxHp=h1.hp;
-
-    p2.hp=h2.hp;
-    p2.maxHp=h2.hp;
-
+    p2.hp=p2.hero.hp;
+    p2.maxHp=p2.hero.hp;
 
     p1.ult=0;
     p2.ult=0;
 
+    p1.attackTimer=0;
+    p2.attackTimer=0;
 
     p1.skill1Timer=0;
     p1.skill2Timer=0;
@@ -1434,16 +934,11 @@ function setupBattle(){
     p2.skill1Timer=0;
     p2.skill2Timer=0;
 
-
-    p1.normalTimer=0;
-    p2.normalTimer=0;
-
-
-    p1.speedBoost=0;
-    p2.speedBoost=0;
-
     p1.powerTimer=0;
     p2.powerTimer=0;
+
+    p1.speedTimer=0;
+    p2.speedTimer=0;
 
     p1.armorTimer=0;
     p2.armorTimer=0;
@@ -1451,49 +946,46 @@ function setupBattle(){
     p1.dashTimer=0;
     p2.dashTimer=0;
 
-    p1.invincible=0;
-    p2.invincible=0;
+    p1.invincibleTimer=0;
+    p2.invincibleTimer=0;
 
     p1.beatTimer=0;
     p2.beatTimer=0;
 
+    p1.left=false;
+    p1.right=false;
+    p2.left=false;
+    p2.right=false;
 
     projectiles=[];
     effects=[];
-    bombardments=[];
-    explosions=[];
 
+    timeLeft=60;
 
-    matchTime=60;
-
-    gameEnded=false;
-    battleRunning=false;
-
+    ended=false;
+    running=false;
 
     updateUI();
 }
 
 
-/* =====================================================
-   BATTLE START
-===================================================== */
+/* =========================================================
+   카운트다운
+========================================================= */
 
 document
-.getElementById("battleStartButton")
+.getElementById("battleBtn")
 .addEventListener(
     "pointerdown",
     e=>{
 
         e.preventDefault();
 
-
         setupBattle();
-
 
         document
         .getElementById("selectScreen")
         .classList.add("hidden");
-
 
         startCountdown();
     }
@@ -1502,116 +994,79 @@ document
 
 function startCountdown(){
 
-    const c=
+    const box=
         document.getElementById("countdown");
 
     let n=3;
 
-    c.textContent=n;
+    box.textContent=n;
 
+    const interval=setInterval(()=>{
 
-    const interval=
-        setInterval(()=>{
+        n--;
 
-            n--;
+        if(n>0){
 
+            box.textContent=n;
 
-            if(n>0){
+        }else{
 
-                c.textContent=n;
+            clearInterval(interval);
 
-            }else{
+            box.textContent="FIGHT!";
 
-                clearInterval(interval);
+            running=true;
 
-                c.textContent=
-                    "FIGHT!";
+            setTimeout(
+                ()=>{
+                    box.textContent="";
+                },
+                700
+            );
+        }
 
-                battleRunning=true;
-
-
-                setTimeout(
-                    ()=>{
-                        c.textContent="";
-                    },
-                    700
-                );
-            }
-
-        },800);
+    },800);
 }
 
 
-/* =====================================================
-   NORMAL ATTACK
-===================================================== */
+/* =========================================================
+   평타
+========================================================= */
 
-function attack(player){
+function attack(playerNumber){
 
-    if(
-        !battleRunning ||
-        gameEnded
-    ){
+    if(!running || ended)
         return;
-    }
-
 
     const p=
-        player===1
+        playerNumber===1
         ?p1
         :p2;
 
-
-    if(
-        p.normalTimer>0
-    ){
+    if(p.attackTimer>0)
         return;
-    }
 
+    p.attackTimer=
+        p.hero.attackCooldown;
 
-    let cooldown=
-        p.hero.attackSpeed;
+    let damage=p.hero.damage;
 
-
-    if(
-        p.speedBoost>0
-    ){
-        cooldown*=.55;
-    }
-
-
-    p.normalTimer=
-        cooldown;
-
-
-    let damage=
-        p.hero.attackDamage;
-
-
-    if(
-        p.powerTimer>0
-    ){
-        damage*=1.65;
-    }
-
+    if(p.powerTimer>0)
+        damage*=1.6;
 
     projectiles.push({
 
-        owner:player,
+        owner:playerNumber,
 
         x:p.x,
-
         y:p.y,
 
-        oldY:p.y,
-
         direction:
-            player===1
+            playerNumber===1
             ?1
             :-1,
 
-        speed:
-            p.hero.projectileSpeed,
+        speed:p.hero.projectileSpeed,
 
         damage:damage,
 
@@ -1620,12 +1075,8 @@ function attack(player){
             ?8
             :6,
 
-        type:
-            player===1
-            ?"blue"
-            :"red"
+        special:false
     });
-
 
     p.ult=
         Math.min(
@@ -1635,48 +1086,38 @@ function attack(player){
 }
 
 
-/* =====================================================
-   SKILL 1
-===================================================== */
+/* =========================================================
+   스킬 1
+========================================================= */
 
-function useSkill1(player){
+function useSkill1(playerNumber){
 
-    if(
-        !battleRunning ||
-        gameEnded
-    ){
+    if(!running || ended)
         return;
-    }
-
 
     const p=
-        player===1
+        playerNumber===1
         ?p1
         :p2;
 
-
-    if(
-        p.skill1Timer>0
-    ){
+    if(p.skill1Timer>0)
         return;
-    }
-
 
     p.skill1Timer=
-        p.hero.skill1Cooldown;
+        p.hero.skill1CD;
 
-
-    switch(
-        p.hero.type
-    ){
+    switch(p.hero.type){
 
         case "lucid":
 
-            /* 이동 + 공격속도 증가 */
+            /*
+                스킬1:
+                이동속도 + 공격속도 증가
+            */
 
-            p.speedBoost=3.5;
+            p.speedTimer=3.5;
 
-            addEffect(
+            effect(
                 p.x,
                 p.y,
                 "speed"
@@ -1687,11 +1128,14 @@ function useSkill1(player){
 
         case "iron":
 
-            /* 공격력 증가 */
+            /*
+                스킬1:
+                공격력 증가
+            */
 
             p.powerTimer=4;
 
-            addEffect(
+            effect(
                 p.x,
                 p.y,
                 "power"
@@ -1702,18 +1146,21 @@ function useSkill1(player){
 
         case "mecha":
 
-            /* 부스터 돌진 */
+            /*
+                스킬1:
+                돌진
+            */
 
             p.dashTimer=.55;
 
             p.dashDirection=
-                player===1
+                playerNumber===1
                 ?1
                 :-1;
 
-            p.invincible=.55;
+            p.invincibleTimer=.55;
 
-            addEffect(
+            effect(
                 p.x,
                 p.y,
                 "dash"
@@ -1724,59 +1171,47 @@ function useSkill1(player){
 }
 
 
-/* =====================================================
-   SKILL 2
-===================================================== */
+/* =========================================================
+   스킬 2
+========================================================= */
 
-function useSkill2(player){
+function useSkill2(playerNumber){
 
-    if(
-        !battleRunning ||
-        gameEnded
-    ){
+    if(!running || ended)
         return;
-    }
-
 
     const p=
-        player===1
+        playerNumber===1
         ?p1
         :p2;
 
-
-    if(
-        p.skill2Timer>0
-    ){
+    if(p.skill2Timer>0)
         return;
-    }
-
 
     p.skill2Timer=
-        p.hero.skill2Cooldown;
+        p.hero.skill2CD;
 
+    switch(p.hero.type){
 
-    switch(
-        p.hero.type
-    ){
-
-        /* =========================
-           루시드 - 음파 충격
-        ========================= */
+        /* --------------------------------
+           루시드
+        -------------------------------- */
 
         case "lucid":
 
+            /*
+                강한 원거리 음파
+            */
+
             projectiles.push({
 
-                owner:player,
+                owner:playerNumber,
 
                 x:p.x,
-
                 y:p.y,
 
-                oldY:p.y,
-
                 direction:
-                    player===1
+                    playerNumber===1
                     ?1
                     :-1,
 
@@ -1786,15 +1221,10 @@ function useSkill2(player){
 
                 radius:14,
 
-                type:
-                    player===1
-                    ?"blue"
-                    :"red",
-
-                skill:true
+                special:true
             });
 
-            addEffect(
+            effect(
                 p.x,
                 p.y,
                 "wave"
@@ -1803,15 +1233,46 @@ function useSkill2(player){
             break;
 
 
-        /* =========================
-           아이언 - 철벽
-        ========================= */
+        /* --------------------------------
+           아이언
+        -------------------------------- */
 
         case "iron":
 
+            /*
+                철벽:
+                받는 피해를 크게 감소
+            */
+
             p.armorTimer=3;
 
-            addEffect(
+            /*
+                동시에 짧은 충격파 발사
+                → 스킬도 전투에 직접적인 효과가 있음
+            */
+
+            projectiles.push({
+
+                owner:playerNumber,
+
+                x:p.x,
+                y:p.y,
+
+                direction:
+                    playerNumber===1
+                    ?1
+                    :-1,
+
+                speed:.00042,
+
+                damage:15,
+
+                radius:10,
+
+                special:true
+            });
+
+            effect(
                 p.x,
                 p.y,
                 "armor"
@@ -1820,17 +1281,21 @@ function useSkill2(player){
             break;
 
 
-        /* =========================
-           메카 - 방어막
-        ========================= */
+        /* --------------------------------
+           메카
+        -------------------------------- */
 
         case "mecha":
 
+            /*
+                방어막 + 짧은 무적
+            */
+
             p.armorTimer=2.5;
 
-            p.invincible=.35;
+            p.invincibleTimer=.35;
 
-            addEffect(
+            effect(
                 p.x,
                 p.y,
                 "shield"
@@ -1841,45 +1306,40 @@ function useSkill2(player){
 }
 
 
-/* =====================================================
-   ULTIMATE
-===================================================== */
+/* =========================================================
+   궁극기
+========================================================= */
 
-function useUltimate(player){
+function useUltimate(playerNumber){
 
-    if(
-        !battleRunning ||
-        gameEnded
-    ){
+    if(!running || ended)
         return;
-    }
-
 
     const p=
-        player===1
+        playerNumber===1
         ?p1
         :p2;
 
-
-    if(
-        p.ult<100
-    ){
+    if(p.ult<100)
         return;
-    }
 
 
-    /* 궁극기 게이지 먼저 소모 */
+    /*
+        가장 먼저 게이지를 0으로 만든다.
+
+        중요:
+        궁극기 함수 안에서 다른 함수를 재귀적으로
+        호출하지 않는다.
+    */
 
     p.ult=0;
 
 
-    switch(
-        p.hero.type
-    ){
+    switch(p.hero.type){
 
-        /* =========================
-           루시드
-        ========================= */
+        /* ==================================
+           루시드 궁극기
+        ================================== */
 
         case "lucid":
 
@@ -1891,7 +1351,7 @@ function useUltimate(player){
                     p.hp+30
                 );
 
-            addEffect(
+            effect(
                 p.x,
                 p.y,
                 "beat"
@@ -1900,44 +1360,201 @@ function useUltimate(player){
             break;
 
 
-        /* =========================
-           아이언
-        ========================= */
+        /* ==================================
+           아이언 궁극기
+        ================================== */
 
-        case "iron":
+        case "iron":{
 
             /*
-               기존 explosions와 분리.
-               별도의 bombardments 배열을
-               사용하기 때문에 게임 루프가
-               멈추지 않는다.
+                ★ 핵심 수정 ★
+
+                기존처럼 explosions 배열을 만들지 않는다.
+
+                궁극기를 누른 그 순간 상대 위치를 확인하고
+                한 번만 피해를 적용한다.
+
+                setTimeout / 재귀 / 별도 폭발 배열 없음.
+                따라서 게임이 멈출 원인이 없다.
             */
 
-            createBombardment(
-                player
+            const target=
+                playerNumber===1
+                ?p2
+                :p1;
+
+            const targetX=target.x;
+
+            const distance=
+                Math.abs(
+                    targetX-p.x
+                );
+
+            /*
+                포격 범위
+            */
+
+            if(distance<=.32){
+
+                damagePlayer(
+                    target,
+                    45
+                );
+            }
+
+            /*
+                화면 효과만 생성
+            */
+
+            effect(
+                targetX,
+                target.y,
+                "bombard"
+            );
+
+            /*
+                좌우에 추가 포격 표시
+                피해 판정은 하지 않는다.
+            */
+
+            effect(
+                Math.max(
+                    .1,
+                    targetX-.13
+                ),
+                target.y,
+                "bombard"
+            );
+
+            effect(
+                Math.min(
+                    .9,
+                    targetX+.13
+                ),
+                target.y,
+                "bombard"
             );
 
             break;
+        }
 
 
-        /* =========================
-           메카
-        ========================= */
+        /* ==================================
+           메카 궁극기
+        ================================== */
 
-        case "mecha":
+        case "mecha":{
 
-            createMechaExplosion(
-                player
+            const target=
+                playerNumber===1
+                ?p2
+                :p1;
+
+            const distance=
+                Math.abs(
+                    target.x-p.x
+                );
+
+            if(distance<=.35){
+
+                damagePlayer(
+                    target,
+                    48
+                );
+            }
+
+            effect(
+                p.x,
+                playerNumber===1
+                ?.53
+                :.47,
+                "explosion"
             );
 
             break;
+        }
     }
 }
 
 
-/* =====================================================
-   PROJECTILE UPDATE
-===================================================== */
+/* =========================================================
+   데미지
+========================================================= */
+
+function damagePlayer(
+    target,
+    damage
+){
+
+    /*
+        이미 게임이 끝났으면 추가 데미지 금지
+    */
+
+    if(ended)
+        return;
+
+    if(target.invincibleTimer>0)
+        return;
+
+
+    /*
+        방어 효과
+    */
+
+    if(target.armorTimer>0)
+        damage*=.35;
+
+    if(target.beatTimer>0)
+        damage*=.65;
+
+
+    target.hp=
+        Math.max(
+            0,
+            target.hp-damage
+        );
+
+
+    /*
+        궁극기 게이지
+    */
+
+    const attacker=
+        target===p1
+        ?p2
+        :p1;
+
+    attacker.ult=
+        Math.min(
+            100,
+            attacker.ult+8
+        );
+
+    target.ult=
+        Math.min(
+            100,
+            target.ult+5
+        );
+
+
+    /*
+        사망 확인
+    */
+
+    if(target.hp<=0){
+
+        endBattle(
+            target===p1
+            ?"2P"
+            :"1P"
+        );
+    }
+}
+
+
+/* =========================================================
+   발사체 업데이트
+========================================================= */
 
 function updateProjectiles(dt){
 
@@ -1947,12 +1564,9 @@ function updateProjectiles(dt){
         i--
     ){
 
-        const b=
-            projectiles[i];
+        const b=projectiles[i];
 
-
-        b.oldY=b.y;
-
+        const oldY=b.y;
 
         b.y+=
             b.direction*
@@ -1966,54 +1580,52 @@ function updateProjectiles(dt){
             :p1;
 
 
+        /*
+            선분 형태로 충돌 검사
+            → 빠른 탄환도 지나치지 않음
+        */
+
         const minY=
             Math.min(
-                b.oldY,
+                oldY,
                 b.y
             );
-
 
         const maxY=
             Math.max(
-                b.oldY,
+                oldY,
                 b.y
             );
 
 
-        const verticalHit=
-            target.y>=
-                minY-.055 &&
-            target.y<=
-                maxY+.055;
+        const yHit=
+            target.y>=minY-.06 &&
+            target.y<=maxY+.06;
 
 
-        const horizontalHit=
+        const xHit=
             Math.abs(
                 target.x-b.x
             )<=
             (
-                b.skill
-                ?.105
+                b.special
+                ?.11
                 :.08
             );
 
 
-        if(
-            verticalHit &&
-            horizontalHit
-        ){
+        if(yHit && xHit){
 
             damagePlayer(
                 target,
                 b.damage
             );
 
-
-            addHitEffect(
+            effect(
                 target.x,
-                target.y
+                target.y,
+                "hit"
             );
-
 
             projectiles.splice(
                 i,
@@ -2025,8 +1637,8 @@ function updateProjectiles(dt){
 
 
         if(
-            b.y<-.1 ||
-            b.y>1.1
+            b.y<-.15 ||
+            b.y>1.15
         ){
 
             projectiles.splice(
@@ -2038,306 +1650,33 @@ function updateProjectiles(dt){
 }
 
 
-/* =====================================================
-   DAMAGE
-===================================================== */
-
-function damagePlayer(
-    target,
-    damage
-){
-
-    if(
-        target.invincible>0
-    ){
-        return;
-    }
-
-
-    if(
-        target.armorTimer>0
-    ){
-
-        damage*=.35;
-    }
-
-
-    if(
-        target.beatTimer>0
-    ){
-
-        damage*=.65;
-    }
-
-
-    target.hp=
-        Math.max(
-            0,
-            target.hp-damage
-        );
-
-
-    const attacker=
-        target===p1
-        ?p2
-        :p1;
-
-
-    attacker.ult=
-        Math.min(
-            100,
-            attacker.ult+8
-        );
-
-
-    target.ult=
-        Math.min(
-            100,
-            target.ult+5
-        );
-
-
-    if(
-        target.hp<=0
-    ){
-
-        endBattle(
-            target===p1
-            ?"2P"
-            :"1P"
-        );
-    }
-}
-
-
-/* =====================================================
-   IRON ULT
-===================================================== */
-
-function createBombardment(player){
-
-    const target=
-        player===1
-        ?p2
-        :p1;
-
-
-    bombardments.push({
-
-        owner:player,
-
-        x:target.x,
-
-        y:target.y,
-
-        timer:1.4,
-
-        hit:false
-    });
-}
-
-
-function updateBombardments(dt){
-
-    /*
-       중요:
-       여기서는 배열을 안전하게 순회한다.
-       한 번의 공격에서만 hit=true가 된다.
-    */
-
-    for(
-        let i=bombardments.length-1;
-        i>=0;
-        i--
-    ){
-
-        const b=
-            bombardments[i];
-
-
-        b.timer-=dt/1000;
-
-
-        if(
-            b.timer<=.45 &&
-            !b.hit
-        ){
-
-            b.hit=true;
-
-
-            const target=
-                b.owner===1
-                ?p2
-                :p1;
-
-
-            const distance=
-                Math.abs(
-                    target.x-b.x
-                );
-
-
-            if(
-                distance<=.20
-            ){
-
-                damagePlayer(
-                    target,
-                    42
-                );
-
-
-                addHitEffect(
-                    target.x,
-                    target.y
-                );
-            }
-        }
-
-
-        if(
-            b.timer<=0
-        ){
-
-            bombardments.splice(
-                i,
-                1
-            );
-        }
-    }
-}
-
-
-/* =====================================================
-   MECHA ULT
-===================================================== */
-
-function createMechaExplosion(
-    player
-){
-
-    const p=
-        player===1
-        ?p1
-        :p2;
-
-
-    explosions.push({
-
-        owner:player,
-
-        x:p.x,
-
-        y:
-            player===1
-            ?.53
-            :.47,
-
-        timer:1,
-
-        hit:false
-    });
-}
-
-
-function updateExplosions(dt){
-
-    for(
-        let i=explosions.length-1;
-        i>=0;
-        i--
-    ){
-
-        const ex=
-            explosions[i];
-
-
-        ex.timer-=dt/1000;
-
-
-        if(
-            ex.timer<=.45 &&
-            !ex.hit
-        ){
-
-            ex.hit=true;
-
-
-            const target=
-                ex.owner===1
-                ?p2
-                :p1;
-
-
-            const distance=
-                Math.abs(
-                    target.x-ex.x
-                );
-
-
-            if(
-                distance<=.25
-            ){
-
-                damagePlayer(
-                    target,
-                    48
-                );
-
-
-                addHitEffect(
-                    target.x,
-                    target.y
-                );
-            }
-        }
-
-
-        if(
-            ex.timer<=0
-        ){
-
-            explosions.splice(
-                i,
-                1
-            );
-        }
-    }
-}
-
-
-/* =====================================================
-   PLAYER UPDATE
-===================================================== */
+/* =========================================================
+   플레이어 업데이트
+========================================================= */
 
 function updatePlayer(
     p,
     dt
 ){
 
-    if(
-        !battleRunning
-    ){
+    if(!running)
         return;
-    }
 
 
-    const direction=
-        (p.right?1:0)-
-        (p.left?1:0);
+    let direction=0;
+
+    if(p.left)
+        direction--;
+
+    if(p.right)
+        direction++;
 
 
-    let speed=
-        p.hero.speed;
+    let speed=p.hero.speed;
 
 
-    if(
-        p.speedBoost>0
-    ){
-
+    if(p.speedTimer>0)
         speed*=1.75;
-    }
 
 
     p.x+=
@@ -2346,11 +1685,11 @@ function updatePlayer(
         dt;
 
 
-    /* 돌진 */
+    /*
+        부스터
+    */
 
-    if(
-        p.dashTimer>0
-    ){
+    if(p.dashTimer>0){
 
         p.x+=
             p.dashDirection*
@@ -2364,15 +1703,20 @@ function updatePlayer(
 
     p.x=
         Math.max(
-            .14,
+            .12,
             Math.min(
-                .86,
+                .88,
                 p.x
             )
         );
 
 
-    /* 쿨타임 */
+    /*
+        쿨타임
+    */
+
+    if(p.attackTimer>0)
+        p.attackTimer-=dt;
 
     if(p.skill1Timer>0)
         p.skill1Timer-=dt/1000;
@@ -2380,8 +1724,8 @@ function updatePlayer(
     if(p.skill2Timer>0)
         p.skill2Timer-=dt/1000;
 
-    if(p.speedBoost>0)
-        p.speedBoost-=dt/1000;
+    if(p.speedTimer>0)
+        p.speedTimer-=dt/1000;
 
     if(p.powerTimer>0)
         p.powerTimer-=dt/1000;
@@ -2389,22 +1733,22 @@ function updatePlayer(
     if(p.armorTimer>0)
         p.armorTimer-=dt/1000;
 
-    if(p.invincible>0)
-        p.invincible-=dt/1000;
+    if(p.dashTimer>0)
+        p.dashTimer-=dt/1000;
+
+    if(p.invincibleTimer>0)
+        p.invincibleTimer-=dt/1000;
 
     if(p.beatTimer>0)
         p.beatTimer-=dt/1000;
-
-    if(p.normalTimer>0)
-        p.normalTimer-=dt;
 }
 
 
-/* =====================================================
-   EFFECTS
-===================================================== */
+/* =========================================================
+   효과
+========================================================= */
 
-function addEffect(
+function effect(
     x,
     y,
     type
@@ -2413,30 +1757,11 @@ function addEffect(
     effects.push({
 
         x:x,
-
         y:y,
 
         type:type,
 
         life:1
-    });
-}
-
-
-function addHitEffect(
-    x,
-    y
-){
-
-    effects.push({
-
-        x:x,
-
-        y:y,
-
-        type:"hit",
-
-        life:.6
     });
 }
 
@@ -2449,9 +1774,8 @@ function updateEffects(dt){
         i--
     ){
 
-        effects[i].life
-            -=dt/700;
-
+        effects[i].life-=
+            dt/650;
 
         if(
             effects[i].life<=0
@@ -2466,9 +1790,9 @@ function updateEffects(dt){
 }
 
 
-/* =====================================================
-   DRAW BACKGROUND
-===================================================== */
+/* =========================================================
+   배경
+========================================================= */
 
 function drawBackground(){
 
@@ -2484,10 +1808,9 @@ function drawBackground(){
 
     ctx.fillStyle="#aabd8e";
 
-
     for(
         let i=0;
-        i<45;
+        i<50;
         i++
     ){
 
@@ -2495,9 +1818,8 @@ function drawBackground(){
             (i*173)%W;
 
         const y=
-            50+
-            (i*97)%(H*.38);
-
+            40+
+            (i*97)%(H*.40);
 
         ctx.fillRect(
             x,
@@ -2510,7 +1832,7 @@ function drawBackground(){
 
     for(
         let i=0;
-        i<45;
+        i<50;
         i++
     ){
 
@@ -2518,9 +1840,8 @@ function drawBackground(){
             (i*211)%W;
 
         const y=
-            H*.60+
-            (i*83)%(H*.32);
-
+            H*.59+
+            (i*83)%(H*.34);
 
         ctx.fillRect(
             x,
@@ -2531,14 +1852,13 @@ function drawBackground(){
     }
 
 
-    /* 가운데 강 */
+    /*
+        얇은 강
+    */
 
-    const riverY=
-        H*.495;
-
+    const riverY=H*.495;
 
     ctx.strokeStyle="#287fc1";
-
     ctx.lineWidth=5;
 
     ctx.beginPath();
@@ -2557,12 +1877,10 @@ function drawBackground(){
 
 
     ctx.strokeStyle="#75c7ef";
-
     ctx.lineWidth=2;
 
-
     for(
-        let x=25;
+        let x=20;
         x<W;
         x+=100
     ){
@@ -2575,7 +1893,7 @@ function drawBackground(){
         );
 
         ctx.lineTo(
-            x+38,
+            x+40,
             riverY
         );
 
@@ -2584,27 +1902,21 @@ function drawBackground(){
 }
 
 
-/* =====================================================
-   DRAW PLAYER
-===================================================== */
+/* =========================================================
+   캐릭터
+========================================================= */
 
 function drawPlayer(
     p,
     number
 ){
 
-    const hero=
-        p.hero;
+    const x=p.x*W;
+    const y=p.y*H;
 
+    const hero=p.hero;
 
-    const x=
-        p.x*W;
-
-    const y=
-        p.y*H;
-
-
-    const s=
+    const scale=
         Math.max(
             .7,
             Math.min(
@@ -2614,7 +1926,9 @@ function drawPlayer(
         );
 
 
-    /* shield */
+    /*
+        방어막
+    */
 
     if(
         p.armorTimer>0 ||
@@ -2628,14 +1942,14 @@ function drawPlayer(
 
         ctx.lineWidth=5;
 
-        ctx.globalAlpha=.65;
+        ctx.globalAlpha=.7;
 
         ctx.beginPath();
 
         ctx.arc(
             x,
             y,
-            43*s,
+            44*scale,
             0,
             Math.PI*2
         );
@@ -2646,18 +1960,19 @@ function drawPlayer(
     }
 
 
-    /* shadow */
+    /*
+        그림자
+    */
 
-    ctx.fillStyle=
-        "rgba(0,0,0,.2)";
+    ctx.fillStyle="rgba(0,0,0,.2)";
 
     ctx.beginPath();
 
     ctx.ellipse(
         x,
-        y+32*s,
-        25*s,
-        8*s,
+        y+31*scale,
+        25*scale,
+        8*scale,
         0,
         0,
         Math.PI*2
@@ -2666,146 +1981,140 @@ function drawPlayer(
     ctx.fill();
 
 
-    /* body */
+    /*
+        몸
+    */
 
-    ctx.fillStyle=
-        hero.color;
+    ctx.fillStyle=hero.color;
 
     ctx.fillRect(
-        x-17*s,
-        y-17*s,
-        34*s,
-        35*s
+        x-17*scale,
+        y-17*scale,
+        34*scale,
+        35*scale
     );
 
 
     ctx.strokeStyle="#172033";
 
-    ctx.lineWidth=4*s;
+    ctx.lineWidth=4*scale;
 
     ctx.strokeRect(
-        x-17*s,
-        y-17*s,
-        34*s,
-        35*s
+        x-17*scale,
+        y-17*scale,
+        34*scale,
+        35*scale
     );
 
 
-    /* head */
+    /*
+        머리
+    */
 
     ctx.fillStyle="#ffd0a8";
 
     ctx.fillRect(
-        x-16*s,
-        y-43*s,
-        32*s,
-        26*s
+        x-16*scale,
+        y-43*scale,
+        32*scale,
+        26*scale
     );
 
 
     ctx.strokeStyle="#172033";
 
     ctx.strokeRect(
-        x-16*s,
-        y-43*s,
-        32*s,
-        26*s
+        x-16*scale,
+        y-43*scale,
+        32*scale,
+        26*scale
     );
 
 
-    /* character-specific */
+    /*
+        영웅별 장비
+    */
 
-    if(
-        hero.type==="lucid"
-    ){
+    if(hero.type==="lucid"){
 
         ctx.fillStyle="#27384d";
 
         ctx.fillRect(
-            x-19*s,
-            y-46*s,
-            38*s,
-            9*s
+            x-20*scale,
+            y-47*scale,
+            40*scale,
+            9*scale
         );
 
-        ctx.fillRect(
-            x-22*s,
-            y-39*s,
-            5*s,
-            13*s
-        );
-    }
-
-
-    if(
-        hero.type==="iron"
-    ){
+    }else if(hero.type==="iron"){
 
         ctx.fillStyle="#405b46";
 
         ctx.fillRect(
-            x-19*s,
-            y-48*s,
-            38*s,
-            15*s
+            x-20*scale,
+            y-48*scale,
+            40*scale,
+            15*scale
         );
-    }
 
-
-    if(
-        hero.type==="mecha"
-    ){
+    }else{
 
         ctx.fillStyle="#f1a2ca";
 
         ctx.fillRect(
-            x-19*s,
-            y-47*s,
-            38*s,
-            10*s
+            x-20*scale,
+            y-48*scale,
+            40*scale,
+            10*scale
         );
     }
 
 
-    /* legs */
+    /*
+        다리
+    */
 
     ctx.fillStyle="#30394e";
 
     ctx.fillRect(
-        x-12*s,
-        y+15*s,
-        9*s,
-        19*s
+        x-12*scale,
+        y+15*scale,
+        9*scale,
+        19*scale
     );
 
     ctx.fillRect(
-        x+3*s,
-        y+15*s,
-        9*s,
-        19*s
+        x+3*scale,
+        y+15*scale,
+        9*scale,
+        19*scale
     );
 
 
-    /* arms */
+    /*
+        팔
+    */
 
     ctx.fillStyle="#ffd0a8";
 
     ctx.fillRect(
-        x-27*s,
-        y-10*s,
-        11*s,
-        9*s
+        x-27*scale,
+        y-10*scale,
+        11*scale,
+        9*scale
     );
 
     ctx.fillRect(
-        x+16*s,
-        y-10*s,
-        11*s,
-        9*s
+        x+16*scale,
+        y-10*scale,
+        11*scale,
+        9*scale
     );
 
 
-    /* player label */
+    /*
+        이름
+    */
 
     ctx.fillStyle="white";
 
@@ -2813,7 +2122,7 @@ function drawPlayer(
         "bold "+
         Math.max(
             12,
-            17*s
+            17*scale
         )+
         "px Arial";
 
@@ -2822,85 +2131,80 @@ function drawPlayer(
     ctx.fillText(
         number+"P",
         x,
-        y-54*s
+        y-56*scale
     );
 }
 
 
-/* =====================================================
-   DRAW PROJECTILES
-===================================================== */
+/* =========================================================
+   발사체
+========================================================= */
 
-function drawProjectile(b){
+function drawProjectiles(){
 
-    const x=b.x*W;
-    const y=b.y*H;
-
-
-    ctx.save();
-
-
-    ctx.shadowBlur=
-        b.skill
-        ?22
-        :12;
-
-
-    ctx.shadowColor=
-        b.type==="blue"
-        ?" #45c8ff"
-        :"#ff5068";
-
-
-    ctx.fillStyle=
-        b.type==="blue"
-        ?"#45c8ff"
-        :"#ff5068";
-
-
-    ctx.beginPath();
-
-    ctx.arc(
-        x,
-        y,
-        b.radius,
-        0,
-        Math.PI*2
-    );
-
-    ctx.fill();
-
-
-    if(
-        b.skill
+    for(
+        const b of projectiles
     ){
 
-        ctx.strokeStyle=
-            "#ffffff";
+        const x=b.x*W;
+        const y=b.y*H;
 
-        ctx.lineWidth=2;
+        ctx.save();
+
+        ctx.shadowBlur=
+            b.special
+            ?22
+            :12;
+
+        ctx.shadowColor=
+            b.owner===1
+            ?" #45c8ff"
+            :"#ff5068";
+
+        ctx.fillStyle=
+            b.owner===1
+            ?" #45c8ff"
+            :"#ff5068";
 
         ctx.beginPath();
 
         ctx.arc(
             x,
             y,
-            b.radius+7,
+            b.radius,
             0,
             Math.PI*2
         );
 
-        ctx.stroke();
+        ctx.fill();
+
+
+        if(b.special){
+
+            ctx.strokeStyle="#ffffff";
+            ctx.lineWidth=2;
+
+            ctx.beginPath();
+
+            ctx.arc(
+                x,
+                y,
+                b.radius+7,
+                0,
+                Math.PI*2
+            );
+
+            ctx.stroke();
+        }
+
+        ctx.restore();
     }
-
-
-    ctx.restore();
 }
 
 
-/* =====================================================
-   DRAW EFFECTS
-===================================================== */
+/* =========================================================
+   효과 그리기
+========================================================= */
 
 function drawEffects(){
 
@@ -2911,20 +2215,18 @@ function drawEffects(){
         const x=e.x*W;
         const y=e.y*H;
 
-
-        ctx.globalAlpha=
+        const alpha=
             Math.max(
                 0,
                 e.life
             );
 
+        ctx.globalAlpha=alpha;
 
-        if(
-            e.type==="hit"
-        ){
+
+        if(e.type==="hit"){
 
             ctx.strokeStyle="#fff27b";
-
             ctx.lineWidth=4;
 
             ctx.beginPath();
@@ -2932,8 +2234,7 @@ function drawEffects(){
             ctx.arc(
                 x,
                 y,
-                10+
-                (1-e.life)*30,
+                10+(1-alpha)*35,
                 0,
                 Math.PI*2
             );
@@ -2942,12 +2243,9 @@ function drawEffects(){
         }
 
 
-        if(
-            e.type==="speed"
-        ){
+        if(e.type==="speed"){
 
             ctx.strokeStyle="#4ddcff";
-
             ctx.lineWidth=5;
 
             ctx.beginPath();
@@ -2955,7 +2253,7 @@ function drawEffects(){
             ctx.arc(
                 x,
                 y,
-                38,
+                38+(1-alpha)*15,
                 0,
                 Math.PI*2
             );
@@ -2964,12 +2262,9 @@ function drawEffects(){
         }
 
 
-        if(
-            e.type==="power"
-        ){
+        if(e.type==="power"){
 
             ctx.strokeStyle="#b4d27a";
-
             ctx.lineWidth=6;
 
             ctx.strokeRect(
@@ -2982,33 +2277,11 @@ function drawEffects(){
 
 
         if(
-            e.type==="armor"
-        ){
-
-            ctx.strokeStyle="#8ee0a0";
-
-            ctx.lineWidth=7;
-
-            ctx.beginPath();
-
-            ctx.arc(
-                x,
-                y,
-                45,
-                0,
-                Math.PI*2
-            );
-
-            ctx.stroke();
-        }
-
-
-        if(
+            e.type==="armor" ||
             e.type==="shield"
         ){
 
             ctx.strokeStyle="#72d8ff";
-
             ctx.lineWidth=7;
 
             ctx.beginPath();
@@ -3016,7 +2289,7 @@ function drawEffects(){
             ctx.arc(
                 x,
                 y,
-                48,
+                45+(1-alpha)*10,
                 0,
                 Math.PI*2
             );
@@ -3025,12 +2298,9 @@ function drawEffects(){
         }
 
 
-        if(
-            e.type==="dash"
-        ){
+        if(e.type==="dash"){
 
             ctx.strokeStyle="#ff91c4";
-
             ctx.lineWidth=5;
 
             ctx.beginPath();
@@ -3038,8 +2308,7 @@ function drawEffects(){
             ctx.arc(
                 x,
                 y,
-                34+
-                (1-e.life)*25,
+                35+(1-alpha)*30,
                 0,
                 Math.PI*2
             );
@@ -3048,12 +2317,9 @@ function drawEffects(){
         }
 
 
-        if(
-            e.type==="wave"
-        ){
+        if(e.type==="wave"){
 
             ctx.strokeStyle="#72e7ff";
-
             ctx.lineWidth=5;
 
             ctx.beginPath();
@@ -3061,8 +2327,7 @@ function drawEffects(){
             ctx.arc(
                 x,
                 y,
-                20+
-                (1-e.life)*45,
+                20+(1-alpha)*55,
                 0,
                 Math.PI*2
             );
@@ -3071,12 +2336,9 @@ function drawEffects(){
         }
 
 
-        if(
-            e.type==="beat"
-        ){
+        if(e.type==="beat"){
 
             ctx.strokeStyle="#f4d65c";
-
             ctx.lineWidth=7;
 
             ctx.beginPath();
@@ -3084,8 +2346,67 @@ function drawEffects(){
             ctx.arc(
                 x,
                 y,
-                50+
-                (1-e.life)*30,
+                45+(1-alpha)*45,
+                0,
+                Math.PI*2
+            );
+
+            ctx.stroke();
+        }
+
+
+        /*
+            아이언 포격
+        */
+
+        if(e.type==="bombard"){
+
+            ctx.strokeStyle="#d5e883";
+            ctx.lineWidth=7;
+
+            ctx.beginPath();
+
+            ctx.arc(
+                x,
+                y,
+                20+(1-alpha)*65,
+                0,
+                Math.PI*2
+            );
+
+            ctx.stroke();
+
+            ctx.fillStyle="rgba(100,130,80,.25)";
+
+            ctx.beginPath();
+
+            ctx.arc(
+                x,
+                y,
+                35+(1-alpha)*45,
+                0,
+                Math.PI*2
+            );
+
+            ctx.fill();
+        }
+
+
+        /*
+            메카 궁
+        */
+
+        if(e.type==="explosion"){
+
+            ctx.strokeStyle="#ffd85c";
+            ctx.lineWidth=8;
+
+            ctx.beginPath();
+
+            ctx.arc(
+                x,
+                y,
+                20+(1-alpha)*100,
                 0,
                 Math.PI*2
             );
@@ -3099,280 +2420,138 @@ function drawEffects(){
 }
 
 
-/* =====================================================
-   DRAW BOMBARDMENTS
-===================================================== */
-
-function drawBombardments(){
-
-    for(
-        const b of bombardments
-    ){
-
-        const x=b.x*W;
-
-        const y=b.y*H;
-
-
-        const progress=
-            1-
-            Math.max(
-                0,
-                b.timer/1.4
-            );
-
-
-        const radius=
-            25+
-            progress*55;
-
-
-        ctx.globalAlpha=.75;
-
-        ctx.strokeStyle="#d4e783";
-
-        ctx.lineWidth=5;
-
-        ctx.beginPath();
-
-        ctx.arc(
-            x,
-            y,
-            radius,
-            0,
-            Math.PI*2
-        );
-
-        ctx.stroke();
-
-
-        ctx.fillStyle=
-            "rgba(100,130,80,.22)";
-
-        ctx.beginPath();
-
-        ctx.arc(
-            x,
-            y,
-            radius,
-            0,
-            Math.PI*2
-        );
-
-        ctx.fill();
-
-
-        ctx.globalAlpha=1;
-    }
-}
-
-
-/* =====================================================
-   DRAW EXPLOSIONS
-===================================================== */
-
-function drawExplosions(){
-
-    for(
-        const ex of explosions
-    ){
-
-        const x=
-            ex.x*W;
-
-        const y=
-            ex.y*H;
-
-
-        const progress=
-            1-
-            Math.max(
-                0,
-                ex.timer
-            );
-
-
-        const radius=
-            20+
-            progress*100;
-
-
-        ctx.globalAlpha=.75;
-
-        ctx.strokeStyle="#ffd85c";
-
-        ctx.lineWidth=8;
-
-        ctx.beginPath();
-
-        ctx.arc(
-            x,
-            y,
-            radius,
-            0,
-            Math.PI*2
-        );
-
-        ctx.stroke();
-
-
-        ctx.globalAlpha=1;
-    }
-}
-
-
-/* =====================================================
+/* =========================================================
    UI
-===================================================== */
+========================================================= */
 
 function updateUI(){
 
-    if(
-        !p1.hero ||
-        !p2.hero
-    ){
+    if(!p1.hero || !p2.hero)
         return;
-    }
 
 
-    document
-    .getElementById("name1")
-    .textContent=
-        "1P · "+
-        p1.hero.name;
+    document.getElementById(
+        "name1"
+    ).textContent=
+        "1P · "+p1.hero.name;
+
+    document.getElementById(
+        "name2"
+    ).textContent=
+        "2P · "+p2.hero.name;
 
 
-    document
-    .getElementById("name2")
-    .textContent=
-        "2P · "+
-        p2.hero.name;
-
-
-    document
-    .getElementById("hpText1")
-    .textContent=
+    document.getElementById(
+        "hpText1"
+    ).textContent=
         Math.ceil(p1.hp)+
         " / "+
         p1.maxHp;
 
-
-    document
-    .getElementById("hpText2")
-    .textContent=
+    document.getElementById(
+        "hpText2"
+    ).textContent=
         Math.ceil(p2.hp)+
         " / "+
         p2.maxHp;
 
 
-    document
-    .getElementById("hpBar1")
-    .style.width=
-        (
-            p1.hp/
-            p1.maxHp*
-            100
-        )+"%";
+    document.getElementById(
+        "hpBar1"
+    ).style.width=
+        (p1.hp/p1.maxHp*100)+"%";
+
+    document.getElementById(
+        "hpBar2"
+    ).style.width=
+        (p2.hp/p2.maxHp*100)+"%";
 
 
-    document
-    .getElementById("hpBar2")
-    .style.width=
-        (
-            p2.hp/
-            p2.maxHp*
-            100
-        )+"%";
-
-
-    document
-    .getElementById("ultBar1")
-    .style.width=
+    document.getElementById(
+        "ultBar1"
+    ).style.width=
         p1.ult+"%";
 
-
-    document
-    .getElementById("ultBar2")
-    .style.width=
+    document.getElementById(
+        "ultBar2"
+    ).style.width=
         p2.ult+"%";
 
 
     updateSkillButton(
-        "skill1",
+        "p1skill1",
         p1,
         1
     );
 
     updateSkillButton(
-        "skill2_1",
+        "p1skill2",
         p1,
         2
     );
 
     updateSkillButton(
-        "skill2",
+        "p2skill1",
         p2,
         1
     );
 
     updateSkillButton(
-        "skill2_2",
+        "p2skill2",
         p2,
         2
     );
 
 
     updateUltButton(
-        "ult1",
+        "p1ult",
         p1
     );
 
     updateUltButton(
-        "ult2",
+        "p2ult",
         p2
     );
 
 
-    document
-    .getElementById("timer")
-    .textContent=
-        Math.ceil(matchTime);
+    document.getElementById(
+        "timer"
+    ).textContent=
+        Math.max(
+            0,
+            Math.ceil(timeLeft)
+        );
 }
 
 
 function updateSkillButton(
     id,
     p,
-    skillNumber
+    number
 ){
 
     const button=
         document.getElementById(id);
 
-
     const timer=
-        skillNumber===1
+        number===1
         ?p.skill1Timer
         :p.skill2Timer;
 
-
     const name=
-        skillNumber===1
-        ?p.hero.skill1
-        :p.hero.skill2;
+        number===1
+        ?p.hero.skill1Name
+        :p.hero.skill2Name;
 
 
-    if(
-        timer>0
-    ){
+    if(timer>0){
 
         button.classList.add(
             "cooldown"
         );
 
         button.innerHTML=
-            "스킬"+
-            skillNumber+
+            name+
             "<br>"+
             timer.toFixed(1);
 
@@ -3382,9 +2561,7 @@ function updateSkillButton(
             "cooldown"
         );
 
-        button.innerHTML=
-            "스킬"+
-            skillNumber;
+        button.textContent=name;
     }
 }
 
@@ -3397,17 +2574,14 @@ function updateUltButton(
     const button=
         document.getElementById(id);
 
-
-    if(
-        p.ult>=100
-    ){
+    if(p.ult>=100){
 
         button.classList.remove(
             "cooldown"
         );
 
         button.textContent=
-            p.hero.ult;
+            p.hero.ultName;
 
     }else{
 
@@ -3417,19 +2591,18 @@ function updateUltButton(
 
         button.textContent=
             "궁 "+
-            Math.floor(p.ult)+"%";
+            Math.floor(p.ult)+
+            "%";
     }
 }
 
 
-/* =====================================================
-   INPUT
-===================================================== */
+/* =========================================================
+   버튼 입력
+========================================================= */
 
 document
-.querySelectorAll(
-    "[data-action]"
-)
+.querySelectorAll("[data-action]")
 .forEach(button=>{
 
     button.addEventListener(
@@ -3449,7 +2622,7 @@ document
 
 
 document
-.getElementById("skill1")
+.getElementById("p1skill1")
 .addEventListener(
     "pointerdown",
     e=>{
@@ -3462,7 +2635,7 @@ document
 
 
 document
-.getElementById("skill2_1")
+.getElementById("p1skill2")
 .addEventListener(
     "pointerdown",
     e=>{
@@ -3475,7 +2648,7 @@ document
 
 
 document
-.getElementById("skill2")
+.getElementById("p2skill1")
 .addEventListener(
     "pointerdown",
     e=>{
@@ -3488,7 +2661,7 @@ document
 
 
 document
-.getElementById("skill2_2")
+.getElementById("p2skill2")
 .addEventListener(
     "pointerdown",
     e=>{
@@ -3501,7 +2674,7 @@ document
 
 
 document
-.getElementById("ult1")
+.getElementById("p1ult")
 .addEventListener(
     "pointerdown",
     e=>{
@@ -3514,7 +2687,7 @@ document
 
 
 document
-.getElementById("ult2")
+.getElementById("p2ult")
 .addEventListener(
     "pointerdown",
     e=>{
@@ -3526,12 +2699,12 @@ document
 );
 
 
-/* 이동 */
+/* =========================================================
+   이동 버튼
+========================================================= */
 
 document
-.querySelectorAll(
-    "[data-move]"
-)
+.querySelectorAll("[data-move]")
 .forEach(button=>{
 
     const player=
@@ -3543,82 +2716,68 @@ document
         button.dataset.move;
 
 
-    function start(e){
+    function press(e){
 
         e.preventDefault();
-
 
         const p=
             player===1
             ?p1
             :p2;
 
-
-        if(
-            direction==="left"
-        )
+        if(direction==="left")
             p.left=true;
 
-
-        if(
-            direction==="right"
-        )
+        if(direction==="right")
             p.right=true;
     }
 
 
-    function stop(e){
+    function release(e){
 
         e.preventDefault();
-
 
         const p=
             player===1
             ?p1
             :p2;
 
-
-        if(
-            direction==="left"
-        )
+        if(direction==="left")
             p.left=false;
 
-
-        if(
-            direction==="right"
-        )
+        if(direction==="right")
             p.right=false;
     }
 
 
     button.addEventListener(
         "pointerdown",
-        start
+        press
     );
 
     button.addEventListener(
         "pointerup",
-        stop
+        release
     );
 
     button.addEventListener(
         "pointercancel",
-        stop
+        release
     );
 
     button.addEventListener(
         "pointerleave",
-        stop
+        release
     );
 });
 
 
-/* =====================================================
-   ROTATION
-===================================================== */
+/* =========================================================
+   회전
+========================================================= */
 
 document
-.getElementById("rotateButton")
+.getElementById("rotateBtn")
 .addEventListener(
     "pointerdown",
     e=>{
@@ -3627,48 +2786,59 @@ document
 
         document
         .getElementById("board")
-        .classList.toggle("rotate");
+        .classList.toggle(
+            "rotate"
+        );
     }
 );
 
 
-/* =====================================================
-   END
-===================================================== */
+/* =========================================================
+   게임 종료
+========================================================= */
 
-function endBattle(
-    winner
-){
+function endBattle(winner){
 
-    if(gameEnded)
+    /*
+        이미 종료됐으면 아무것도 하지 않는다.
+        궁극기 판정 중 중복 호출 방지.
+    */
+
+    if(ended)
         return;
 
-
-    gameEnded=true;
-
-    battleRunning=false;
+    ended=true;
+    running=false;
 
 
-    document
-    .getElementById("winnerText")
-    .textContent=
+    document.getElementById(
+        "winnerText"
+    ).textContent=
         winner==="DRAW"
         ?"DRAW!"
         :winner+" WIN!";
 
 
-    document
-    .getElementById("endInfo")
-    .textContent=
-        winner==="DRAW"
-        ?"시간 종료 · 무승부"
-        :
-        HEROES[
+    if(winner==="DRAW"){
+
+        document.getElementById(
+            "endInfo"
+        ).textContent=
+            "시간 종료 · 무승부";
+
+    }else{
+
+        const hero=
             winner==="1P"
-            ?selected1
-            :selected2
-        ].name+
-        " 승리";
+            ?p1.hero
+            :p2.hero;
+
+        document.getElementById(
+            "endInfo"
+        ).textContent=
+            hero.name+
+            " 승리";
+    }
 
 
     document
@@ -3679,25 +2849,23 @@ function endBattle(
 }
 
 
-/* =====================================================
-   AGAIN
-===================================================== */
+/* =========================================================
+   다시하기
+========================================================= */
 
 document
-.getElementById("againButton")
+.getElementById("againBtn")
 .addEventListener(
     "pointerdown",
     e=>{
 
         e.preventDefault();
 
-
         document
         .getElementById("endScreen")
         .classList.add(
             "hidden"
         );
-
 
         document
         .getElementById("selectScreen")
@@ -3708,9 +2876,75 @@ document
 );
 
 
-/* =====================================================
-   iPAD ZOOM PREVENT
-===================================================== */
+/* =========================================================
+   키보드 테스트
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    e=>{
+
+        if(e.key==="a")
+            p1.left=true;
+
+        if(e.key==="d")
+            p1.right=true;
+
+        if(e.key==="ArrowLeft")
+            p2.left=true;
+
+        if(e.key==="ArrowRight")
+            p2.right=true;
+
+        if(e.key==="f")
+            attack(1);
+
+        if(e.key==="j")
+            attack(2);
+
+        if(e.key==="q")
+            useSkill1(1);
+
+        if(e.key==="w")
+            useSkill2(1);
+
+        if(e.key==="u")
+            useUltimate(1);
+
+        if(e.key==="o")
+            useSkill1(2);
+
+        if(e.key==="p")
+            useSkill2(2);
+
+        if(e.key==="l")
+            useUltimate(2);
+    }
+);
+
+
+document.addEventListener(
+    "keyup",
+    e=>{
+
+        if(e.key==="a")
+            p1.left=false;
+
+        if(e.key==="d")
+            p1.right=false;
+
+        if(e.key==="ArrowLeft")
+            p2.left=false;
+
+        if(e.key==="ArrowRight")
+            p2.right=false;
+    }
+);
+
+
+/* =========================================================
+   iPad 확대 방지
+========================================================= */
 
 let lastTap=0;
 
@@ -3718,17 +2952,11 @@ document.addEventListener(
     "touchend",
     e=>{
 
-        const now=
-            Date.now();
+        const now=Date.now();
 
-
-        if(
-            now-lastTap<350
-        ){
-
+        if(now-lastTap<350){
             e.preventDefault();
         }
-
 
         lastTap=now;
 
@@ -3747,7 +2975,25 @@ document.addEventListener(
 
 
 document.addEventListener(
-    "touchmove",
+    "gesturestart",
+    e=>{
+        e.preventDefault();
+    },
+    {passive:false}
+);
+
+
+document.addEventListener(
+    "gesturechange",
+    e=>{
+        e.preventDefault();
+    },
+    {passive:false}
+);
+
+
+document.addEventListener(
+    "gestureend",
     e=>{
         e.preventDefault();
     },
@@ -3763,100 +3009,17 @@ document.addEventListener(
 );
 
 
-/* =====================================================
-   ORIENTATION
-===================================================== */
+/* =========================================================
+   게임 루프
+========================================================= */
 
-function checkOrientation(){
-
-    let angle=0;
-
-
-    if(
-        screen.orientation &&
-        typeof screen.orientation.angle==="number"
-    ){
-
-        angle=
-            screen.orientation.angle;
-
-    }else if(
-        typeof window.orientation==="number"
-    ){
-
-        angle=
-            window.orientation;
-    }
-
-
-    const board=
-        document.getElementById("board");
-
-
-    if(
-        Math.abs(angle)===180
-    ){
-
-        board.classList.add(
-            "rotate"
-        );
-
-    }else{
-
-        board.classList.remove(
-            "rotate"
-        );
-    }
-}
-
-
-checkOrientation();
-
-
-if(
-    screen.orientation
-){
-
-    screen.orientation.addEventListener(
-        "change",
-        checkOrientation
-    );
-}
-
-
-window.addEventListener(
-    "orientationchange",
-    ()=>{
-
-        setTimeout(
-            resize,
-            200
-        );
-
-        setTimeout(
-            checkOrientation,
-            250
-        );
-    }
-);
-
-
-/* =====================================================
-   GAME LOOP
-===================================================== */
-
-let lastTime=
-    performance.now();
-
-
-function gameLoop(now){
+function loop(now){
 
     const dt=
         Math.min(
             32,
             now-lastTime
         );
-
 
     lastTime=now;
 
@@ -3877,53 +3040,42 @@ function gameLoop(now){
         p2.hero
     ){
 
-        updatePlayer(
-            p1,
-            dt
-        );
+        /*
+            게임이 끝났으면 업데이트를 중단.
+            렌더링은 계속한다.
+        */
 
-        updatePlayer(
-            p2,
-            dt
-        );
+        if(running && !ended){
 
+            updatePlayer(
+                p1,
+                dt
+            );
 
-        updateProjectiles(
-            dt
-        );
+            updatePlayer(
+                p2,
+                dt
+            );
 
-        updateBombardments(
-            dt
-        );
+            updateProjectiles(
+                dt
+            );
 
-        updateExplosions(
-            dt
-        );
-
-        updateEffects(
-            dt
-        );
+            updateEffects(
+                dt
+            );
 
 
-        if(
-            battleRunning &&
-            !gameEnded
-        ){
-
-            matchTime-=
+            timeLeft-=
                 dt/1000;
 
 
-            if(
-                matchTime<=0
-            ){
+            if(timeLeft<=0){
 
-                matchTime=0;
+                timeLeft=0;
 
 
-                if(
-                    p1.hp>p2.hp
-                ){
+                if(p1.hp>p2.hp){
 
                     endBattle("1P");
 
@@ -3951,34 +3103,71 @@ function gameLoop(now){
             2
         );
 
-
-        for(
-            const b of projectiles
-        ){
-
-            drawProjectile(b);
-        }
-
+        drawProjectiles();
 
         drawEffects();
-
-        drawBombardments();
-
-        drawExplosions();
-
 
         updateUI();
     }
 
 
     requestAnimationFrame(
-        gameLoop
+        loop
     );
 }
 
 
 requestAnimationFrame(
-    gameLoop
+    loop
+);
+
+
+/* =========================================================
+   방향 자동 처리
+========================================================= */
+
+function orientationCheck(){
+
+    let angle=0;
+
+    if(
+        screen.orientation &&
+        typeof screen.orientation.angle==="number"
+    ){
+        angle=
+            screen.orientation.angle;
+    }
+
+    const board=
+        document.getElementById("board");
+
+    if(Math.abs(angle)===180){
+
+        board.classList.add(
+            "rotate"
+        );
+
+    }else{
+
+        board.classList.remove(
+            "rotate"
+        );
+    }
+}
+
+orientationCheck();
+
+window.addEventListener(
+    "orientationchange",
+    ()=>{
+        setTimeout(
+            ()=>{
+                resize();
+                orientationCheck();
+            },
+            200
+        );
+    }
 );
 
 </script>
