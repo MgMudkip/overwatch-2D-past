@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>PIXEL FIGHT</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: none;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #111827;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1200px;
+  overflow: hidden;
+  background:
+    linear-gradient(#18243d 0%, #101827 65%, #080d16 100%);
+}
+
+/* 중앙 전투장 */
+.arena {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: 18%;
+  bottom: 18%;
+  border: 4px solid #52627a;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,.04),
+      rgba(255,255,255,0)
+    );
+  box-shadow:
+    inset 0 0 0 3px #182235,
+    0 0 30px rgba(0,0,0,.5);
+}
+
+.floor {
+  position: absolute;
+  bottom: 12%;
+  left: 5%;
+  right: 5%;
+  height: 5px;
+  background: #75849c;
+  box-shadow: 0 8px 0 #29354a;
+}
+
+/* HP */
+.hpBox {
+  position: absolute;
+  width: 32%;
+  height: 28px;
+  border: 3px solid #d9e2f2;
+  background: #242c3c;
+  z-index: 10;
+}
+
+.hpBox.p1 {
+  top: 4%;
+  left: 4%;
+}
+
+.hpBox.p2 {
+  bottom: 4%;
+  right: 4%;
+}
+
+.hp {
+  height: 100%;
+  width: 100%;
+  transition: width .12s;
+}
+
+.hp.p1 {
+  background: #35d07f;
+}
+
+.hp.p2 {
+  background: #e95b6b;
+}
+
+.name {
+  position: absolute;
+  font-weight: bold;
+  color: white;
+  font-size: 15px;
+  z-index: 11;
+}
+
+.name.p1 {
+  top: 1%;
+  left: 4%;
+}
+
+.name.p2 {
+  bottom: 1%;
+  right: 4%;
+}
+
+/* 캐릭터 */
+.fighter {
+  position: absolute;
+  width: 52px;
+  height: 72px;
+  bottom: 20%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.body {
+  position: absolute;
+  width: 30px;
+  height: 36px;
+  left: 11px;
+  top: 23px;
+  background: #5b8cff;
+  border: 4px solid #111827;
+}
+
+.head {
+  position: absolute;
+  width: 30px;
+  height: 25px;
+  left: 11px;
+  top: 0;
+  background: #ffd1a9;
+  border: 4px solid #111827;
+}
+
+.leg {
+  position: absolute;
+  width: 9px;
+  height: 20px;
+  top: 55px;
+  background: #333b52;
+  border: 3px solid #111827;
+}
+
+.leg.left {
+  left: 12px;
+}
+
+.leg.right {
+  right: 12px;
+}
+
+.arm {
+  position: absolute;
+  width: 22px;
+  height: 9px;
+  top: 29px;
+  background: #ffd1a9;
+  border: 3px solid #111827;
+  transition: transform .08s;
+}
+
+.arm.left {
+  left: -7px;
+}
+
+.arm.right {
+  right: -7px;
+}
+
+/* 2P 색 */
+#p2 .body {
+  background: #e95b6b;
+}
+
+/* 공격 효과 */
+.hitEffect {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border: 5px solid #ffe36e;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  animation: hit .18s linear forwards;
+  pointer-events: none;
+  z-index: 20;
+}
+
+@keyframes hit {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(.5);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+/* 조작 버튼 */
+.controls {
+  position: absolute;
+  display: flex;
+  gap: 8px;
+  z-index: 30;
+}
+
+.controls.p1 {
+  left: 4%;
+  top: 11%;
+}
+
+.controls.p2 {
+  right: 4%;
+  bottom: 11%;
+}
+
+button {
+  width: 68px;
+  height: 48px;
+  border: 3px solid #8fa0ba;
+  border-radius: 8px;
+  background: #263249;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 4px 0 #111827;
+}
+
+button:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #111827;
+  background: #3a4965;
+}
+
+button.attack {
+  background: #34415a;
+}
+
+button.skill {
+  background: #654b82;
+}
+
+button:disabled {
+  opacity: .45;
+}
+
+/* 방향 표시 */
+.direction {
+  position: absolute;
+  color: #7788a3;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.direction.p1 {
+  top: 17%;
+  left: 19%;
+}
+
+.direction.p2 {
+  bottom: 17%;
+  right: 19%;
+}
+
+/* 상태 */
+.status {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 2px 2px #000;
+  z-index: 50;
+}
+
+/* 시작 화면 */
+.start {
+  position: absolute;
+  inset: 0;
+  background: rgba(5,9,17,.82);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.start h1 {
+  margin: 0 0 25px;
+  color: white;
+  font-size: 42px;
+  letter-spacing: 5px;
+}
+
+.start button {
+  width: 160px;
+  height: 55px;
+  font-size: 18px;
+  background: #3e5f9d;
+}
+
+@media (max-width: 700px) {
+  .arena {
+    left: 14%;
+    right: 14%;
+  }
+
+  .controls.p1 {
+    left: 2%;
+    top: 11%;
+  }
+
+  .controls.p2 {
+    right: 2%;
+    bottom: 11%;
+  }
+
+  button {
+    width: 58px;
+    height: 44px;
+    font-size: 12px;
+  }
+
+  .fighter {
+    transform: translateX(-50%) scale(.85);
+  }
+
+  .start h1 {
+    font-size: 30px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="game" id="game">
+
+  <!-- HP -->
+  <div class="name p1">1P</div>
+  <div class="hpBox p1">
+    <div class="hp p1" id="hp1"></div>
+  </div>
+
+  <div class="name p2">2P</div>
+  <div class="hpBox p2">
+    <div class="hp p2" id="hp2"></div>
+  </div>
+
+  <!-- 상태 -->
+  <div class="status" id="status">READY</div>
+
+  <!-- 중앙 전투장 -->
+  <div class="arena">
+    <div class="floor"></div>
+
+    <!-- 1P -->
+    <div class="fighter" id="p1" style="left:30%;">
+      <div class="head"></div>
+      <div class="body"></div>
+      <div class="arm left"></div>
+      <div class="arm right"></div>
+      <div class="leg left"></div>
+      <div class="leg right"></div>
+    </div>
+
+    <!-- 2P -->
+    <div class="fighter" id="p2" style="left:70%;">
+      <div class="head"></div>
+      <div class="body"></div>
+      <div class="arm left"></div>
+      <div class="arm right"></div>
+      <div class="leg left"></div>
+      <div class="leg right"></div>
+    </div>
+  </div>
+
+  <!-- 1P 조작 -->
+  <div class="controls p1">
+    <button data-player="p1" data-action="left">◀</button>
+    <button data-player="p1" data-action="right">▶</button>
+    <button class="attack" data-hit="p1">평타</button>
+    <button class="skill" id="s1">스킬</button>
+  </div>
+
+  <!-- 2P 조작 -->
+  <div class="controls p2">
+    <button data-player="p2" data-action="left">◀</button>
+    <button data-player="p2" data-action="right">▶</button>
+    <button class="attack" data-hit="p2">평타</button>
+    <button class="skill" id="s2">스킬</button>
+  </div>
+
+  <!-- 시작 -->
+  <div class="start" id="start">
+    <h1>PIXEL FIGHT</h1>
+    <button id="startBtn">GAME START</button>
+  </div>
+
+</div>
+
+<script>
+const state = {
+  p1: {
+    x: 30,
+    hp: 100,
+    left: false,
+    right: false,
+    cd: 0
+  },
+  p2: {
+    x: 70,
+    hp: 100,
+    left: false,
+    right: false,
+    cd: 0
+  }
+};
+
+let running = false;
+let gameOver = false;
+
+const speed = 0.42;
+const attackRange = 11;
+const normalDamage = 10;
+const skillDamage = 22;
+const skillCooldown = 3;
+
+function $(id) {
+  return document.getElementById(id);
+}
+
+/* 시작 */
+$("startBtn").addEventListener("pointerdown", () => {
+  $("start").style.display = "none";
+  $("status").textContent = "FIGHT!";
+  running = true;
+});
+
+/* 이동 버튼 */
+document.querySelectorAll("[data-action]").forEach(button => {
+
+  const player = button.dataset.player;
+  const action = button.dataset.action;
+
+  button.addEventListener("pointerdown", e => {
+    e.preventDefault();
+
+    if (!running || gameOver) return;
+
+    state[player][action] = true;
+  });
+
+  const stop = e => {
+    e.preventDefault();
+    state[player][action] = false;
+  };
+
+  button.addEventListener("pointerup", stop);
+  button.addEventListener("pointercancel", stop);
+  button.addEventListener("pointerleave", stop);
+});
+
+/* 공격 */
+document.querySelectorAll("[data-hit]").forEach(button => {
+
+  button.addEventListener("pointerdown", e => {
+
+    e.preventDefault();
+
+    if (!running || gameOver) return;
+
+    const attacker = button.dataset.hit;
+
+    attack(attacker, normalDamage);
+  });
+});
+
+/* 스킬 */
+$("s1").addEventListener("pointerdown", () => useSkill("p1"));
+$("s2").addEventListener("pointerdown", () => useSkill("p2"));
+
+function attack(attacker, damage) {
+
+  const a = state[attacker];
+  const targetName = attacker === "p1" ? "p2" : "p1";
+  const target = state[targetName];
+
+  if (Math.abs(a.x - target.x) <= attackRange) {
+
+    target.hp = Math.max(0, target.hp - damage);
+
+    showHit(targetName);
+
+    if (damage === normalDamage) {
+      animateAttack(attacker);
+    } else {
+      animateSkill(attacker);
+    }
+
+    if (target.hp <= 0) {
+      endGame(attacker);
+    }
+  }
+}
+
+function useSkill(player) {
+
+  if (!running || gameOver) return;
+
+  const s = state[player];
+
+  if (s.cd > 0) return;
+
+  s.cd = skillCooldown;
+
+  attack(player, skillDamage);
+}
+
+/* 공격 애니메이션 */
+function animateAttack(player) {
+
+  const fighter = $(player);
+  const arm = fighter.querySelector(".arm.right");
+
+  arm.style.transform = "translateX(14px)";
+
+  setTimeout(() => {
+    arm.style.transform = "";
+  }, 120);
+}
+
+function animateSkill(player) {
+
+  const fighter = $(player);
+
+  fighter.style.filter = "brightness(1.8)";
+
+  setTimeout(() => {
+    fighter.style.filter = "";
+  }, 180);
+}
+
+/* 피격 효과 */
+function showHit(player) {
+
+  const fighter = $(player);
+
+  const effect = document.createElement("div");
+  effect.className = "hitEffect";
+
+  effect.style.left =
+    fighter.offsetLeft + 25 + "px";
+
+  effect.style.top =
+    fighter.offsetTop + 30 + "px";
+
+  $("game").appendChild(effect);
+
+  setTimeout(() => {
+    effect.remove();
+  }, 200);
+}
+
+/* 게임 종료 */
+function endGame(winner) {
+
+  gameOver = true;
+
+  const winnerText =
+    winner === "p1" ? "1P WIN!" : "2P WIN!";
+
+  $("status").textContent = winnerText;
+
+  document.querySelectorAll("button").forEach(btn => {
+    if (!btn.closest(".start")) {
+      btn.disabled = true;
+    }
+  });
+}
+
+/* 게임 루프 */
+function update() {
+
+  if (running && !gameOver) {
+
+    for (const player of ["p1", "p2"]) {
+
+      const s = state[player];
+
+      if (s.left) {
+        s.x -= speed;
+      }
+
+      if (s.right) {
+        s.x += speed;
+      }
+
+      /*
+       * 중앙 전투장 안에서만 움직이도록 제한
+       */
+      s.x = Math.max(19, Math.min(81, s.x));
+
+      $(player).style.left = s.x + "%";
+
+      /*
+       * 스킬 쿨타임
+       */
+      if (s.cd > 0) {
+        s.cd -= 0.016;
+
+        if (s.cd < 0) {
+          s.cd = 0;
+        }
+      }
+
+      const skillButton =
+        player === "p1" ? $("s1") : $("s2");
+
+      if (s.cd > 0) {
+        skillButton.innerHTML =
+          "스킬<br>" + s.cd.toFixed(1);
+      } else {
+        skillButton.innerHTML = "스킬";
+      }
+
+      /*
+       * HP 표시
+       */
+      const hpBar =
+        player === "p1" ? $("hp1") : $("hp2");
+
+      hpBar.style.width = s.hp + "%";
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+update();
+</script>
+
+</body>
+</html>
