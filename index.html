@@ -507,14 +507,8 @@ button{
 }
 
 @keyframes wave{
-  from{
-    transform:scale(.5);
-    opacity:1;
-  }
-  to{
-    transform:scale(1.7);
-    opacity:0;
-  }
+  from{transform:scale(.5);opacity:1}
+  to{transform:scale(1.7);opacity:0}
 }
 
 .hitEffect{
@@ -529,14 +523,8 @@ button{
 }
 
 @keyframes hit{
-  from{
-    transform:scale(.3);
-    opacity:1;
-  }
-  to{
-    transform:scale(1.5);
-    opacity:0;
-  }
+  from{transform:scale(.3);opacity:1}
+  to{transform:scale(1.5);opacity:0}
 }
 
 /* =========================
@@ -883,13 +871,11 @@ button{
 </head>
 
 <body>
-
 <div id="app">
 
 <div id="game">
 
   <div class="arena"></div>
-
   <div class="wall top"></div>
   <div class="wall bottom"></div>
   <div class="wall left"></div>
@@ -902,11 +888,9 @@ button{
       <div class="hpText">
         P1 <span id="p1HpText">100</span>
       </div>
-
       <div class="hpBar">
         <div id="p1Hp" class="hpFill"></div>
       </div>
-
       <div class="ultBar">
         <div id="p1Ult" class="ultFill"></div>
       </div>
@@ -916,23 +900,20 @@ button{
       <div class="hpText">
         <span id="p2HpText">100</span> P2
       </div>
-
       <div class="hpBar">
         <div id="p2Hp" class="hpFill"></div>
       </div>
-
       <div class="ultBar">
         <div id="p2Ult" class="ultFill"></div>
       </div>
     </div>
 
     <div id="timer" class="timer">90</div>
-
-    <div class="logo">
-      OVERDUEL
-    </div>
+    <div class="logo">OVERDUEL</div>
 
   </div>
+
+  <!-- characters are created by JS -->
 
   <div id="effects"></div>
 
@@ -940,10 +921,7 @@ button{
   <div class="controls">
 
     <div id="controls1" class="controlGroup left">
-
-      <div id="ammo1" class="ammo">
-        ● 18 / 18
-      </div>
+      <div id="ammo1" class="ammo">● 18 / 18</div>
 
       <button class="skill basic" id="p1basic">
         <span class="icon">●</span>
@@ -968,14 +946,10 @@ button{
         궁극기
         <span class="cooldownText"></span>
       </button>
-
     </div>
 
     <div id="controls2" class="controlGroup right">
-
-      <div id="ammo2" class="ammo">
-        ● 18 / 18
-      </div>
+      <div id="ammo2" class="ammo">● 18 / 18</div>
 
       <button class="skill basic" id="p2basic">
         <span class="icon">●</span>
@@ -1000,112 +974,70 @@ button{
         궁극기
         <span class="cooldownText"></span>
       </button>
-
     </div>
 
   </div>
 
   <!-- START -->
   <div id="startScreen" class="screen">
-
     <div class="panel">
-
       <h1>OVERDUEL</h1>
+      <p>90초 동안 상대를 쓰러뜨리세요.</p>
 
-      <p>
-        90초 동안 상대를 쓰러뜨리세요.
-      </p>
-
-      <p style="margin-bottom:6px;color:#2878d8;">
-        P1 영웅 선택
-      </p>
-
+      <p style="margin-bottom:6px;color:#2878d8;">P1 영웅 선택</p>
       <div class="heroSelect">
 
         <div class="heroChoice selected" data-p1="lucio">
-
           <div class="heroPreview lucio">
             <div class="body"></div>
-            <div class="head">
-              <div class="visor"></div>
-            </div>
+            <div class="head"><div class="visor"></div></div>
           </div>
-
           <b>루시우</b>
-
         </div>
 
         <div class="heroChoice" data-p1="bastion">
-
           <div class="heroPreview bastion">
             <div class="body"></div>
-            <div class="head">
-              <div class="visor"></div>
-            </div>
+            <div class="head"><div class="visor"></div></div>
           </div>
-
           <b>바스티온</b>
-
         </div>
 
         <div class="heroChoice" data-p1="dva">
-
           <div class="heroPreview dva">
             <div class="body"></div>
-            <div class="head">
-              <div class="visor"></div>
-            </div>
+            <div class="head"><div class="visor"></div></div>
           </div>
-
           <b>D.Va</b>
-
         </div>
 
       </div>
 
-      <p style="margin:16px 0 6px;color:#d93d4b;">
-        P2 영웅 선택
-      </p>
-
+      <p style="margin:16px 0 6px;color:#d93d4b;">P2 영웅 선택</p>
       <div class="heroSelect">
 
         <div class="heroChoice" data-p2="lucio">
-
           <div class="heroPreview lucio">
             <div class="body"></div>
-            <div class="head">
-              <div class="visor"></div>
-            </div>
+            <div class="head"><div class="visor"></div></div>
           </div>
-
           <b>루시우</b>
-
         </div>
 
         <div class="heroChoice" data-p2="bastion">
-
           <div class="heroPreview bastion">
             <div class="body"></div>
-            <div class="head">
-              <div class="visor"></div>
-            </div>
+            <div class="head"><div class="visor"></div></div>
           </div>
-
           <b>바스티온</b>
-
         </div>
 
         <div class="heroChoice selected" data-p2="dva">
-
           <div class="heroPreview dva">
             <div class="body"></div>
-            <div class="head">
-              <div class="visor"></div>
-            </div>
+            <div class="head"><div class="visor"></div></div>
           </div>
-
           <b>D.Va</b>
-
         </div>
 
       </div>
@@ -1113,64 +1045,44 @@ button{
       <button id="startButton" class="startButton">
         게임 시작
       </button>
-
     </div>
-
   </div>
 
   <!-- END -->
   <div id="endScreen" class="screen hidden">
-
     <div class="panel">
-
-      <h1 id="endTitle">
-        승리!
-      </h1>
-
+      <h1 id="endTitle">승리!</h1>
       <p id="endText"></p>
-
       <button id="restartButton" class="startButton">
         다시 시작
       </button>
-
     </div>
-
   </div>
 
 </div>
 </div>
 
 <script>
-
 /* =========================================================
-   OVERDUEL GAMEPLAY PATCH
-
-   UI는 기존 그대로 유지
-
-   변경사항
-   1. 게임 시간 90초
-   2. 자동 상하 이동
-   3. 기본 공격 기본 쿨타임 0.5초
-   4. 루시우:
-      - 항상 유지되는 원형 오라
-      - 스킬1은 오라를 제거/생성하지 않고 효과만 변경
-      - 스킬2 음파
-      - 궁극기 보호막
-   5. 바스티온:
-      - 스킬1 1초 동안 25HP 회복
-      - 피격 시 회복 취소
-      - 스킬2 전차 모드
-      - 전차 모드에서 연사속도 증가
-      - 궁극기 3회 포격
-   6. D.Va:
-      - 스킬1 좌우 방향으로만 대시
-      - 대시 중 자동 상하 이동에는 영향 없음
-      - 스킬2 방어
-      - 궁극기 메카 투척 → 폭발
-      - 메카가 없어도 평타 사용 가능
-      - 메카가 없는 동안 스킬1/2/궁극기 사용 불가
-      - 메카가 없는 동안 궁극 게이지 자동 충전
-      - 100%가 되면 메카 자동 복귀
+   OVERDUEL
+   gameplay patch
+   - UI 유지
+   - 90초
+   - 자동 상하 이동
+   - 평타 기본 쿨타임 0.5초
+   - Lucio 항상 유지되는 오라
+   - Lucio 스킬1 = 오라 효과 변경
+   - Lucio 스킬2 = 음파
+   - Lucio 궁극기 = 보호막
+   - Bastion 스킬1 = 1초 동안 25HP 회복
+   - Bastion 스킬2 = 전차 모드
+   - Bastion 궁극기 = 3회 포격
+   - D.Va 스킬1 = 위아래로 이동하는 부스터
+   - D.Va 스킬2 = 방어
+   - D.Va 궁극기 = 메카 투척 → 폭발
+   - 메카가 없을 때 평타 사용 가능
+   - 메카가 없을 때 궁극기 게이지 자동 충전
+   - 게이지 100% → 메카 자동 복귀
 ========================================================= */
 
 const game = document.getElementById("game");
@@ -1181,6 +1093,7 @@ const GAME_TIME = 90;
 let running = false;
 let gameTime = GAME_TIME;
 let lastFrame = performance.now();
+let timerAccumulator = 0;
 
 let selectedP1 = "lucio";
 let selectedP2 = "dva";
@@ -1188,108 +1101,61 @@ let selectedP2 = "dva";
 let p1;
 let p2;
 
-
-/* =========================================================
-   HERO DATA
-========================================================= */
-
 const heroes = {
-
   lucio:{
     hp:90,
     maxHp:90,
-
     ammoMax:24,
-
     damage:8,
-
-    /*
-      모든 영웅의 기본 평타 쿨타임은 0.5초
-    */
-    attackCooldown:0.5,
-
+    attackCooldown:0.4,
     projectileSpeed:300,
     speed:95,
-
-    hitbox:{
-      hw:26,
-      hh:34
-    }
+    hitbox:{hw:26,hh:34}
   },
 
   bastion:{
     hp:150,
     maxHp:150,
-
     ammoMax:14,
-
     damage:16,
-
-    attackCooldown:0.5,
-
+    attackCooldown:0.65,
     projectileSpeed:210,
     speed:55,
-
-    hitbox:{
-      hw:34,
-      hh:42
-    },
+    hitbox:{hw:34,hh:42},
 
     tankDamage:6,
     tankCooldown:0.22,
     tankProjectileSpeed:300,
-
-    tankHitbox:{
-      hw:40,
-      hh:46
-    }
+    tankHitbox:{hw:40,hh:46}
   },
 
   dva:{
     hp:120,
     maxHp:120,
-
     ammoMax:18,
-
     damage:11,
-
-    attackCooldown:0.5,
-
+    attackCooldown:0.45,
     projectileSpeed:270,
     speed:75,
-
-    hitbox:{
-      hw:34,
-      hh:42
-    },
+    hitbox:{hw:34,hh:42},
 
     pilotDamage:4,
     pilotCooldown:0.5,
     pilotProjectileSpeed:260,
-
-    pilotHitbox:{
-      hw:20,
-      hh:26
-    }
+    pilotHitbox:{hw:20,hh:26}
   }
-
 };
 
 
 /* =========================================================
-   ATTACK PROFILE
+   HERO STATE HELPERS (모드에 따라 달라지는 수치)
 ========================================================= */
 
 function getAttackProfile(p){
 
-  const hero = heroes[p.hero];
+  const hero=heroes[p.hero];
 
-  /*
-    바스티온 전차 모드는 평타의 연사속도를
-    크게 증가시키는 별도 공격 프로필
-  */
-
-  if(p.hero === "bastion" && p.tank){
+  if(p.hero==="bastion" && p.tank){
 
     return {
       cooldown:hero.tankCooldown,
@@ -1298,11 +1164,7 @@ function getAttackProfile(p){
     };
   }
 
-  /*
-    D.Va 메카 파괴 후에는 파일럿 평타 사용 가능
-  */
-
-  if(p.hero === "dva" && !p.dvaMech){
+  if(p.hero==="dva" && !p.dvaMech){
 
     return {
       cooldown:hero.pilotCooldown,
@@ -1318,20 +1180,15 @@ function getAttackProfile(p){
   };
 }
 
-
-/* =========================================================
-   HITBOX
-========================================================= */
-
 function getHitbox(p){
 
-  const hero = heroes[p.hero];
+  const hero=heroes[p.hero];
 
-  if(p.hero === "bastion" && p.tank){
+  if(p.hero==="bastion" && p.tank){
     return hero.tankHitbox;
   }
 
-  if(p.hero === "dva" && !p.dvaMech){
+  if(p.hero==="dva" && !p.dvaMech){
     return hero.pilotHitbox;
   }
 
@@ -1343,8 +1200,7 @@ function getHitbox(p){
    CHARACTER CREATION
 ========================================================= */
 
-function createCharacter(id,hero,x,y){
-
+function createCharacter(id, hero, x, y){
   const el = document.createElement("div");
 
   el.id = id;
@@ -1352,7 +1208,6 @@ function createCharacter(id,hero,x,y){
 
   el.innerHTML = `
     <div class="tag">${id==="p1"?"P1":"P2"}</div>
-
     <div class="marker"></div>
 
     <div class="head">
@@ -1373,7 +1228,6 @@ function createCharacter(id,hero,x,y){
   game.appendChild(el);
 
   return {
-
     id,
     hero,
     el,
@@ -1393,45 +1247,24 @@ function createCharacter(id,hero,x,y){
 
     skill1Cooldown:0,
     skill2Cooldown:0,
+    ultCooldown:0,
 
     blocking:false,
 
-    /*
-      자동 상하 이동 방향
-    */
     moveDirection:id==="p1"?1:-1,
-
+    moveTimer:0,
     moveChangeTimer:.8+Math.random()*1.5,
 
-    /*
-      Lucio 오라 모드
-    */
     auraMode:"heal",
 
-    /*
-      Bastion
-    */
     healing:false,
     healTimer:0,
 
     tank:false,
 
-    /*
-      D.Va
-    */
     dvaMech:true,
-
-    /*
-      메카가 없을 때 궁극 게이지 자동 충전
-    */
     dvaRecallCharging:false,
 
-    /*
-      D.Va 좌우 대시
-      dashDirection:
-      -1 = 왼쪽
-      +1 = 오른쪽
-    */
     dashTimer:0,
     dashDirection:0,
 
@@ -1443,70 +1276,47 @@ function createCharacter(id,hero,x,y){
     reloadTimer:null,
 
     alive:true
-
   };
 }
 
 
 /* =========================================================
-   LUCIO AURA SETUP
+   AURA
 ========================================================= */
 
 function setupAura(p){
 
-  if(p.hero !== "lucio") return;
+  if(p.hero!=="lucio") return;
 
-  const aura = document.createElement("div");
+  const aura=document.createElement("div");
 
-  aura.id = p.id + "Aura";
-  aura.className = "aura heal";
+  aura.id=p.id+"Aura";
+  aura.className="aura heal";
 
   game.appendChild(aura);
 
-  p.auraEl = aura;
+  p.auraEl=aura;
 }
-
-
-/* =========================================================
-   LUCIO AURA UPDATE
-========================================================= */
 
 function updateAura(p){
 
-  if(p.hero !== "lucio" || !p.auraEl) return;
+  if(p.hero!=="lucio" || !p.auraEl) return;
 
-  /*
-    오라는 항상 루시우를 따라간다.
-    절대로 꺼지지 않는다.
-  */
+  p.auraEl.style.left=p.x+"px";
+  p.auraEl.style.top=p.y+"px";
 
-  p.auraEl.style.left = p.x + "px";
-  p.auraEl.style.top = p.y + "px";
-
-  p.auraEl.className =
-    "aura " + p.auraMode;
+  p.auraEl.className="aura "+p.auraMode;
 }
-
-
-/* =========================================================
-   LUCIO AURA EFFECT
-========================================================= */
 
 function auraEffect(p,dt){
 
-  if(p.hero !== "lucio") return;
-  if(!p.alive) return;
+  if(p.hero!=="lucio") return;
 
-  /*
-    회복 오라
-    초당 4HP
-  */
+  if(p.auraMode==="heal"){
 
-  if(p.auraMode === "heal"){
-
-    p.hp = Math.min(
+    p.hp=Math.min(
       p.maxHp,
-      p.hp + 4 * dt
+      p.hp+4*dt
     );
   }
 }
@@ -1520,143 +1330,62 @@ function updatePlayer(p,enemy,dt){
 
   if(!p.alive) return;
 
-  p.attackCooldown =
-    Math.max(0,p.attackCooldown-dt);
+  p.attackCooldown=Math.max(0,p.attackCooldown-dt);
+  p.skill1Cooldown=Math.max(0,p.skill1Cooldown-dt);
+  p.skill2Cooldown=Math.max(0,p.skill2Cooldown-dt);
+  p.ultCooldown=Math.max(0,p.ultCooldown-dt);
 
-  p.skill1Cooldown =
-    Math.max(0,p.skill1Cooldown-dt);
-
-  p.skill2Cooldown =
-    Math.max(0,p.skill2Cooldown-dt);
-
-  p.invincibleTimer =
-    Math.max(0,p.invincibleTimer-dt);
-
-  p.shieldTimer =
-    Math.max(0,p.shieldTimer-dt);
-
-
-  /* =========================
-     BASTION HEALING
-  ========================= */
+  p.invincibleTimer=Math.max(0,p.invincibleTimer-dt);
+  p.shieldTimer=Math.max(0,p.shieldTimer-dt);
 
   if(p.healing){
 
-    p.healTimer -= dt;
+    p.healTimer-=dt;
 
-    if(p.healTimer <= 0){
-
-      p.healTimer = 0;
-      p.healing = false;
+    if(p.healTimer<=0){
+      p.healing=false;
     }
   }
 
+  if(p.dashTimer>0){
 
-  /* =========================
-     D.VA HORIZONTAL DASH
-  ========================= */
+    p.y+=p.dashDirection*340*dt;
 
-  if(p.dashTimer > 0){
+    p.dashTimer-=dt;
 
-    /*
-      중요:
-      D.Va 대시는 X축으로만 움직인다.
-
-      기존 자동 상하 이동인
-      p.y += ...
-      를 대시 중에도 건드리지 않는다.
-
-      따라서 스킬1 사용 시
-      위/아래 위치는 그대로 유지되고
-      좌/우로만 빠르게 이동한다.
-    */
-
-    p.x += p.dashDirection * 340 * dt;
-
-    p.dashTimer -= dt;
-
-    if(p.dashTimer <= 0){
-
-      p.dashTimer = 0;
-      p.dashDirection = 0;
+    if(p.dashTimer<=0){
+      p.dashTimer=0;
+      p.dashDirection=0;
     }
 
   }else{
-
-    /*
-      대시하지 않을 때만 자동 상하 이동
-    */
 
     automaticVerticalMovement(p,dt);
   }
 
-
   clampPlayer(p);
 
-
-  /* =========================
-     LUCIO AURA
-  ========================= */
-
-  if(p.hero === "lucio"){
+  if(p.hero==="lucio"){
     updateAura(p);
   }
 
+  p.el.style.left=p.x+"px";
+  p.el.style.top=p.y+"px";
 
-  /* =========================
-     CHARACTER POSITION
-  ========================= */
-
-  p.el.style.left = p.x + "px";
-  p.el.style.top = p.y + "px";
-
-
-  /* =========================
-     INVINCIBILITY VISUAL
-  ========================= */
-
-  if(p.invincibleTimer > 0){
-
-    p.el.style.opacity =
-      (Math.floor(p.invincibleTimer*20)%2)
-      ? ".35"
-      : "1";
-
+  if(p.invincibleTimer>0){
+    p.el.style.opacity=(Math.floor(p.invincibleTimer*20)%2) ? ".35" : "1";
   }else{
-
-    /*
-      D.Va 메카가 없으면
-      본체는 숨기고 파일럿을 표시한다.
-    */
-
-    if(!(p.hero==="dva" && !p.dvaMech)){
-      p.el.style.opacity="1";
-    }
+    p.el.style.opacity="1";
   }
-
-
-  /* =========================
-     BASTION TANK VISUAL
-  ========================= */
 
   if(p.tank){
-
-    p.el.style.filter =
-      "sepia(.25) saturate(1.3)";
-
+    p.el.style.filter="sepia(.25) saturate(1.3)";
   }else{
-
-    p.el.style.filter = "";
+    p.el.style.filter="";
   }
 
-
-  /* =========================
-     SHIELD
-  ========================= */
-
-  if(p.shieldTimer <= 0){
-
-    p.shieldHp = 0;
+  if(p.shieldTimer<=0){
+    p.shieldHp=0;
   }
 }
 
@@ -1667,46 +1396,26 @@ function updatePlayer(p,enemy,dt){
 
 function automaticVerticalMovement(p,dt){
 
-  /*
-    위/아래 방향은 플레이어가 조작하지 않는다.
-    일정 시간마다 방향을 자동으로 바꾼다.
-  */
+  p.moveChangeTimer-=dt;
 
-  p.moveChangeTimer -= dt;
+  if(p.moveChangeTimer<=0){
 
-  if(p.moveChangeTimer <= 0){
+    p.moveDirection*=-1;
 
-    p.moveDirection *= -1;
-
-    p.moveChangeTimer =
-      .7 + Math.random()*1.7;
+    p.moveChangeTimer=.7+Math.random()*1.7;
   }
 
-  let speed =
-    heroes[p.hero].speed;
+  let speed=heroes[p.hero].speed;
 
-
-  /* Lucio speed aura */
-
-  if(
-    p.hero === "lucio" &&
-    p.auraMode === "speed"
-  ){
-
-    speed *= 1.35;
+  if(p.hero==="lucio" && p.auraMode==="speed"){
+    speed*=1.35;
   }
-
-
-  /* Bastion tank */
 
   if(p.tank){
-
-    speed *= .8;
+    speed*=.8;
   }
 
-
-  p.y +=
-    p.moveDirection * speed * dt;
+  p.y+=p.moveDirection*speed*dt;
 }
 
 
@@ -1721,7 +1430,6 @@ function getVerticalBounds(){
     max:game.clientHeight-110
   };
 }
-
 
 function getHorizontalBounds(){
 
@@ -1738,31 +1446,11 @@ function getHorizontalBounds(){
 
 function clampPlayer(p){
 
-  const vBounds =
-    getVerticalBounds();
+  const vBounds=getVerticalBounds();
+  const hBounds=getHorizontalBounds();
 
-  const hBounds =
-    getHorizontalBounds();
-
-
-  p.y =
-    Math.max(
-      vBounds.min,
-      Math.min(
-        vBounds.max,
-        p.y
-      )
-    );
-
-
-  p.x =
-    Math.max(
-      hBounds.min,
-      Math.min(
-        hBounds.max,
-        p.x
-      )
-    );
+  p.y=Math.max(vBounds.min,Math.min(vBounds.max,p.y));
+  p.x=Math.max(hBounds.min,Math.min(hBounds.max,p.x));
 }
 
 
@@ -1772,49 +1460,27 @@ function clampPlayer(p){
 
 function basicAttack(p){
 
-  if(!running || !p || !p.alive) return;
+  if(!running || !p.alive) return;
 
-  const profile =
-    getAttackProfile(p);
+  const profile=getAttackProfile(p);
 
+  if(p.attackCooldown>0) return;
 
-  if(p.attackCooldown > 0) return;
-
-
-  if(p.ammo <= 0){
+  if(p.ammo<=0){
 
     reload(p);
-
     return;
   }
 
-
-  p.attackCooldown =
-    profile.cooldown;
-
+  p.attackCooldown=profile.cooldown;
   p.ammo--;
 
+  const enemy=p.id==="p1"?p2:p1;
 
-  const enemy =
-    p.id==="p1"
-    ?p2
-    :p1;
+  fireProjectile(p,enemy,profile.damage,profile.projectileSpeed);
 
-
-  fireProjectile(
-    p,
-    enemy,
-    profile.damage,
-    profile.projectileSpeed
-  );
-
-
-  if(p.ammo <= 0){
-
-    setTimeout(
-      ()=>reload(p),
-      150
-    );
+  if(p.ammo<=0){
+    setTimeout(()=>reload(p),150);
   }
 }
 
@@ -1823,128 +1489,60 @@ function basicAttack(p){
    PROJECTILE
 ========================================================= */
 
-function fireProjectile(
-  p,
-  enemy,
-  dmg,
-  speed
-){
+function fireProjectile(p,enemy,dmg,speed){
 
-  const projectile =
-    document.createElement("div");
+  const projectile=document.createElement("div");
 
+  projectile.className="projectile "+
+    (p.hero==="lucio"?"projLucio":
+     p.hero==="bastion"?"projBastion":"projDva")+
+    (p.hero==="bastion" && p.tank?" projTank":"")+
+    (p.hero==="dva" && !p.dvaMech?" projPilot":"");
 
-  projectile.className =
-    "projectile " +
-    (
-      p.hero==="lucio"
-      ?"projLucio"
-      :
-      p.hero==="bastion"
-      ?"projBastion"
-      :
-      "projDva"
-    ) +
-    (
-      p.hero==="bastion" && p.tank
-      ?" projTank"
-      :""
-    ) +
-    (
-      p.hero==="dva" && !p.dvaMech
-      ?" projPilot"
-      :""
-    );
-
-
-  projectile.style.left =
-    p.x+"px";
-
-  projectile.style.top =
-    p.y+"px";
-
+  projectile.style.left=p.x+"px";
+  projectile.style.top=p.y+"px";
 
   effects.appendChild(projectile);
 
+  const dir=p.id==="p1"?1:-1;
 
-  const dir =
-    p.id==="p1"
-    ?1
-    :-1;
+  const startX=p.x;
+  const startY=p.y;
 
+  let x=startX;
+  const y=startY;
 
-  const startX =
-    p.x;
-
-  const startY =
-    p.y;
-
-
-  let x =
-    startX;
-
-
-  const start =
-    performance.now();
-
+  const start=performance.now();
 
   function move(now){
 
     if(!projectile.isConnected) return;
 
+    const dt=(now-start)/1000;
 
-    const dt =
-      (now-start)/1000;
+    x=startX+dir*speed*dt;
 
+    projectile.style.left=x+"px";
+    projectile.style.top=y+"px";
 
-    x =
-      startX +
-      dir*speed*dt;
+    const hb=getHitbox(enemy);
 
-
-    projectile.style.left =
-      x+"px";
-
-    projectile.style.top =
-      startY+"px";
-
-
-    const hb =
-      getHitbox(enemy);
-
-
-    if(
-      enemy.alive &&
-      Math.abs(x-enemy.x)<hb.hw &&
-      Math.abs(startY-enemy.y)<hb.hh
-    ){
+    if(enemy.alive && Math.abs(x-enemy.x)<hb.hw && Math.abs(y-enemy.y)<hb.hh){
 
       projectile.remove();
 
-      damage(
-        p,
-        enemy,
-        dmg
-      );
+      damage(p,enemy,dmg);
 
       return;
     }
 
-
-    if(
-      x < -50 ||
-      x > game.clientWidth+50
-    ){
-
+    if(x<-50 || x>game.clientWidth+50){
       projectile.remove();
-
       return;
     }
-
 
     requestAnimationFrame(move);
   }
-
 
   requestAnimationFrame(move);
 }
@@ -1954,116 +1552,45 @@ function fireProjectile(
    DAMAGE
 ========================================================= */
 
-function damage(
-  attacker,
-  target,
-  amount
-){
+function damage(attacker,target,amount){
 
   if(!target.alive) return;
-
-
-  /*
-    방어
-  */
 
   if(target.blocking){
     amount=0;
   }
 
-
-  /*
-    무적
-  */
-
   if(target.invincibleTimer>0){
     amount=0;
   }
 
-
-  /*
-    보호막
-  */
-
   if(target.shieldTimer>0){
 
-    const absorbed =
-      Math.min(
-        target.shieldHp,
-        amount
-      );
+    const absorbed=Math.min(target.shieldHp,amount);
 
-
-    target.shieldHp -=
-      absorbed;
-
-    amount -=
-      absorbed;
-
+    target.shieldHp-=absorbed;
+    amount-=absorbed;
 
     if(target.shieldHp<=0){
-
-      target.shieldHp=0;
       target.shieldTimer=0;
     }
   }
 
-
   if(amount<=0) return;
 
+  target.hp-=amount;
+  target.hp=Math.max(0,target.hp);
 
-  target.hp -=
-    amount;
-
-  target.hp =
-    Math.max(
-      0,
-      target.hp
-    );
-
-
-  /*
-    공격으로 궁극 게이지 충전
-  */
-
-  attacker.ult =
-    Math.min(
-      100,
-      attacker.ult +
-      amount*.65
-    );
-
-
-  createHit(
-    target,
-    amount
+  attacker.ult=Math.min(
+    100,
+    attacker.ult+amount*.65
   );
 
-
-  /*
-    Bastion 회복 중 피격되면 회복 취소
-  */
-
-  if(
-    target.hero==="bastion" &&
-    target.healing
-  ){
-
-    target.healing=false;
-    target.healTimer=0;
-  }
-
+  createHit(target,amount);
 
   if(target.hp<=0){
-
     target.alive=false;
-
     target.el.style.opacity=".35";
-
-    if(target.pilotEl){
-      target.pilotEl.style.opacity=".35";
-    }
-
     checkEnd();
   }
 }
@@ -2073,46 +1600,21 @@ function damage(
    HIT EFFECT
 ========================================================= */
 
-function createHit(
-  p,
-  amount
-){
+function createHit(p,amount){
 
-  const size =
-    Math.min(
-      64,
-      22+(amount||20)*.9
-    );
+  const size=Math.min(64,22+(amount||20)*0.9);
 
+  const e=document.createElement("div");
 
-  const e =
-    document.createElement("div");
-
-
-  e.className =
-    "hitEffect";
-
-
-  e.style.width =
-    size+"px";
-
-  e.style.height =
-    size+"px";
-
-  e.style.left =
-    (p.x-size/2)+"px";
-
-  e.style.top =
-    (p.y-size/2)+"px";
-
+  e.className="hitEffect";
+  e.style.width=size+"px";
+  e.style.height=size+"px";
+  e.style.left=(p.x-size/2)+"px";
+  e.style.top=(p.y-size/2)+"px";
 
   effects.appendChild(e);
 
-
-  setTimeout(
-    ()=>e.remove(),
-    250
-  );
+  setTimeout(()=>e.remove(),250);
 }
 
 
@@ -2123,33 +1625,19 @@ function createHit(
 function lucioSkill1(p){
 
   if(!running || !p.alive) return;
-
   if(p.hero!=="lucio") return;
-
   if(p.skill1Cooldown>0) return;
 
-
-  /*
-    오라 자체는 항상 존재한다.
-
-    스킬1은 오라를 켜고 끄는 토글이 아니라
-    현재 오라의 효과만 변경한다.
-
-    heal → speed
-    speed → heal
-  */
-
-  p.auraMode =
+  p.auraMode=
     p.auraMode==="heal"
     ?"speed"
     :"heal";
 
+  p.skill1Cooldown=1;
 
-  p.skill1Cooldown =
-    1;
-
-
-  updateAura(p);
+  if(p.auraEl){
+    p.auraEl.className="aura "+p.auraMode;
+  }
 }
 
 
@@ -2160,131 +1648,64 @@ function lucioSkill1(p){
 function lucioSkill2(p){
 
   if(!running || !p.alive) return;
-
   if(p.hero!=="lucio") return;
-
   if(p.skill2Cooldown>0) return;
 
+  p.skill2Cooldown=4.5;
 
-  p.skill2Cooldown =
-    4.5;
+  const enemy=p.id==="p1"?p2:p1;
+  const dir=p.id==="p1"?1:-1;
 
+  const startX=p.x+dir*25;
+  const fixedY=p.y;
 
-  const enemy =
-    p.id==="p1"
-    ?p2
-    :p1;
+  const wave=document.createElement("div");
 
-
-  const dir =
-    p.id==="p1"
-    ?1
-    :-1;
-
-
-  const startX =
-    p.x+dir*25;
-
-  const fixedY =
-    p.y;
-
-
-  const wave =
-    document.createElement("div");
-
-
-  wave.className =
-    "wave";
-
-
-  wave.style.left =
-    (startX-15)+"px";
-
-  wave.style.top =
-    (fixedY-15)+"px";
-
+  wave.className="wave";
+  wave.style.left=(startX-15)+"px";
+  wave.style.top=(fixedY-15)+"px";
 
   effects.appendChild(wave);
 
+  let x=startX;
+  const speed=430;
 
-  let x =
-    startX;
-
-
-  const speed =
-    430;
-
-
-  const start =
-    performance.now();
-
+  const start=performance.now();
 
   function move(now){
 
     if(!wave.isConnected) return;
 
+    const dt=(now-start)/1000;
 
-    const dt =
-      (now-start)/1000;
+    x=startX+dir*speed*dt;
 
+    wave.style.left=(x-15)+"px";
+    wave.style.top=(fixedY-15)+"px";
 
-    x =
-      startX+
-      dir*speed*dt;
+    const hb=getHitbox(enemy);
 
-
-    wave.style.left =
-      (x-15)+"px";
-
-    wave.style.top =
-      (fixedY-15)+"px";
-
-
-    const hb =
-      getHitbox(enemy);
-
-
-    if(
-      enemy.alive &&
-      Math.abs(x-enemy.x)<hb.hw+8 &&
-      Math.abs(fixedY-enemy.y)<hb.hh+12
-    ){
+    if(enemy.alive &&
+       Math.abs(x-enemy.x)<hb.hw+8 &&
+       Math.abs(fixedY-enemy.y)<hb.hh+12){
 
       wave.remove();
 
+      damage(p,enemy,20);
 
-      damage(
-        p,
-        enemy,
-        20
-      );
-
-
-      enemy.x +=
-        dir*35;
-
-
+      enemy.x+=dir*35;
       clampPlayer(enemy);
 
-
       return;
     }
 
-
-    if(
-      x<0 ||
-      x>game.clientWidth
-    ){
-
+    if(x<0 || x>game.clientWidth){
       wave.remove();
-
       return;
     }
-
 
     requestAnimationFrame(move);
   }
-
 
   requestAnimationFrame(move);
 }
@@ -2297,16 +1718,11 @@ function lucioSkill2(p){
 function lucioUlt(p){
 
   if(!running || !p.alive) return;
-
   if(p.hero!=="lucio") return;
-
   if(p.ult<100) return;
 
-
   p.ult=0;
-
   p.shieldHp=60;
-
   p.shieldTimer=5;
 }
 
@@ -2318,124 +1734,66 @@ function lucioUlt(p){
 function bastionSkill1(p){
 
   if(!running || !p.alive) return;
-
   if(p.hero!=="bastion") return;
-
   if(p.skill1Cooldown>0) return;
-
   if(p.tank) return;
 
+  const HEAL_DURATION=1.5;
+  const HEAL_TOTAL=35;
 
-  /*
-    정확히 1초 동안 25HP 회복
-  */
+  p.skill1Cooldown=6;
+  p.healing=true;
+  p.healTimer=HEAL_DURATION;
 
-  const HEAL_DURATION =
-    1;
+  const startHp=p.hp;
 
-  const HEAL_TOTAL =
-    25;
-
-
-  p.skill1Cooldown =
-    6;
-
-
-  p.healing =
-    true;
-
-  p.healTimer =
-    HEAL_DURATION;
-
-
-  const startHp =
-    p.hp;
-
-
-  const start =
-    performance.now();
-
-
-  function healTick(now){
+  function healTick(){
 
     if(!p.alive || !p.healing) return;
 
+    const elapsed=HEAL_DURATION-p.healTimer;
 
-    const elapsed =
-      Math.min(
-        HEAL_DURATION,
-        (now-start)/1000
-      );
+    p.hp=Math.min(
+      p.maxHp,
+      startHp+HEAL_TOTAL*(elapsed/HEAL_DURATION)
+    );
 
-
-    p.hp =
-      Math.min(
-        p.maxHp,
-        startHp+
-        HEAL_TOTAL*
-        (elapsed/HEAL_DURATION)
-      );
-
-
-    if(
-      elapsed<HEAL_DURATION &&
-      p.healing
-    ){
-
-      requestAnimationFrame(
-        healTick
-      );
-
-    }else{
-
-      if(p.healing){
-
-        p.hp =
-          Math.min(
-            p.maxHp,
-            startHp+HEAL_TOTAL
-          );
-
-        p.healing=false;
-        p.healTimer=0;
-      }
+    if(p.healTimer>0){
+      requestAnimationFrame(healTick);
     }
   }
 
+  healTick();
 
-  requestAnimationFrame(
-    healTick
-  );
+  setTimeout(()=>{
+
+    if(p.healing){
+
+      p.hp=Math.min(
+        p.maxHp,
+        startHp+HEAL_TOTAL
+      );
+
+      p.healing=false;
+    }
+
+  },1500);
 }
 
 
 /* =========================================================
-   BASTION SKILL 2
+   BASTION SKILL 2 - TANK MODE
 ========================================================= */
 
 function bastionSkill2(p){
 
   if(!running || !p.alive) return;
-
   if(p.hero!=="bastion") return;
-
   if(p.skill2Cooldown>0) return;
 
+  p.tank=!p.tank;
 
-  /*
-    전차 모드 ON/OFF
-  */
-
-  p.tank =
-    !p.tank;
-
-
-  /*
-    전환 후 짧은 쿨타임
-  */
-
-  p.skill2Cooldown =
-    1.2;
+  p.skill2Cooldown=1.2;
 }
 
 
@@ -2446,20 +1804,12 @@ function bastionSkill2(p){
 function bastionUlt(p){
 
   if(!running || !p.alive) return;
-
   if(p.hero!=="bastion") return;
-
   if(p.ult<100) return;
-
 
   p.ult=0;
 
-
-  const enemy =
-    p.id==="p1"
-    ?p2
-    :p1;
-
+  const enemy=p.id==="p1"?p2:p1;
 
   for(let i=0;i<3;i++){
 
@@ -2467,66 +1817,36 @@ function bastionUlt(p){
 
       if(!running || !enemy.alive) return;
 
-
-      const x =
+      const x=
         enemy.x+
         (Math.random()-.5)*90;
 
-
-      const y =
+      const y=
         enemy.y+
         (Math.random()-.5)*90;
 
-
-      const marker =
-        document.createElement("div");
-
+      const marker=document.createElement("div");
 
       marker.style.position="absolute";
       marker.style.zIndex="10";
-
-      marker.style.left =
-        (x-28)+"px";
-
-      marker.style.top =
-        (y-28)+"px";
-
+      marker.style.left=(x-28)+"px";
+      marker.style.top=(y-28)+"px";
       marker.style.width="56px";
       marker.style.height="56px";
-
-      marker.style.border =
-        "4px solid #e44";
-
+      marker.style.border="4px solid #e44";
       marker.style.borderRadius="50%";
-
-      marker.style.background =
-        "#e44";
-
-      marker.style.boxShadow =
-        "0 0 20px #e44";
-
+      marker.style.background="#e44 1";
+      marker.style.boxShadow="0 0 20px #e44";
 
       effects.appendChild(marker);
-
 
       setTimeout(()=>{
 
         marker.remove();
 
-
         if(!enemy.alive) return;
 
-
-        /*
-          궁극기 공격은
-          추가 궁극 게이지를 주지 않는다.
-        */
-
-        damageNoUltCharge(
-          p,
-          enemy,
-          24
-        );
+        damageNoUltCharge(p,enemy,24);
 
       },450);
 
@@ -2539,86 +1859,35 @@ function bastionUlt(p){
    DAMAGE WITHOUT ULT CHARGE
 ========================================================= */
 
-function damageNoUltCharge(
-  attacker,
-  target,
-  amount
-){
+function damageNoUltCharge(attacker,target,amount){
 
   if(!target.alive) return;
 
-
-  if(target.blocking) return;
-
-  if(target.invincibleTimer>0) return;
-
+  if(target.blocking || target.invincibleTimer>0){
+    return;
+  }
 
   if(target.shieldTimer>0){
 
-    const absorbed =
-      Math.min(
-        target.shieldHp,
-        amount
-      );
+    const absorbed=Math.min(target.shieldHp,amount);
 
-
-    target.shieldHp -=
-      absorbed;
-
-    amount -=
-      absorbed;
-
+    target.shieldHp-=absorbed;
+    amount-=absorbed;
 
     if(target.shieldHp<=0){
-
-      target.shieldHp=0;
       target.shieldTimer=0;
     }
   }
 
-
   if(amount<=0) return;
 
+  target.hp=Math.max(0,target.hp-amount);
 
-  target.hp =
-    Math.max(
-      0,
-      target.hp-amount
-    );
-
-
-  createHit(
-    target,
-    amount
-  );
-
-
-  /*
-    Bastion 회복 중 피격 취소
-  */
-
-  if(
-    target.hero==="bastion" &&
-    target.healing
-  ){
-
-    target.healing=false;
-    target.healTimer=0;
-  }
-
+  createHit(target,amount);
 
   if(target.hp<=0){
-
     target.alive=false;
-
     target.el.style.opacity=".35";
-
-
-    if(target.pilotEl){
-      target.pilotEl.style.opacity=".35";
-    }
-
-
     checkEnd();
   }
 }
@@ -2631,77 +1900,23 @@ function damageNoUltCharge(
 function dvaSkill1(p){
 
   if(!running || !p.alive) return;
-
   if(p.hero!=="dva") return;
-
-  /*
-    메카가 없으면 스킬 사용 불가
-  */
-
   if(!p.dvaMech) return;
-
   if(p.skill1Cooldown>0) return;
 
+  p.skill1Cooldown=3;
 
-  p.skill1Cooldown =
-    3;
+  let direction=p.moveDirection;
 
+  const vBounds=getVerticalBounds();
 
-  /*
-    D.Va 대시는 좌우만 사용한다.
+  if(p.y<=vBounds.min+5) direction=1;
+  if(p.y>=vBounds.max-5) direction=-1;
 
-    상대방의 X 위치를 기준으로
-    상대방 쪽으로 대시한다.
+  p.dashDirection=direction;
+  p.dashTimer=.32;
 
-    Y 위치는 절대 변경하지 않는다.
-  */
-
-  const enemy =
-    p.id==="p1"
-    ?p2
-    :p1;
-
-
-  let direction =
-    enemy.x>p.x
-    ?1
-    :-1;
-
-
-  /*
-    이미 상대방과 거의 같은 X 위치라면
-    현재 좌우 방향을 사용
-  */
-
-  if(
-    Math.abs(enemy.x-p.x)<20
-  ){
-
-    direction =
-      p.id==="p1"
-      ?1
-      :-1;
-  }
-
-
-  p.dashDirection =
-    direction;
-
-
-  /*
-    대시 시간
-  */
-
-  p.dashTimer =
-    .32;
-
-
-  /*
-    대시 중 무적
-  */
-
-  p.invincibleTimer =
-    .32;
+  p.invincibleTimer=.32;
 }
 
 
@@ -2712,30 +1927,16 @@ function dvaSkill1(p){
 function dvaSkill2(p){
 
   if(!running || !p.alive) return;
-
   if(p.hero!=="dva") return;
-
-  /*
-    메카가 없으면 사용 불가
-  */
-
   if(!p.dvaMech) return;
-
   if(p.skill2Cooldown>0) return;
-
 
   p.blocking=true;
 
-  p.skill2Cooldown =
-    2.2;
-
+  p.skill2Cooldown=2.2;
 
   setTimeout(()=>{
-
-    if(p.alive){
-      p.blocking=false;
-    }
-
+    p.blocking=false;
   },500);
 }
 
@@ -2747,81 +1948,41 @@ function dvaSkill2(p){
 function dvaUlt(p){
 
   if(!running || !p.alive) return;
-
   if(p.hero!=="dva") return;
-
-  /*
-    메카가 없을 때는 궁극기 버튼을 사용할 수 없다.
-    게이지는 자동으로 충전되고,
-    100%가 되면 메카가 자동 복귀한다.
-  */
 
   if(!p.dvaMech) return;
 
   if(p.ult<100) return;
 
-
-  /*
-    궁극기 사용
-  */
-
   p.ult=0;
 
   p.dvaMech=false;
-
   p.dvaRecallCharging=true;
 
+  const enemy=p.id==="p1"?p2:p1;
 
-  const enemy =
-    p.id==="p1"
-    ?p2
-    :p1;
+  const direction=enemy.x>p.x?1:-1;
 
-
-  /*
-    적 방향으로 메카를 던진다.
-  */
-
-  const direction =
-    enemy.x>p.x
-    ?1
-    :-1;
-
-
-  const mech = {
-
+  const mech={
     x:p.x,
     y:p.y,
-
     direction,
-
     distance:0
   };
 
-
-  const mechEl =
-    document.createElement("div");
-
+  const mechEl=document.createElement("div");
 
   mechEl.style.position="absolute";
   mechEl.style.zIndex="12";
-
   mechEl.style.width="72px";
   mechEl.style.height="55px";
-
   mechEl.style.borderRadius="15px";
-
   mechEl.style.background="#e6e8ec";
+  mechEl.style.border="4px solid #252525";
+  mechEl.style.boxShadow="inset 0 8px 0 #fff,0 0 15px #fff8";
 
-  mechEl.style.border=
-    "4px solid #252525";
-
-  mechEl.style.boxShadow=
-    "inset 0 8px 0 #fff,0 0 15px #fff8";
-
-
-  mechEl.innerHTML = `
-    <div style="
+  mechEl.innerHTML=
+    `<div style="
       position:absolute;
       width:25px;
       height:9px;
@@ -2829,18 +1990,12 @@ function dvaUlt(p){
       left:19px;
       top:17px;
       border-radius:6px
-    "></div>
-  `;
-
+    "></div>`;
 
   effects.appendChild(mechEl);
 
-
-  /*
-    메카가 날아갈 목표 지점
-  */
-
-  const targetX =
+  const startX=p.x;
+  const targetX=
     Math.max(
       65,
       Math.min(
@@ -2849,53 +2004,28 @@ function dvaUlt(p){
       )
     );
 
-
-  const startX =
-    p.x;
-
-
-  const duration =
-    .65;
-
-
-  const start =
-    performance.now();
-
+  const duration=.65;
+  const start=performance.now();
 
   function throwMech(now){
 
     if(!mechEl.isConnected) return;
 
+    const t=Math.min(
+      1,
+      (now-start)/(duration*1000)
+    );
 
-    const t =
-      Math.min(
-        1,
-        (now-start)/
-        (duration*1000)
-      );
+    mech.x=startX+(targetX-startX)*t;
 
-
-    mech.x =
-      startX+
-      (targetX-startX)*t;
-
-
-    mechEl.style.left =
-      (mech.x-36)+"px";
-
-    mechEl.style.top =
-      (mech.y-27)+"px";
-
-
-    mechEl.style.transform =
+    mechEl.style.left=(mech.x-36)+"px";
+    mechEl.style.top=(mech.y-27)+"px";
+    mechEl.style.transform=
       `rotate(${direction*t*18}deg)`;
-
 
     if(t<1){
 
-      requestAnimationFrame(
-        throwMech
-      );
+      requestAnimationFrame(throwMech);
 
     }else{
 
@@ -2905,22 +2035,13 @@ function dvaUlt(p){
           mechEl.remove();
         }
 
-
-        explodeDvaMech(
-          p,
-          enemy,
-          mech.x,
-          mech.y
-        );
+        explodeDvaMech(p,enemy,mech.x,mech.y);
 
       },180);
     }
   }
 
-
-  requestAnimationFrame(
-    throwMech
-  );
+  requestAnimationFrame(throwMech);
 }
 
 
@@ -2928,130 +2049,54 @@ function dvaUlt(p){
    D.VA MECH EXPLOSION
 ========================================================= */
 
-function explodeDvaMech(
-  owner,
-  enemy,
-  x,
-  y
-){
+function explodeDvaMech(owner,enemy,x,y){
 
-  const boom =
-    document.createElement("div");
-
+  const boom=document.createElement("div");
 
   boom.style.position="absolute";
   boom.style.zIndex="14";
-
-
-  boom.style.left =
-    (x-48)+"px";
-
-  boom.style.top =
-    (y-48)+"px";
-
-
+  boom.style.left=(x-48)+"px";
+  boom.style.top=(y-48)+"px";
   boom.style.width="96px";
   boom.style.height="96px";
-
   boom.style.borderRadius="50%";
-
-
-  boom.style.background =
-    "radial-gradient(circle,#fff7a8 0,#ffbf3d 25%,#ef6240 55%,transparent 70%)";
-
-
-  boom.style.transform =
-    "scale(.4)";
-
-
-  boom.style.transition =
-    "transform .35s ease,opacity .35s ease";
-
+  boom.style.background="radial-gradient(circle,#fff7a8 0,#ffbf3d 25%,#ef6240 55%,transparent 70%)";
+  boom.style.transform="scale(.4)";
+  boom.style.transition="transform .35s ease,opacity .35s ease";
 
   effects.appendChild(boom);
 
-
   requestAnimationFrame(()=>{
-
-    boom.style.transform =
-      "scale(1.25)";
-
-    boom.style.opacity =
-      "0";
-
+    boom.style.transform="scale(1.25)";
+    boom.style.opacity="0";
   });
 
+  setTimeout(()=>boom.remove(),450);
 
-  setTimeout(
-    ()=>boom.remove(),
-    450
-  );
+  if(enemy.alive &&
+     distanceXY(enemy.x,enemy.y,x,y)<105){
 
-
-  /*
-    폭발 범위
-  */
-
-  if(
-    enemy.alive &&
-    distanceXY(
-      enemy.x,
-      enemy.y,
-      x,
-      y
-    )<105
-  ){
-
-    damageNoUltCharge(
-      owner,
-      enemy,
-      40
-    );
+    damageNoUltCharge(owner,enemy,40);
   }
-
-
-  /*
-    폭발 이후에는 파일럿 상태.
-    궁극 게이지가 자동 충전된다.
-  */
 
   owner.dvaRecallCharging=true;
 }
 
 
 /* =========================================================
-   D.VA AUTO RECALL CHARGE
+   D.VA AUTO ULT CHARGE
 ========================================================= */
 
-function updateDvaRecall(
-  p,
-  dt
-){
+function updateDvaRecall(p,dt){
 
   if(p.hero!=="dva") return;
-
   if(p.dvaMech) return;
-
   if(!p.dvaRecallCharging) return;
 
-
-  /*
-    메카가 없는 동안 궁극 게이지 자동 충전
-
-    초당 9%
-  */
-
-  p.ult =
-    Math.min(
-      100,
-      p.ult+
-      9*dt
-    );
-
-
-  /*
-    100%가 되면 자동으로 메카 복귀
-  */
+  p.ult=Math.min(
+    100,
+    p.ult+9*dt
+  );
 
   if(p.ult>=100){
 
@@ -3068,19 +2113,10 @@ function recallDvaMech(p){
 
   if(p.dvaMech) return;
 
-
   p.dvaMech=true;
-
   p.dvaRecallCharging=false;
 
-
-  /*
-    다시 메카에 탑승하면
-    궁극 게이지는 0부터 시작
-  */
-
   p.ult=0;
-
 
   createRecallEffect(p);
 }
@@ -3092,47 +2128,22 @@ function recallDvaMech(p){
 
 function createRecallEffect(p){
 
-  const e =
-    document.createElement("div");
-
+  const e=document.createElement("div");
 
   e.style.position="absolute";
   e.style.zIndex="13";
-
-
-  e.style.left =
-    (p.x-35)+"px";
-
-  e.style.top =
-    (p.y-35)+"px";
-
-
+  e.style.left=(p.x-35)+"px";
+  e.style.top=(p.y-35)+"px";
   e.style.width="70px";
   e.style.height="70px";
-
-
-  e.style.border =
-    "5px solid #6bd8ff";
-
-
+  e.style.border="5px solid #6bd8ff";
   e.style.borderRadius="50%";
-
-
-  e.style.boxShadow =
-    "0 0 25px #6bd8ff";
-
-
-  e.style.animation =
-    "wave .5s linear forwards";
-
+  e.style.boxShadow="0 0 25px #6bd8ff";
+  e.style.animation="wave .5s linear forwards";
 
   effects.appendChild(e);
 
-
-  setTimeout(
-    ()=>e.remove(),
-    600
-  );
+  setTimeout(()=>e.remove(),600);
 }
 
 
@@ -3144,82 +2155,40 @@ function updateDvaVisual(p){
 
   if(p.hero!=="dva") return;
 
-
-  /*
-    메카 상태
-  */
-
   if(p.dvaMech){
 
-    p.el.style.transform =
-      "translate(-50%,-50%)";
-
-
-    p.el.style.opacity =
-      "1";
-
+    p.el.style.transform="translate(-50%,-50%)";
 
     if(p.pilotEl){
-
       p.pilotEl.remove();
-
       p.pilotEl=null;
     }
-
 
     return;
   }
 
-
-  /*
-    메카가 없으면 파일럿 상태
-  */
-
   if(!p.pilotEl){
 
-    const pilot =
-      document.createElement("div");
+    const pilot=document.createElement("div");
 
+    pilot.className="pilot";
 
-    pilot.className =
-      "pilot";
-
-
-    pilot.innerHTML = `
+    pilot.innerHTML=`
       <div class="pilotHead"></div>
       <div class="pilotBody"></div>
       <div class="pilotArm left"></div>
       <div class="pilotArm right"></div>
     `;
 
-
     game.appendChild(pilot);
 
+    p.pilotEl=pilot;
 
-    p.pilotEl =
-      pilot;
-
-
-    p.el.style.opacity =
-      "0";
+    p.el.style.opacity="0";
   }
 
-
-  p.pilotEl.style.left =
-    p.x+"px";
-
-  p.pilotEl.style.top =
-    p.y+"px";
-
-
-  /*
-    죽었으면 파일럿도 흐리게
-  */
-
-  if(!p.alive){
-
-    p.pilotEl.style.opacity=".35";
-  }
+  p.pilotEl.style.left=p.x+"px";
+  p.pilotEl.style.top=p.y+"px";
 }
 
 
@@ -3229,23 +2198,14 @@ function updateDvaVisual(p){
 
 function reload(p){
 
-  if(!p || !p.alive) return;
-
   if(p.reloadTimer) return;
 
+  p.reloadTimer=setTimeout(()=>{
 
-  p.reloadTimer =
-    setTimeout(()=>{
+    p.ammo=p.maxAmmo;
+    p.reloadTimer=null;
 
-      if(p.alive){
-
-        p.ammo =
-          p.maxAmmo;
-      }
-
-      p.reloadTimer=null;
-
-    },1000);
+  },1000);
 }
 
 
@@ -3261,13 +2221,7 @@ function distance(a,b){
   );
 }
 
-
-function distanceXY(
-  x1,
-  y1,
-  x2,
-  y2
-){
+function distanceXY(x1,y1,x2,y2){
 
   return Math.hypot(
     x1-x2,
@@ -3277,272 +2231,140 @@ function distanceXY(
 
 
 /* =========================================================
-   BUTTON HELPER
+   BUTTONS
 ========================================================= */
 
-function bindButton(
-  id,
-  callback
-){
+document.getElementById("p1basic")
+  .addEventListener("pointerdown",()=>basicAttack(p1));
 
-  document
-    .getElementById(id)
-    .addEventListener(
-      "pointerdown",
-      e=>{
-        e.preventDefault();
-        callback();
-      }
-    );
-}
-
-
-/* =========================================================
-   P1 BUTTONS
-========================================================= */
-
-bindButton(
-  "p1basic",
-  ()=>basicAttack(p1)
-);
-
-
-bindButton(
-  "p1skill1",
-  ()=>{
-
-    if(!p1) return;
+document.getElementById("p1skill1")
+  .addEventListener("pointerdown",()=>{
 
     if(p1.hero==="lucio"){
-
       lucioSkill1(p1);
-
     }else if(p1.hero==="bastion"){
-
       bastionSkill1(p1);
-
     }else{
-
       dvaSkill1(p1);
     }
 
-  }
-);
+  });
 
-
-bindButton(
-  "p1skill2",
-  ()=>{
-
-    if(!p1) return;
+document.getElementById("p1skill2")
+  .addEventListener("pointerdown",()=>{
 
     if(p1.hero==="lucio"){
-
       lucioSkill2(p1);
-
     }else if(p1.hero==="bastion"){
-
       bastionSkill2(p1);
-
     }else{
-
       dvaSkill2(p1);
     }
 
-  }
-);
+  });
 
-
-bindButton(
-  "p1ultBtn",
-  ()=>{
-
-    if(!p1) return;
+document.getElementById("p1ultBtn")
+  .addEventListener("pointerdown",()=>{
 
     if(p1.hero==="lucio"){
-
       lucioUlt(p1);
-
     }else if(p1.hero==="bastion"){
-
       bastionUlt(p1);
-
     }else{
-
       dvaUlt(p1);
     }
 
-  }
-);
+  });
 
 
-/* =========================================================
-   P2 BUTTONS
-========================================================= */
+document.getElementById("p2basic")
+  .addEventListener("pointerdown",()=>basicAttack(p2));
 
-bindButton(
-  "p2basic",
-  ()=>basicAttack(p2)
-);
-
-
-bindButton(
-  "p2skill1",
-  ()=>{
-
-    if(!p2) return;
+document.getElementById("p2skill1")
+  .addEventListener("pointerdown",()=>{
 
     if(p2.hero==="lucio"){
-
       lucioSkill1(p2);
-
     }else if(p2.hero==="bastion"){
-
       bastionSkill1(p2);
-
     }else{
-
       dvaSkill1(p2);
     }
 
-  }
-);
+  });
 
-
-bindButton(
-  "p2skill2",
-  ()=>{
-
-    if(!p2) return;
+document.getElementById("p2skill2")
+  .addEventListener("pointerdown",()=>{
 
     if(p2.hero==="lucio"){
-
       lucioSkill2(p2);
-
     }else if(p2.hero==="bastion"){
-
       bastionSkill2(p2);
-
     }else{
-
       dvaSkill2(p2);
     }
 
-  }
-);
+  });
 
-
-bindButton(
-  "p2ultBtn",
-  ()=>{
-
-    if(!p2) return;
+document.getElementById("p2ultBtn")
+  .addEventListener("pointerdown",()=>{
 
     if(p2.hero==="lucio"){
-
       lucioUlt(p2);
-
     }else if(p2.hero==="bastion"){
-
       bastionUlt(p2);
-
     }else{
-
       dvaUlt(p2);
     }
 
-  }
-);
-
-
-/* =========================================================
-   HERO SELECT - P1
-========================================================= */
-
-document
-  .querySelectorAll("[data-p1]")
-  .forEach(card=>{
-
-    card.addEventListener(
-      "click",
-      ()=>{
-
-        document
-          .querySelectorAll("[data-p1]")
-          .forEach(x=>
-            x.classList.remove("selected")
-          );
-
-
-        card.classList.add("selected");
-
-        selectedP1 =
-          card.dataset.p1;
-      }
-    );
-
   });
 
 
 /* =========================================================
-   HERO SELECT - P2
+   HERO SELECT
 ========================================================= */
 
-document
-  .querySelectorAll("[data-p2]")
-  .forEach(card=>{
+document.querySelectorAll("[data-p1]").forEach(card=>{
 
-    card.addEventListener(
-      "click",
-      ()=>{
+  card.addEventListener("click",()=>{
 
-        document
-          .querySelectorAll("[data-p2]")
-          .forEach(x=>
-            x.classList.remove("selected")
-          );
+    document.querySelectorAll("[data-p1]")
+      .forEach(x=>x.classList.remove("selected"));
 
+    card.classList.add("selected");
 
-        card.classList.add("selected");
-
-        selectedP2 =
-          card.dataset.p2;
-      }
-    );
-
+    selectedP1=card.dataset.p1;
   });
 
+});
 
-/* =========================================================
-   START
-========================================================= */
+document.querySelectorAll("[data-p2]").forEach(card=>{
 
-document
-  .getElementById("startButton")
-  .addEventListener(
-    "click",
-    startGame
-  );
+  card.addEventListener("click",()=>{
 
+    document.querySelectorAll("[data-p2]")
+      .forEach(x=>x.classList.remove("selected"));
 
-/* =========================================================
-   RESTART
-========================================================= */
+    card.classList.add("selected");
 
-document
-  .getElementById("restartButton")
-  .addEventListener(
-    "click",
-    ()=>{
+    selectedP2=card.dataset.p2;
+  });
 
-      document
-        .getElementById("endScreen")
-        .classList.add("hidden");
+});
 
 
-      startGame();
-    }
-  );
+document.getElementById("startButton")
+  .addEventListener("click",startGame);
+
+document.getElementById("restartButton")
+  .addEventListener("click",()=>{
+
+    document.getElementById("endScreen")
+      .classList.add("hidden");
+
+    startGame();
+
+  });
 
 
 /* =========================================================
@@ -3553,130 +2375,72 @@ function updateUI(){
 
   if(!p1 || !p2) return;
 
+  document.getElementById("p1Hp").style.width=
+    (p1.hp/p1.maxHp*100)+"%";
 
-  /* HP */
+  document.getElementById("p2Hp").style.width=
+    (p2.hp/p2.maxHp*100)+"%";
 
-  document
-    .getElementById("p1Hp")
-    .style.width =
-      (p1.hp/p1.maxHp*100)+"%";
+  document.getElementById("p1HpText").textContent=
+    Math.ceil(p1.hp);
 
+  document.getElementById("p2HpText").textContent=
+    Math.ceil(p2.hp);
 
-  document
-    .getElementById("p2Hp")
-    .style.width =
-      (p2.hp/p2.maxHp*100)+"%";
+  document.getElementById("p1Ult").style.width=
+    p1.ult+"%";
 
+  document.getElementById("p2Ult").style.width=
+    p2.ult+"%";
 
-  document
-    .getElementById("p1HpText")
-    .textContent =
-      Math.ceil(p1.hp);
+  document.getElementById("timer").textContent=
+    Math.ceil(gameTime);
 
+  document.getElementById("ammo1").textContent=
+    "● "+p1.ammo+" / "+p1.maxAmmo;
 
-  document
-    .getElementById("p2HpText")
-    .textContent =
-      Math.ceil(p2.hp);
-
-
-  /* ULT */
-
-  document
-    .getElementById("p1Ult")
-    .style.width =
-      p1.ult+"%";
-
-
-  document
-    .getElementById("p2Ult")
-    .style.width =
-      p2.ult+"%";
-
-
-  /* TIMER */
-
-  document
-    .getElementById("timer")
-    .textContent =
-      Math.ceil(gameTime);
-
-
-  /* AMMO */
-
-  document
-    .getElementById("ammo1")
-    .textContent =
-      "● "+
-      p1.ammo+
-      " / "+
-      p1.maxAmmo;
-
-
-  document
-    .getElementById("ammo2")
-    .textContent =
-      "● "+
-      p2.ammo+
-      " / "+
-      p2.maxAmmo;
-
-
-  /* P1 BUTTONS */
+  document.getElementById("ammo2").textContent=
+    "● "+p2.ammo+" / "+p2.maxAmmo;
 
   updateButtonState(
     document.getElementById("p1basic"),
     p1.attackCooldown
   );
 
-
   updateButtonState(
     document.getElementById("p1skill1"),
-    getSkill1Cooldown(p1)
+    p1.skill1Cooldown
   );
-
 
   updateButtonState(
     document.getElementById("p1skill2"),
-    getSkill2Cooldown(p1)
+    p1.skill2Cooldown
   );
-
 
   updateButtonState(
     document.getElementById("p1ultBtn"),
-    p1.ult>=100
-    ?0
-    :999
+    p1.ult>=100?0:999
   );
-
-
-  /* P2 BUTTONS */
 
   updateButtonState(
     document.getElementById("p2basic"),
     p2.attackCooldown
   );
 
-
   updateButtonState(
     document.getElementById("p2skill1"),
-    getSkill1Cooldown(p2)
+    p2.skill1Cooldown
   );
-
 
   updateButtonState(
     document.getElementById("p2skill2"),
-    getSkill2Cooldown(p2)
+    p2.skill2Cooldown
   );
-
 
   updateButtonState(
     document.getElementById("p2ultBtn"),
-    p2.ult>=100
-    ?0
-    :999
+    p2.ult>=100?0:999
   );
-
 
   updateDvaVisual(p1);
   updateDvaVisual(p2);
@@ -3684,91 +2448,28 @@ function updateUI(){
 
 
 /* =========================================================
-   SKILL COOLDOWN DISPLAY
-========================================================= */
-
-function getSkill1Cooldown(p){
-
-  /*
-    D.Va 메카가 없을 때
-    스킬1은 사용할 수 없으므로 회색 처리
-  */
-
-  if(
-    p.hero==="dva" &&
-    !p.dvaMech
-  ){
-
-    return 999;
-  }
-
-  return p.skill1Cooldown;
-}
-
-
-function getSkill2Cooldown(p){
-
-  /*
-    D.Va 메카가 없을 때
-    스킬2도 사용할 수 없음
-  */
-
-  if(
-    p.hero==="dva" &&
-    !p.dvaMech
-  ){
-
-    return 999;
-  }
-
-  return p.skill2Cooldown;
-}
-
-
-/* =========================================================
    BUTTON STATE
 ========================================================= */
 
-function updateButtonState(
-  button,
-  time
-){
+function updateButtonState(button,time){
 
   if(time>0){
 
-    button.classList.add(
-      "cooldown"
-    );
+    button.classList.add("cooldown");
 
-
-    const text =
-      button.querySelector(
-        ".cooldownText"
-      );
-
+    const text=button.querySelector(".cooldownText");
 
     if(time<900){
-
-      text.textContent =
-        time.toFixed(1);
-
+      text.textContent=time.toFixed(1);
     }else{
-
       text.textContent="";
     }
 
   }else{
 
-    button.classList.remove(
-      "cooldown"
-    );
+    button.classList.remove("cooldown");
 
-
-    const text =
-      button.querySelector(
-        ".cooldownText"
-      );
-
+    const text=button.querySelector(".cooldownText");
 
     text.textContent="";
   }
@@ -3783,36 +2484,21 @@ function checkEnd(){
 
   if(!running) return;
 
+  if(!p1.alive && !p2.alive){
 
-  if(
-    !p1.alive &&
-    !p2.alive
-  ){
-
-    finish(
-      "무승부!"
-    );
-
+    finish("무승부!");
     return;
   }
-
 
   if(!p1.alive){
 
-    finish(
-      "P2 승리!"
-    );
-
+    finish("P2 승리!");
     return;
   }
 
-
   if(!p2.alive){
 
-    finish(
-      "P1 승리!"
-    );
-
+    finish("P1 승리!");
     return;
   }
 }
@@ -3826,24 +2512,17 @@ function finishByTime(){
 
   if(!running) return;
 
-
   if(p1.hp>p2.hp){
 
-    finish(
-      "P1 승리!"
-    );
+    finish("P1 승리!");
 
   }else if(p2.hp>p1.hp){
 
-    finish(
-      "P2 승리!"
-    );
+    finish("P2 승리!");
 
   }else{
 
-    finish(
-      "무승부!"
-    );
+    finish("무승부!");
   }
 }
 
@@ -3856,47 +2535,28 @@ function finish(title){
 
   if(!running) return;
 
-
   running=false;
 
+  document.getElementById("endTitle").textContent=title;
 
-  document
-    .getElementById("endTitle")
-    .textContent =
-      title;
+  document.getElementById("endText").textContent=
+    "전투가 종료되었습니다.";
 
-
-  document
-    .getElementById("endText")
-    .textContent =
-      "전투가 종료되었습니다.";
-
-
-  document
-    .getElementById("endScreen")
+  document.getElementById("endScreen")
     .classList.remove("hidden");
 }
 
 
 /* =========================================================
-   MASTER UPDATE
+   MASTER AI / SPECIAL UPDATE
 ========================================================= */
 
 function masterUpdate(dt){
 
   if(!running) return;
 
-
-  updateDvaRecall(
-    p1,
-    dt
-  );
-
-
-  updateDvaRecall(
-    p2,
-    dt
-  );
+  updateDvaRecall(p1,dt);
+  updateDvaRecall(p2,dt);
 }
 
 
@@ -3908,179 +2568,72 @@ function loop(now){
 
   if(!running) return;
 
+  const dt=Math.min(.05,(now-lastFrame)/1000);
+  lastFrame=now;
 
-  const dt =
-    Math.min(
-      .05,
-      (now-lastFrame)/1000
-    );
-
-
-  lastFrame =
-    now;
-
-
-  gameTime -=
-    dt;
-
+  gameTime-=dt;
 
   if(gameTime<=0){
 
     gameTime=0;
-
     finishByTime();
-
-    updateUI();
-
     return;
   }
 
-
-  updatePlayer(
-    p1,
-    p2,
-    dt
-  );
-
-
-  updatePlayer(
-    p2,
-    p1,
-    dt
-  );
-
+  updatePlayer(p1,p2,dt);
+  updatePlayer(p2,p1,dt);
 
   masterUpdate(dt);
 
-
-  /*
-    루시우 오라는 항상 적용
-  */
-
-  auraEffect(
-    p1,
-    dt
-  );
-
-
-  auraEffect(
-    p2,
-    dt
-  );
-
+  auraEffect(p1,dt);
+  auraEffect(p2,dt);
 
   updateUI();
 
-
-  requestAnimationFrame(
-    loop
-  );
+  requestAnimationFrame(loop);
 }
 
 
 /* =========================================================
-   START GAME
+   START
 ========================================================= */
 
 function startGame(){
 
-  document
-    .getElementById("startScreen")
-    .classList.add("hidden");
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("endScreen").classList.add("hidden");
 
+  if(p1 && p1.reloadTimer) clearTimeout(p1.reloadTimer);
+  if(p2 && p2.reloadTimer) clearTimeout(p2.reloadTimer);
 
-  document
-    .getElementById("endScreen")
-    .classList.add("hidden");
+  document.querySelectorAll(
+    ".character,.aura,.pilot,.projectile,.wave,.hitEffect"
+  ).forEach(e=>e.remove());
 
+  p1=createCharacter(
+    "p1",
+    selectedP1,
+    game.clientWidth*.25,
+    game.clientHeight*.38
+  );
 
-  /*
-    기존 타이머 정리
-  */
+  p2=createCharacter(
+    "p2",
+    selectedP2,
+    game.clientWidth*.75,
+    game.clientHeight*.62
+  );
 
-  if(p1 && p1.reloadTimer){
-
-    clearTimeout(
-      p1.reloadTimer
-    );
-  }
-
-
-  if(p2 && p2.reloadTimer){
-
-    clearTimeout(
-      p2.reloadTimer
-    );
-  }
-
-
-  /*
-    이전 게임 오브젝트 제거
-  */
-
-  document
-    .querySelectorAll(
-      ".character,.aura,.pilot,.projectile,.wave,.hitEffect"
-    )
-    .forEach(
-      e=>e.remove()
-    );
-
-
-  /*
-    캐릭터 생성
-  */
-
-  p1 =
-    createCharacter(
-      "p1",
-      selectedP1,
-      game.clientWidth*.25,
-      game.clientHeight*.38
-    );
-
-
-  p2 =
-    createCharacter(
-      "p2",
-      selectedP2,
-      game.clientWidth*.75,
-      game.clientHeight*.62
-    );
-
-
-  /*
-    게임 시간 90초
-  */
-
-  gameTime =
-    GAME_TIME;
-
-
-  running =
-    true;
-
-
-  lastFrame =
-    performance.now();
-
-
-  /*
-    Lucio 오라는
-    게임 시작과 동시에 생성되어
-    게임이 끝날 때까지 유지된다.
-  */
+  gameTime=GAME_TIME;
+  running=true;
+  lastFrame=performance.now();
 
   setupAura(p1);
   setupAura(p2);
 
-
   updateUI();
 
-
-  requestAnimationFrame(
-    loop
-  );
+  requestAnimationFrame(loop);
 }
 
 
@@ -4088,10 +2641,7 @@ function startGame(){
    INITIAL
 ========================================================= */
 
-document
-  .getElementById("timer")
-  .textContent =
-    GAME_TIME;
+document.getElementById("timer").textContent=GAME_TIME;
 
 
 /* =========================================================
@@ -4100,59 +2650,39 @@ document
 
 let lastTouchEnd=0;
 
-
 document.addEventListener(
   "touchend",
   function(e){
 
-    const now =
-      Date.now();
+    const now=Date.now();
 
-
-    if(
-      now-lastTouchEnd<=300
-    ){
-
+    if(now-lastTouchEnd<=300){
       e.preventDefault();
     }
 
-
-    lastTouchEnd =
-      now;
+    lastTouchEnd=now;
 
   },
-  {
-    passive:false
-  }
+  {passive:false}
 );
-
 
 document.addEventListener(
   "gesturestart",
   e=>e.preventDefault(),
-  {
-    passive:false
-  }
+  {passive:false}
 );
-
 
 document.addEventListener(
   "gesturechange",
   e=>e.preventDefault(),
-  {
-    passive:false
-  }
+  {passive:false}
 );
-
 
 document.addEventListener(
   "gestureend",
   e=>e.preventDefault(),
-  {
-    passive:false
-  }
+  {passive:false}
 );
-
 </script>
 
 </body>
